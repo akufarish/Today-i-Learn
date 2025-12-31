@@ -9,12 +9,12 @@
     <lastBuildDate>Wed, 31 Dec 2025 13:45:27 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Mencoba Nest Js</title>
+      <title>Mencoba Nest Js (1)</title>
       <link>http://localhost:1313/posts/mencoba-nest-js/</link>
       <pubDate>Wed, 31 Dec 2025 13:45:27 +0800</pubDate>
       <guid>http://localhost:1313/posts/mencoba-nest-js/</guid>
       <description>&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;
-&lt;p&gt;Untuk menghabiskan waktu liburku, aku berencana untuk meningkatkan skill dengan belajar nestjs, sebagai seseorang yang pernah menggunakan laravel selama 2 tahun.&lt;/p&gt;</description>
+&lt;p&gt;Untuk menghabiskan waktu liburku, aku berencana untuk meningkatkan skill dengan belajar nestjs, sebagai seseorang yang pernah menggunakan laravel selama 2 tahun. Dimulai dari belajar nest js dasar dari video pemrograman zaman now. Yang dimana pada video itu mas Eko (Programmer Zaman Now) menjelaskan alasan kenapa menggunakan framework yang menurut saya itu menarik. Karena beliau mengatakan karena menggunakan framework lah kita sebagai developer itu memiliki sebuah standar yang harus diikuti yang memiliki nilai positif karena kemudahan untuk mewariskan project yang sudah ada karena developer di masa depan yang akan datang akan mudah beradaptasi dengan code yang sudah ada karena mengikuti standar dari suatu framework.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
