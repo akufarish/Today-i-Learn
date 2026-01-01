@@ -22,13 +22,13 @@ export class UserController {
 
 Semua tentang decorator. Mungkin itu yang saya rasakan ketika menggunakan nest js pertama kali karena semua hal yang ada disini sudah diurus oleh decorator. Kalau pada laravel jika ingin membuat routing bisa lewat web.php atau api.php, pada nest didalam controller lah kita melakukan routing, menggunakan decorator dari HTTP method yang ada.
 
-1. Get() untuk method get
-2. Post() untuk method get
-3. @Put() untuk method put
-4. @Delete() untuk method delete
-5. @Patch() untuk method patch
-6. @Head() untuk method head
-7. @Option() untuk method option
+1. Get() untuk method get.
+2. Post() untuk method get.
+3. @Put() untuk method put.
+4. @Delete() untuk method delete.
+5. @Patch() untuk method patch.
+6. @Head() untuk method head.
+7. @Option() untuk method option.
 8. @All() yang mencakup semua HTTP Method.
 
 Dalam decorator juga kita bisa menambahkan path parameter untuk menentukan route nya, jika tidak diisi maka default nya akan '/' mengikuti route prefix
