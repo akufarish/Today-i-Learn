@@ -4,7 +4,7 @@ draft = false
 title = 'Mencoba Nest Js (1)'
 +++
 
-### Introduction
+## Introduction
 
 Untuk menghabiskan waktu liburku, aku berencana untuk meningkatkan skill dengan belajar nestjs, sebagai seseorang yang pernah menggunakan laravel selama 2 tahun. Dimulai dari belajar nest js dasar dari video pemrograman zaman now. Yang dimana pada video itu mas Eko (Programmer Zaman Now) menjelaskan alasan kenapa menggunakan framework yang menurut saya itu menarik. Karena beliau mengatakan karena menggunakan framework lah kita sebagai developer itu memiliki sebuah standar yang harus diikuti yang memiliki nilai positif karena kemudahan untuk mewariskan project yang sudah ada karena developer di masa depan yang akan datang akan mudah beradaptasi dengan code yang sudah ada karena mengikuti standar dari suatu framework.
 
