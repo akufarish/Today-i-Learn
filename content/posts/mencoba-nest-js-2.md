@@ -1,7 +1,7 @@
 +++
 date = '2026-01-01T11:48:17+08:00'
 draft = false
-title = 'Mencoba Nest Js 2'
+title = 'Mencoba Nest Js (2)'
 +++
 
 ## Introduction
