@@ -16,7 +16,7 @@
       <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;Memasuki hari ketiga belajar nest-JS disini saya akan melakukan recap dari apa yang saya pelajari hari ini yaitu unit test, integration test, provider, dependency injection, dan custom provider.&lt;/p&gt;
 &lt;h2 id=&#34;unit-test&#34;&gt;Unit Test&lt;/h2&gt;
-&lt;p&gt;Saat membuat controller menggunakan CLI nest, secara otomatis nest juga akan membuatkan unit test untuk controller tersebut. File unit test biasanya berformat *.spec.ts.&lt;/p&gt;
+&lt;p&gt;Saat membuat controller menggunakan CLI nest, secara otomatis nest juga akan membuatkan unit test untuk controller tersebut. File unit test biasanya berformat *&lt;strong&gt;.spec.ts&lt;/strong&gt;.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Contoh kode unit test&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -56,7 +56,7 @@
       <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;Memasuki hari kedua belajar nestjs, sebelum itu selamat tahun baru 2026, semoga di tahun ini lebih sering produktif dan ada peningkatan dari tahun sebelumnya. Kembali ke topik utama, disini saya akan melakukan recap untuk materi controller, http method, http request, http response, asynchronous, cookie, dan view pada materi nest js dasar dari programmer zaman now.&lt;/p&gt;
 &lt;h2 id=&#34;controller&#34;&gt;Controller&lt;/h2&gt;
-&lt;p&gt;Sama seperti laravel, nest js merupakan framework yang menerapkan MVC yang dimana controller disini bertugas untuk memproses HTTP request maupun response. Dalam nest js untuk membuat controller kita bisa dengan mudah menggunakan CLI nest generate controller nama_controller path. controller dalam node js dapat dikenali dengan adanya decorater @Controller() yang pada parameter decorator tersebut kita dapat melakukan konfigurasi prefix path untuk controller.&lt;/p&gt;</description>
+&lt;p&gt;Sama seperti laravel, nest js merupakan framework yang menerapkan MVC yang dimana controller disini bertugas untuk memproses HTTP request maupun response. Dalam nest js untuk membuat controller kita bisa dengan mudah menggunakan CLI nest generate controller nama_controller path. controller dalam node js dapat dikenali dengan adanya decorater &lt;strong&gt;@Controller()&lt;/strong&gt; yang pada parameter decorator tersebut kita dapat melakukan konfigurasi prefix path untuk controller.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Mencoba Nest Js (1)</title>

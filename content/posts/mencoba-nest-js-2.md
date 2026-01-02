@@ -10,9 +10,9 @@ Memasuki hari kedua belajar nestjs, sebelum itu selamat tahun baru 2026, semoga 
 
 ## Controller
 
-Sama seperti laravel, nest js merupakan framework yang menerapkan MVC yang dimana controller disini bertugas untuk memproses HTTP request maupun response. Dalam nest js untuk membuat controller kita bisa dengan mudah menggunakan CLI nest generate controller nama_controller path. controller dalam node js dapat dikenali dengan adanya decorater @Controller() yang pada parameter decorator tersebut kita dapat melakukan konfigurasi prefix path untuk controller.
+Sama seperti laravel, nest js merupakan framework yang menerapkan MVC yang dimana controller disini bertugas untuk memproses HTTP request maupun response. Dalam nest js untuk membuat controller kita bisa dengan mudah menggunakan CLI nest generate controller nama_controller path. controller dalam node js dapat dikenali dengan adanya decorater **@Controller()** yang pada parameter decorator tersebut kita dapat melakukan konfigurasi prefix path untuk controller.
 
-```
+```typescript
 @Controller('/api/users')
 export class UserController {
 }
@@ -22,18 +22,18 @@ export class UserController {
 
 Semua tentang decorator. Mungkin itu yang saya rasakan ketika menggunakan nest js pertama kali karena semua hal yang ada disini sudah diurus oleh decorator. Kalau pada laravel jika ingin membuat routing bisa lewat web.php atau api.php, pada nest didalam controller lah kita melakukan routing, menggunakan decorator dari HTTP method yang ada.
 
-1. Get() untuk method get.
-2. Post() untuk method post.
-3. @Put() untuk method put.
-4. @Delete() untuk method delete.
-5. @Patch() untuk method patch.
-6. @Head() untuk method head.
-7. @Option() untuk method option.
-8. @All() untuk semua HTTP Method.
+1. **@Get()** untuk method get.
+2. **@Post()** untuk method post.
+3. **@Put()** untuk method put.
+4. **@Delete()** untuk method delete.
+5. **@Patch()** untuk method patch.
+6. **@Head()** untuk method head.
+7. **@Option()** untuk method option.
+8. **@All()** untuk semua HTTP Method.
 
-Dalam decorator juga kita bisa menambahkan path parameter untuk menentukan route nya, jika tidak diisi maka default nya akan '/' mengikuti route prefix
+Dalam decorator juga kita bisa menambahkan path parameter untuk menentukan route nya, jika tidak diisi maka default nya akan '/' mengikuti route prefix.
 
-```
+```typescript
 @Post()
 post(): string {
   return 'POST';
@@ -47,9 +47,9 @@ get(): string {
 
 ## HTTP Request
 
-Mau mengambil query? gunakan decorator @Query(), mau mengambil data dari parameter? gunakan @Param(), request? gunakan Request(), body? gunakan Body(). Itu semua sudah diurus oleh decorator dan kita bisa dengan mudah mengakses nya saja.
+Mau mengambil query? gunakan decorator **@Query()**, mau mengambil data dari parameter? gunakan **@Param()**, request? gunakan **@Request()**, body? gunakan **@Body()**. Itu semua sudah diurus oleh decorator dan kita bisa dengan mudah mengakses nya saja.
 
-```
+```typescript
 @Get('/hello')
 sayHello(@Query('name') name: string): string {
   return `Hello ${name}`;
@@ -68,21 +68,20 @@ getCookie(@Req() request: Request): string {
 
 ## HTTP Response
 
-Secara default return value yang kita set pada method yang ada didalam controller akan dijadikan response body untuk HTTP Resposne. Namun jika memerlukan express response juga bisa menggunakan decorator @Res() dan type nya Resposne dari express.
+Secara default return value yang kita set pada method yang ada didalam controller akan dijadikan response body untuk HTTP Resposne. Namun jika memerlukan express response juga bisa menggunakan decorator **@Res()** dan type nya Resposne dari express.
 
 > Contoh menjadikan string sebagai HTTP Response
 
-```
+```typescript
 @Get('/sample')
 get(): string {
   return 'GET';
 }
-
 ```
 
 > Contoh menggunakan express response
 
-```
+```typescript
 @Get('/set-cookie')
 setCookie(@Query('name') name: string, @Res() response:Response) {
   response.cookie('name', name);
@@ -92,9 +91,9 @@ setCookie(@Query('name') name: string, @Res() response:Response) {
 
 ## Asynchronous
 
-Cukup gunakan async method dengan return value Promise<T> data
+Cukup gunakan async method dengan return value Promise<T> data.
 
-```
+```typescript
 @Get('/async-hello')
 async asyncSayHello(@Query('name') name: string): Promise<string> {
   return `Hello ${name}`;
@@ -103,18 +102,18 @@ async asyncSayHello(@Query('name') name: string): Promise<string> {
 
 ## Cookie
 
-By default nestJS tidak memiliki support cookie secara bawaan. Oleh karena itu kita bisa menggunakan library tambahan seperti cookie-parser yang nantinya dapat kita tambahkan di file main.ts
+By default nestJS tidak memiliki support cookie secara bawaan. Oleh karena itu kita bisa menggunakan library tambahan seperti cookie-parser yang nantinya dapat kita tambahkan di file **main.ts**.
 
 > Menambah library cookie-parser
 
-```
+```terminaloutput
 bun add cookie-parser
 bun add -d @types/cookie-parser
 ```
 
 > Konfigurasi main.ts
 
-```
+```typescript
 import * as cookieParser from 'cookie-parser';
 
 async function bootstrap() {
@@ -129,7 +128,7 @@ Untuk mengakses cookie kita dapat menggunakan request dan response dari express 
 
 > Contoh penggunaan cookie
 
-```
+```typescript
 @Get('/set-cookie')
   setCookie(@Query('name') name: string, @Res() response: Response) {
     response.cookie('name', name);
@@ -144,18 +143,18 @@ Untuk mengakses cookie kita dapat menggunakan request dan response dari express 
 
 ## View
 
-Sama seperti cookie, nestJS by default juga tidak memiliki template engine bawaan, namun kita bisa menggunakan mustache sebagai template engine nya.
+Sama seperti cookie, nestJS by default juga tidak memiliki template engine bawaan, namun kita bisa menggunakan **mustache** sebagai template engine nya.
 
 > Menambah library mustache
 
-```
+```terminaloutput
 bun add mustache-express
 bun add -d @types/mustache-express
 ```
 
 > Konfigurasi main.ts
 
-```
+```typescript
 import * as mustache from 'mustache-express';
 import { NestExpressApplication } from '@nestjs/platform-express';
 

@@ -8,7 +8,7 @@ title = 'Mencoba Nest Js (3)'
 Memasuki hari ketiga belajar nest-JS disini saya akan melakukan recap dari apa yang saya pelajari hari ini yaitu unit test, integration test, provider, dependency injection, dan custom provider.
 
 ## Unit Test
-Saat membuat controller menggunakan CLI nest, secara otomatis nest juga akan membuatkan unit test untuk controller tersebut. File unit test biasanya berformat *.spec.ts.
+Saat membuat controller menggunakan CLI nest, secara otomatis nest juga akan membuatkan unit test untuk controller tersebut. File unit test biasanya berformat ***.spec.ts**.
 
 > Contoh kode unit test
 ```typescript
@@ -49,7 +49,7 @@ bun test
 ```
 
 ## Integration Test
-Berbeda dengan unit test yang hanya melakukan pengujian testing pada satu controller atau model, integration test dapat melakukan testing ke seluruh aplikasi. Secara default file untuk integration test diakhiri dengan *.e2e.spec.ts, e2e merupakan singkatan dari end to end. Perubahan konfigurasi dapat dilakukan dengan mengubah isi file test/jest-e2e.json.
+Berbeda dengan unit test yang hanya melakukan pengujian testing pada satu controller atau model, integration test dapat melakukan testing ke seluruh aplikasi. Secara default file untuk integration test diakhiri dengan ***.e2e.spec.ts**, e2e merupakan singkatan dari end to end. Perubahan konfigurasi dapat dilakukan dengan mengubah isi file **test/jest-e2e.json**.
 
 > Contoh kode integration test
 ```typescript
@@ -98,7 +98,7 @@ bun test:e2e
 ## Provider
 Provider adalah sebuah object yang bisa berupa service, repository, factory, helper, dan lain-lain yang dapat di inject sebagai dependency ke object lainnya seperti controller atau bahakn provider lain.
 
-Untuk membuat provider, kita bisa membuat class lalu tambahkan decorator @Injectable(). Selanjutnya provider yang baru dibuat harus diregistrasikan pada module agar bisa dikenali oleh NestJS. Dibandingkan membuat file dan memasukkan provider secara manual, kita bisa menggunakan CLI NestJS dengan command
+Untuk membuat provider, kita bisa membuat class lalu tambahkan decorator **@Injectable()**. Selanjutnya provider yang baru dibuat harus diregistrasikan pada module agar bisa dikenali oleh NestJS. Dibandingkan membuat file dan memasukkan provider secara manual, kita bisa menggunakan CLI NestJS dengan command
 
 ```terminaloutput
 nest generate provider nama_file path_file

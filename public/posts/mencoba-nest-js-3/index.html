@@ -152,7 +152,7 @@ Pada kode unit test, bagian beforeEach nya mirip dengan file module, kita harus 
   <div class="post-content"><h2 id="introduction">Introduction<a hidden class="anchor" aria-hidden="true" href="#introduction">#</a></h2>
 <p>Memasuki hari ketiga belajar nest-JS disini saya akan melakukan recap dari apa yang saya pelajari hari ini yaitu unit test, integration test, provider, dependency injection, dan custom provider.</p>
 <h2 id="unit-test">Unit Test<a hidden class="anchor" aria-hidden="true" href="#unit-test">#</a></h2>
-<p>Saat membuat controller menggunakan CLI nest, secara otomatis nest juga akan membuatkan unit test untuk controller tersebut. File unit test biasanya berformat *.spec.ts.</p>
+<p>Saat membuat controller menggunakan CLI nest, secara otomatis nest juga akan membuatkan unit test untuk controller tersebut. File unit test biasanya berformat *<strong>.spec.ts</strong>.</p>
 <blockquote>
 <p>Contoh kode unit test</p>
 </blockquote>
@@ -188,7 +188,7 @@ Pada kode unit test, bagian beforeEach nya mirip dengan file module, kita harus 
 </blockquote>
 <pre tabindex="0"><code class="language-terminaloutput" data-lang="terminaloutput">bun test
 </code></pre><h2 id="integration-test">Integration Test<a hidden class="anchor" aria-hidden="true" href="#integration-test">#</a></h2>
-<p>Berbeda dengan unit test yang hanya melakukan pengujian testing pada satu controller atau model, integration test dapat melakukan testing ke seluruh aplikasi. Secara default file untuk integration test diakhiri dengan *.e2e.spec.ts, e2e merupakan singkatan dari end to end. Perubahan konfigurasi dapat dilakukan dengan mengubah isi file test/jest-e2e.json.</p>
+<p>Berbeda dengan unit test yang hanya melakukan pengujian testing pada satu controller atau model, integration test dapat melakukan testing ke seluruh aplikasi. Secara default file untuk integration test diakhiri dengan *<strong>.e2e.spec.ts</strong>, e2e merupakan singkatan dari end to end. Perubahan konfigurasi dapat dilakukan dengan mengubah isi file <strong>test/jest-e2e.json</strong>.</p>
 <blockquote>
 <p>Contoh kode integration test</p>
 </blockquote>
@@ -234,7 +234,7 @@ Pada kode unit test, bagian beforeEach nya mirip dengan file module, kita harus 
 <pre tabindex="0"><code class="language-terminaloutput" data-lang="terminaloutput">bun test:e2e
 </code></pre><h2 id="provider">Provider<a hidden class="anchor" aria-hidden="true" href="#provider">#</a></h2>
 <p>Provider adalah sebuah object yang bisa berupa service, repository, factory, helper, dan lain-lain yang dapat di inject sebagai dependency ke object lainnya seperti controller atau bahakn provider lain.</p>
-<p>Untuk membuat provider, kita bisa membuat class lalu tambahkan decorator @Injectable(). Selanjutnya provider yang baru dibuat harus diregistrasikan pada module agar bisa dikenali oleh NestJS. Dibandingkan membuat file dan memasukkan provider secara manual, kita bisa menggunakan CLI NestJS dengan command</p>
+<p>Untuk membuat provider, kita bisa membuat class lalu tambahkan decorator <strong>@Injectable()</strong>. Selanjutnya provider yang baru dibuat harus diregistrasikan pada module agar bisa dikenali oleh NestJS. Dibandingkan membuat file dan memasukkan provider secara manual, kita bisa menggunakan CLI NestJS dengan command</p>
 <pre tabindex="0"><code class="language-terminaloutput" data-lang="terminaloutput">nest generate provider nama_file path_file
 </code></pre><p>dan secara otomatis Nest akan membuat file provider sekaligus meregistrasikan provider tersebut pada module.</p>
 <p>Atau jika ingin membuat provider sebagai service Nest juga menyediakan CLI nya dengan command</p>

@@ -122,126 +122,126 @@ Sama seperti laravel, nest js merupakan framework yang menerapkan MVC yang diman
   <div class="post-content"><h2 id="introduction">Introduction<a hidden class="anchor" aria-hidden="true" href="#introduction">#</a></h2>
 <p>Memasuki hari kedua belajar nestjs, sebelum itu selamat tahun baru 2026, semoga di tahun ini lebih sering produktif dan ada peningkatan dari tahun sebelumnya. Kembali ke topik utama, disini saya akan melakukan recap untuk materi controller, http method, http request, http response, asynchronous, cookie, dan view pada materi nest js dasar dari programmer zaman now.</p>
 <h2 id="controller">Controller<a hidden class="anchor" aria-hidden="true" href="#controller">#</a></h2>
-<p>Sama seperti laravel, nest js merupakan framework yang menerapkan MVC yang dimana controller disini bertugas untuk memproses HTTP request maupun response. Dalam nest js untuk membuat controller kita bisa dengan mudah menggunakan CLI nest generate controller nama_controller path. controller dalam node js dapat dikenali dengan adanya decorater @Controller() yang pada parameter decorator tersebut kita dapat melakukan konfigurasi prefix path untuk controller.</p>
-<pre tabindex="0"><code>@Controller(&#39;/api/users&#39;)
-export class UserController {
-}
-</code></pre><h2 id="http-method">HTTP Method<a hidden class="anchor" aria-hidden="true" href="#http-method">#</a></h2>
+<p>Sama seperti laravel, nest js merupakan framework yang menerapkan MVC yang dimana controller disini bertugas untuk memproses HTTP request maupun response. Dalam nest js untuk membuat controller kita bisa dengan mudah menggunakan CLI nest generate controller nama_controller path. controller dalam node js dapat dikenali dengan adanya decorater <strong>@Controller()</strong> yang pada parameter decorator tersebut kita dapat melakukan konfigurasi prefix path untuk controller.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">@Controller</span>(<span style="color:#e6db74">&#39;/api/users&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserController</span> {
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="http-method">HTTP Method<a hidden class="anchor" aria-hidden="true" href="#http-method">#</a></h2>
 <p>Semua tentang decorator. Mungkin itu yang saya rasakan ketika menggunakan nest js pertama kali karena semua hal yang ada disini sudah diurus oleh decorator. Kalau pada laravel jika ingin membuat routing bisa lewat web.php atau api.php, pada nest didalam controller lah kita melakukan routing, menggunakan decorator dari HTTP method yang ada.</p>
 <ol>
-<li>Get() untuk method get.</li>
-<li>Post() untuk method post.</li>
-<li>@Put() untuk method put.</li>
-<li>@Delete() untuk method delete.</li>
-<li>@Patch() untuk method patch.</li>
-<li>@Head() untuk method head.</li>
-<li>@Option() untuk method option.</li>
-<li>@All() untuk semua HTTP Method.</li>
+<li><strong>@Get()</strong> untuk method get.</li>
+<li><strong>@Post()</strong> untuk method post.</li>
+<li><strong>@Put()</strong> untuk method put.</li>
+<li><strong>@Delete()</strong> untuk method delete.</li>
+<li><strong>@Patch()</strong> untuk method patch.</li>
+<li><strong>@Head()</strong> untuk method head.</li>
+<li><strong>@Option()</strong> untuk method option.</li>
+<li><strong>@All()</strong> untuk semua HTTP Method.</li>
 </ol>
-<p>Dalam decorator juga kita bisa menambahkan path parameter untuk menentukan route nya, jika tidak diisi maka default nya akan &lsquo;/&rsquo; mengikuti route prefix</p>
-<pre tabindex="0"><code>@Post()
-post(): string {
-  return &#39;POST&#39;;
-}
-
-@Get(&#39;/sample&#39;)
-get(): string {
-  return &#39;GET&#39;;
-}
-</code></pre><h2 id="http-request">HTTP Request<a hidden class="anchor" aria-hidden="true" href="#http-request">#</a></h2>
-<p>Mau mengambil query? gunakan decorator @Query(), mau mengambil data dari parameter? gunakan @Param(), request? gunakan Request(), body? gunakan Body(). Itu semua sudah diurus oleh decorator dan kita bisa dengan mudah mengakses nya saja.</p>
-<pre tabindex="0"><code>@Get(&#39;/hello&#39;)
-sayHello(@Query(&#39;name&#39;) name: string): string {
-  return `Hello ${name}`;
-}
-
-@Get(&#39;/:id&#39;)
-getById(@Param(&#39;id&#39;) id: string): string {
-  return `GET ${id}`;
-}
-
-@Get(&#39;get-cookie&#39;)
-getCookie(@Req() request: Request): string {
-  return request.cookies[&#39;name&#39;] as string;
-}
-</code></pre><h2 id="http-response">HTTP Response<a hidden class="anchor" aria-hidden="true" href="#http-response">#</a></h2>
-<p>Secara default return value yang kita set pada method yang ada didalam controller akan dijadikan response body untuk HTTP Resposne. Namun jika memerlukan express response juga bisa menggunakan decorator @Res() dan type nya Resposne dari express.</p>
+<p>Dalam decorator juga kita bisa menambahkan path parameter untuk menentukan route nya, jika tidak diisi maka default nya akan &lsquo;/&rsquo; mengikuti route prefix.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">@Post</span>()
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">post</span>()<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;POST&#39;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Get</span>(<span style="color:#e6db74">&#39;/sample&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">get</span>()<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;GET&#39;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="http-request">HTTP Request<a hidden class="anchor" aria-hidden="true" href="#http-request">#</a></h2>
+<p>Mau mengambil query? gunakan decorator <strong>@Query()</strong>, mau mengambil data dari parameter? gunakan <strong>@Param()</strong>, request? gunakan <strong>@Request()</strong>, body? gunakan <strong>@Body()</strong>. Itu semua sudah diurus oleh decorator dan kita bisa dengan mudah mengakses nya saja.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">@Get</span>(<span style="color:#e6db74">&#39;/hello&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">sayHello</span>(<span style="color:#66d9ef">@Query</span>(<span style="color:#e6db74">&#39;name&#39;</span>) <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#e6db74">`Hello </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">name</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Get</span>(<span style="color:#e6db74">&#39;/:id&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">getById</span>(<span style="color:#66d9ef">@Param</span>(<span style="color:#e6db74">&#39;id&#39;</span>) <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">string</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#e6db74">`GET </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">id</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Get</span>(<span style="color:#e6db74">&#39;get-cookie&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">getCookie</span>(<span style="color:#66d9ef">@Req</span>() <span style="color:#a6e22e">request</span>: <span style="color:#66d9ef">Request</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">cookies</span>[<span style="color:#e6db74">&#39;name&#39;</span>] <span style="color:#66d9ef">as</span> <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="http-response">HTTP Response<a hidden class="anchor" aria-hidden="true" href="#http-response">#</a></h2>
+<p>Secara default return value yang kita set pada method yang ada didalam controller akan dijadikan response body untuk HTTP Resposne. Namun jika memerlukan express response juga bisa menggunakan decorator <strong>@Res()</strong> dan type nya Resposne dari express.</p>
 <blockquote>
 <p>Contoh menjadikan string sebagai HTTP Response</p>
 </blockquote>
-<pre tabindex="0"><code>@Get(&#39;/sample&#39;)
-get(): string {
-  return &#39;GET&#39;;
-}
-</code></pre><blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">@Get</span>(<span style="color:#e6db74">&#39;/sample&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">get</span>()<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;GET&#39;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
 <p>Contoh menggunakan express response</p>
 </blockquote>
-<pre tabindex="0"><code>@Get(&#39;/set-cookie&#39;)
-setCookie(@Query(&#39;name&#39;) name: string, @Res() response:Response) {
-  response.cookie(&#39;name&#39;, name);
-  response.status(200).send(&#39;Success set cookie&#39;);
-}
-</code></pre><h2 id="asynchronous">Asynchronous<a hidden class="anchor" aria-hidden="true" href="#asynchronous">#</a></h2>
-<p>Cukup gunakan async method dengan return value Promise<!-- raw HTML omitted --> data</p>
-<pre tabindex="0"><code>@Get(&#39;/async-hello&#39;)
-async asyncSayHello(@Query(&#39;name&#39;) name: string): Promise&lt;string&gt; {
-  return `Hello ${name}`;
-}
-</code></pre><h2 id="cookie">Cookie<a hidden class="anchor" aria-hidden="true" href="#cookie">#</a></h2>
-<p>By default nestJS tidak memiliki support cookie secara bawaan. Oleh karena itu kita bisa menggunakan library tambahan seperti cookie-parser yang nantinya dapat kita tambahkan di file main.ts</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">@Get</span>(<span style="color:#e6db74">&#39;/set-cookie&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">setCookie</span>(<span style="color:#66d9ef">@Query</span>(<span style="color:#e6db74">&#39;name&#39;</span>) <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">@Res</span>() <span style="color:#a6e22e">response</span>:<span style="color:#66d9ef">Response</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">cookie</span>(<span style="color:#e6db74">&#39;name&#39;</span>, <span style="color:#a6e22e">name</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">status</span>(<span style="color:#ae81ff">200</span>).<span style="color:#a6e22e">send</span>(<span style="color:#e6db74">&#39;Success set cookie&#39;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="asynchronous">Asynchronous<a hidden class="anchor" aria-hidden="true" href="#asynchronous">#</a></h2>
+<p>Cukup gunakan async method dengan return value Promise<!-- raw HTML omitted --> data.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">@Get</span>(<span style="color:#e6db74">&#39;/async-hello&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#a6e22e">asyncSayHello</span>(<span style="color:#66d9ef">@Query</span>(<span style="color:#e6db74">&#39;name&#39;</span>) <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span>&lt;<span style="color:#f92672">string</span>&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#e6db74">`Hello </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">name</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="cookie">Cookie<a hidden class="anchor" aria-hidden="true" href="#cookie">#</a></h2>
+<p>By default nestJS tidak memiliki support cookie secara bawaan. Oleh karena itu kita bisa menggunakan library tambahan seperti cookie-parser yang nantinya dapat kita tambahkan di file <strong>main.ts</strong>.</p>
 <blockquote>
 <p>Menambah library cookie-parser</p>
 </blockquote>
-<pre tabindex="0"><code>bun add cookie-parser
+<pre tabindex="0"><code class="language-terminaloutput" data-lang="terminaloutput">bun add cookie-parser
 bun add -d @types/cookie-parser
 </code></pre><blockquote>
 <p>Konfigurasi main.ts</p>
 </blockquote>
-<pre tabindex="0"><code>import * as cookieParser from &#39;cookie-parser&#39;;
-
-async function bootstrap() {
-  const app = await NestFactory.create&lt;NestExpressApplication&gt;(AppModule);
-  app.use(cookieParser.default(&#39;SECRET&#39;));
-
-  await app.listen(process.env.PORT ?? 3000);
-}
-</code></pre><p>Untuk mengakses cookie kita dapat menggunakan request dan response dari express js</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">cookieParser</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;cookie-parser&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">bootstrap() {</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">NestFactory</span>.<span style="color:#a6e22e">create</span>&lt;<span style="color:#f92672">NestExpressApplication</span>&gt;(<span style="color:#a6e22e">AppModule</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">cookieParser</span>.<span style="color:#66d9ef">default</span>(<span style="color:#e6db74">&#39;SECRET&#39;</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">PORT</span> <span style="color:#f92672">??</span> <span style="color:#ae81ff">3000</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Untuk mengakses cookie kita dapat menggunakan request dan response dari express js</p>
 <blockquote>
 <p>Contoh penggunaan cookie</p>
 </blockquote>
-<pre tabindex="0"><code>@Get(&#39;/set-cookie&#39;)
-  setCookie(@Query(&#39;name&#39;) name: string, @Res() response: Response) {
-    response.cookie(&#39;name&#39;, name);
-    response.status(200).send(&#39;Success set cookie&#39;);
-  }
-
-@Get(&#39;get-cookie&#39;)
-  getCookie(@Req() request: Request): string {
-    return request.cookies[&#39;name&#39;] as string;
-  }
-</code></pre><h2 id="view">View<a hidden class="anchor" aria-hidden="true" href="#view">#</a></h2>
-<p>Sama seperti cookie, nestJS by default juga tidak memiliki template engine bawaan, namun kita bisa menggunakan mustache sebagai template engine nya.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">@Get</span>(<span style="color:#e6db74">&#39;/set-cookie&#39;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">setCookie</span>(<span style="color:#66d9ef">@Query</span>(<span style="color:#e6db74">&#39;name&#39;</span>) <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">@Res</span>() <span style="color:#a6e22e">response</span>: <span style="color:#66d9ef">Response</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">cookie</span>(<span style="color:#e6db74">&#39;name&#39;</span>, <span style="color:#a6e22e">name</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">status</span>(<span style="color:#ae81ff">200</span>).<span style="color:#a6e22e">send</span>(<span style="color:#e6db74">&#39;Success set cookie&#39;</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Get</span>(<span style="color:#e6db74">&#39;get-cookie&#39;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">getCookie</span>(<span style="color:#66d9ef">@Req</span>() <span style="color:#a6e22e">request</span>: <span style="color:#66d9ef">Request</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">cookies</span>[<span style="color:#e6db74">&#39;name&#39;</span>] <span style="color:#66d9ef">as</span> <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><h2 id="view">View<a hidden class="anchor" aria-hidden="true" href="#view">#</a></h2>
+<p>Sama seperti cookie, nestJS by default juga tidak memiliki template engine bawaan, namun kita bisa menggunakan <strong>mustache</strong> sebagai template engine nya.</p>
 <blockquote>
 <p>Menambah library mustache</p>
 </blockquote>
-<pre tabindex="0"><code>bun add mustache-express
+<pre tabindex="0"><code class="language-terminaloutput" data-lang="terminaloutput">bun add mustache-express
 bun add -d @types/mustache-express
 </code></pre><blockquote>
 <p>Konfigurasi main.ts</p>
 </blockquote>
-<pre tabindex="0"><code>import * as mustache from &#39;mustache-express&#39;;
-import { NestExpressApplication } from &#39;@nestjs/platform-express&#39;;
-
-async function bootstrap() {
-  const app = await NestFactory.create&lt;NestExpressApplication&gt;(AppModule);
-  app.use(cookieParser.default(&#39;SECRET&#39;));
-
-  app.set(&#39;views&#39;, __dirname + &#39;/../views&#39;);
-  app.set(&#39;view engine&#39;, &#39;html&#39;);
-  app.engine(&#39;html&#39;, mustache.default());
-  await app.listen(process.env.PORT ?? 3000);
-}
-</code></pre><p>Seperti yang bisa diliat pada konfigurasi main.ts saat menambah library cookie dan mustache kita set NestFactory.create dengan type NestExpressApplication yang berarti project nest js yang dikerjakan saat ini adalah express application yang membuat variabel app memiliki method yang sama seperti membuat express.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">mustache</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;mustache-express&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NestExpressApplication</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@nestjs/platform-express&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">bootstrap() {</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">NestFactory</span>.<span style="color:#a6e22e">create</span>&lt;<span style="color:#f92672">NestExpressApplication</span>&gt;(<span style="color:#a6e22e">AppModule</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">cookieParser</span>.<span style="color:#66d9ef">default</span>(<span style="color:#e6db74">&#39;SECRET&#39;</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">app</span>.<span style="color:#66d9ef">set</span>(<span style="color:#e6db74">&#39;views&#39;</span>, <span style="color:#a6e22e">__dirname</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;/../views&#39;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">app</span>.<span style="color:#66d9ef">set</span>(<span style="color:#e6db74">&#39;view engine&#39;</span>, <span style="color:#e6db74">&#39;html&#39;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">engine</span>(<span style="color:#e6db74">&#39;html&#39;</span>, <span style="color:#a6e22e">mustache</span>.<span style="color:#66d9ef">default</span>());
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">PORT</span> <span style="color:#f92672">??</span> <span style="color:#ae81ff">3000</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Seperti yang bisa diliat pada konfigurasi main.ts saat menambah library cookie dan mustache kita set NestFactory.create dengan type NestExpressApplication yang berarti project nest js yang dikerjakan saat ini adalah express application yang membuat variabel app memiliki method yang sama seperti membuat express.</p>
 
 
   </div>
