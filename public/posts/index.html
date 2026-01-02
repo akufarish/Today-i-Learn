@@ -114,13 +114,37 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Mencoba Nest Js (3)
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Introduction Memasuki hari ketiga belajar nest-JS disini saya akan melakukan recap dari apa yang saya pelajari hari ini yaitu unit test, integration test, provider, dependency injection, dan custom provider.
+Unit Test Saat membuat controller menggunakan CLI nest, secara otomatis nest juga akan membuatkan unit test untuk controller tersebut. File unit test biasanya berformat *.spec.ts.
+Contoh kode unit test
+import { Test, TestingModule } from &#39;@nestjs/testing&#39;; import { UserController } from &#39;./user.controller&#39;; import { UserService } from &#39;./user.service&#39;; describe(&#39;UserController&#39;, () =&gt; { let controller: UserController; beforeEach(async () =&gt; { const module: TestingModule = await Test.createTestingModule({ controllers: [UserController], providers: [ UserService, ], }).compile(); controller = module.get&lt;UserController&gt;(UserController); }); it(&#39;should be return GET 1&#39;, () =&gt; { expect(controller.getById(&#39;1&#39;)).toBe(&#39;GET 1&#39;); }); it(&#39;should be return MongoDB&#39;, () =&gt; { expect(controller.getConnection()).toBe(&#39;MongoDB&#39;); }); }); Pada kode unit test, bagian beforeEach nya mirip dengan file module, kita harus memasukkan controller atau provider yang digunakan pada file controller supaya unit test ini dapat mengenali dependency apa saja yang digunakan.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-01-02 10:22:59 +0800 +08'>January 2, 2026</span></footer>
+  <a class="entry-link" aria-label="post link to Mencoba Nest Js (3)" href="http://localhost:1313/posts/mencoba-nest-js-3/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Mencoba Nest Js (2)
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Introduction Memasuki hari kedua belajar nestjs, sebelum itu selamat tahun baru 2026, semoga di tahun ini lebih sering produktif dan ada peningkatan dari tahun sebelumnya. Kembali ke topik utama, disini saya akan melakukan recap untuk materi controller, http method, http request, http response, asynchronous, cookie, dan view pada materi nest js dasar dari programmer zaman now.
+Controller Sama seperti laravel, nest js merupakan framework yang menerapkan MVC yang dimana controller disini bertugas untuk memproses HTTP request maupun response. Dalam nest js untuk membuat controller kita bisa dengan mudah menggunakan CLI nest generate controller nama_controller path. controller dalam node js dapat dikenali dengan adanya decorater @Controller() yang pada parameter decorator tersebut kita dapat melakukan konfigurasi prefix path untuk controller.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-01-01 11:48:17 +0800 +08'>January 1, 2026</span></footer>
+  <a class="entry-link" aria-label="post link to Mencoba Nest Js (2)" href="http://localhost:1313/posts/mencoba-nest-js-2/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Mencoba Nest Js (1)
-      <span class="entry-hint" title="Draft">
-        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
-          <path
-            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
-        </svg>
-      </span>
     </h2>
   </header>
   <div class="entry-content">
@@ -133,7 +157,7 @@
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="http://localhost:1313/">Today I Learn - Farish</a></span> · 
+        <span>&copy; 2026 <a href="http://localhost:1313/">Today I Learn - Farish</a></span> · 
 
     <span>
         Powered by
