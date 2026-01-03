@@ -12,7 +12,7 @@ Kenapa harus menggunakan custom provider? Karena terkadang kita bisa saja membua
 Atau ada juga kasus dimana provider yang kita buat itu sedikit kompleks sehingga tidak bisa hanya dengan memanggil class nya saja. Oleh karena itu Nest mendukung beberapa cara pembuatan custom provider yang akan dibahas pada postingan ini.
 
 ## Standard Provider
-Cara ini adalah cara default yang sudah digunakan sebelumnya. Yaitu dengan cara membuat provider lalu menyebutkan langsung nama class nya di attribute providers di module.
+Cara ini adalah cara default yang sudah digunakan sebelumnya. Yaitu dengan cara membuat provider lalu menyebutkan langsung nama class nya di attribute providers pada module.
 
 ```typescript
 import { Module } from '@nestjs/common';
