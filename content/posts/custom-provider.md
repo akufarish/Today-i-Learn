@@ -14,6 +14,7 @@ Atau ada juga kasus dimana provider yang kita buat itu sedikit kompleks sehingga
 ## Standard Provider
 Cara ini adalah cara default yang sudah digunakan sebelumnya. Yaitu dengan cara membuat provider lalu menyebutkan langsung nama class nya di attribute providers pada module.
 
+> user-module.ts
 ```typescript
 import { Module } from '@nestjs/common';
 import { UserController } from './user.controller';
@@ -135,7 +136,7 @@ export function createUserRepository(connection: Connection): UserRepository {
 }
 ```
 
-> main.ts
+> user-module.ts
 ```typescript
 import { Module } from '@nestjs/common';
 import { UserController } from './user.controller';
@@ -160,7 +161,7 @@ export class UserModule {}
 ## Alias Provider
 Mau membuat provider menggunakan object provider yang sama? Maka solusinya adalah menggunakan alias provider. Alias provider adalah cara untuk membuat dependency dengan nama yang berbeda untuk membuat object provider yang sama. Cara menggunakan alias provider adalah dengan cara menggunakan atribut **provide** yang berisi nama alias, dan **useExisting** yang berisi provider yang mau kita buat alias nya.
 
-> main.ts
+> user-module.ts
 ```typescript
 import { Module } from '@nestjs/common';
 import { UserController } from './user.controller';
