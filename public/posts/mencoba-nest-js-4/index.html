@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Mencoba Nest Js 4 | Today I Learn - Farish</title>
+<meta name="keywords" content="">
+<meta name="description" content="Introduction
+Lanjut ke hari keempat belajar NestJS. Materi kali ini ada module reference, mengakses .env menggunakan configuration, dan membahas singleton object pada materi shared module.
+Module Reference
+Nest menyediakan class bernama ModuleRef yang berfungsi untuk mengambil data provider tanpa melakukan dependency injection. Cara penggunaannya adalah menggunakan method get() dari class ModuleRef yang menerima satu parameter yaitu provider yang ingin kita gunakan.
+
+member-service.ts
+
+import { Injectable } from &#39;@nestjs/common&#39;;
+import { ModuleRef } from &#39;@nestjs/core&#39;;
+import { Connection } from &#39;../connection/connection&#39;;
+import { MailService } from &#39;../mail/mail.service&#39;;
+
+@Injectable()
+export class MemberService {
+  constructor(private moduleRef: ModuleRef) {}
+
+  getConnectionName(): string | null {
+    const connection = this.moduleRef.get(Connection);
+    return connection.getName();
+  }
+
+  sendEmail() {
+    const mailService = this.moduleRef.get(MailService);
+    mailService.send();
+  }
+}
+Tapi penggunaan module reference ini memiliki kekurangan dimana berbeda dengan dependency injection yang melakukan pengecekkan dependency di awal saat aplikasi dijalankan untuk melakukan pengecekkan dependency ini ada atau tidak, dan kalau tidak ada, akan langsung return error. Sedangkan jika menggunakan module reference, pengecekkan akan dilakukan ditengah berjalannya aplikasi, contohnya saat aplikasi sudah jalan dan mencoba memanggil route atau method yang menggunakan module reference dan ternyata dependency yang diperlukan itu tidak ada, maka otomatis akan error.">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/posts/mencoba-nest-js-4/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.fd5566c526ae48aadabd950798a2dc3568536401560eae5caac3765a42a9e7b5.css" integrity="sha256-/VVmxSauSKravZUHmKLcNWhTZAFWDq5cqsN2WkKp57U=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/mencoba-nest-js-4/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Today I Learn - Farish (Alt + H)">Today I Learn - Farish</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Mencoba Nest Js 4
+    </h1>
+    <div class="post-meta"><span title='2026-01-04 19:51:47 +0800 +08'>January 4, 2026</span>
+
+</div>
+  </header> 
+  <div class="post-content"><h2 id="introduction">Introduction<a hidden class="anchor" aria-hidden="true" href="#introduction">#</a></h2>
+<p>Lanjut ke hari keempat belajar NestJS. Materi kali ini ada module reference, mengakses .env menggunakan configuration, dan membahas singleton object pada materi shared module.</p>
+<h2 id="module-reference">Module Reference<a hidden class="anchor" aria-hidden="true" href="#module-reference">#</a></h2>
+<p>Nest menyediakan class bernama <strong>ModuleRef</strong> yang berfungsi untuk mengambil data provider tanpa melakukan dependency injection. Cara penggunaannya adalah menggunakan method <strong>get()</strong> dari class <strong>ModuleRef</strong> yang menerima satu parameter yaitu provider yang ingin kita gunakan.</p>
+<blockquote>
+<p>member-service.ts</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@nestjs/common&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ModuleRef</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@nestjs/core&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Connection</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;../connection/connection&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MailService</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;../mail/mail.service&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Injectable</span>()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MemberService</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">moduleRef</span>: <span style="color:#66d9ef">ModuleRef</span>) {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">getConnectionName</span>()<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">null</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">connection</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">moduleRef</span>.<span style="color:#66d9ef">get</span>(<span style="color:#a6e22e">Connection</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">connection</span>.<span style="color:#a6e22e">getName</span>();
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">sendEmail() {</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">mailService</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">moduleRef</span>.<span style="color:#66d9ef">get</span>(<span style="color:#a6e22e">MailService</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">mailService</span>.<span style="color:#a6e22e">send</span>();
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Tapi penggunaan module reference ini memiliki kekurangan dimana berbeda dengan dependency injection yang melakukan pengecekkan dependency di awal saat aplikasi dijalankan untuk melakukan pengecekkan dependency ini ada atau tidak, dan kalau tidak ada, akan langsung return error. Sedangkan jika menggunakan module reference, pengecekkan akan dilakukan ditengah berjalannya aplikasi, contohnya saat aplikasi sudah jalan dan mencoba memanggil route atau method yang menggunakan module reference dan ternyata dependency yang diperlukan itu tidak ada, maka otomatis akan error.</p>
+<h2 id="configuration">Configuration<a hidden class="anchor" aria-hidden="true" href="#configuration">#</a></h2>
+<p>Menulis konfigurasi secara hard code bukanlah cara yang terbaik, jika melakukan itu maka akan orang bisa saja mengakses data-data penting seperti username dan password dari database atau bahkan api-key dari service yang  digunakan, salah satu praktik terbaik untuk mengatasi itu adalah menggunakan environtment variable (.env). Dengan menggunakan environtment variabel kita bisa memiliki data konfigurasi yang dinamis seperti username dan password database dan lain-lain.</p>
+<p>Untuk dapat mengakses file <strong>.env</strong> pada project NestJS, kita perlu menginstall library tambahan yaitu:</p>
+<pre tabindex="0"><code class="language-terminaloutput" data-lang="terminaloutput">bun add @nestjs/config
+</code></pre><p>Setelah library tersebut sudah diinstall, langkah berikutnya adalah memasukkan ConfigModule ke AppModule project NestJS, karena library-library tambahan yang disediakan oleh NestJS merupakan module.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Module</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@nestjs/common&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppController</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./app.controller&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppService</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./app.service&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">UserModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./user/user.module&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ConfigModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@nestjs/config&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Module</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">imports</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ConfigModule</span>.<span style="color:#a6e22e">forRoot</span>({
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">isGlobal</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    }),
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">UserModule</span>,
+</span></span><span style="display:flex;"><span>  ],
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">controllers</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">AppController</span>],
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">providers</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">AppService</span>],
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppModule</span> {}
+</span></span></code></pre></div><p>Bisa dilihat pada ConfigModule itu menggunakan method <strong>forRoot()</strong> yang nanti akan dibahas pada materi dynamic module. lalu pada method <strong>forRoot</strong> bisa menambahkan object dan ada atribute <strong>isGlobal</strong> yang berfungsi untuk memberi tahu NestJS kalau module <strong>ConfigService</strong> nantinya dapat diakses secara global, jadi kita tidak perlu lagi melakukan import ConfigModule pada file <strong>user-module.ts</strong> atau module lain.</p>
+<p>Apa itu <strong>ConfigService</strong>? ConfigService adalah class yang memungkinkan kita mengakses konfigurasi yang ada didalam file .env menggunakan method <strong>get()</strong>.</p>
+<blockquote>
+<p>connection.ts</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@nestjs/common&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ConfigService</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@nestjs/config&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Injectable</span>()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Connection</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">getName</span>()<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">null</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Injectable</span>()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MysqlConnection</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Connection</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">getName</span>()<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">null</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;MySQL&#39;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Injectable</span>()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MongoDBConnection</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Connection</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">getName</span>()<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">null</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;MongoDB&#39;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">createConnection</span>(<span style="color:#a6e22e">configeService</span>: <span style="color:#66d9ef">ConfigService</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Connection</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">configeService</span>.<span style="color:#66d9ef">get</span>(<span style="color:#e6db74">&#39;DATABASE&#39;</span>) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;mysql&#39;</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">MysqlConnection</span>();
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">MongoDBConnection</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="shared-module">Shared Module<a hidden class="anchor" aria-hidden="true" href="#shared-module">#</a></h2>
+<p>Dalam NestJS module itu merupakan singleton object. Bagaimana cara kerja singleton object? singleton object bekerja dengan cara membuat module itu cukup sekali saja, dan tidak berkali-kali, maksudnya bagaimana?</p>
+<blockquote>
+<p>app.module.ts</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Module</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@nestjs/common&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppController</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./app.controller&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppService</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./app.service&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">UserModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./user/user.module&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ConfigModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@nestjs/config&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Module</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">imports</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ConfigModule</span>.<span style="color:#a6e22e">forRoot</span>({
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">isGlobal</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    }),
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">UserModule</span>,
+</span></span><span style="display:flex;"><span>  ],
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">controllers</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">AppController</span>],
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">providers</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">AppService</span>],
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppModule</span> {}
+</span></span></code></pre></div><blockquote>
+<p>barang.module.ts</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Module</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@nestjs/common&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">UserModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;../../user/user.module&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Module</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">imports</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">UserModule</span>],
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">BarangModule</span> {}
+</span></span></code></pre></div><p>Apabila tidak menggunakan singleton obejct ketika kita melakukan import <strong>UserModule</strong> pada dua file berbeda, umumnya program akan membuat dua UserModule yang mungkin untuk sekarang aplikasi berjalan dengan tidak ada masalah, tapi bagaimana jika aplikasinya semakin kompleks? <strong>UserModule</strong> akan diimport pada puluhan file yang berarti program akan membuat puluhan UserModule yang bisa memakan banyak memorry. Disinilah peran singleton object untuk mengatasi permasalahan tersebut, seperti yang sudah ditulis diatas, dengan menggunakan singleton object <strong>UserModule</strong> cuma dibuat sekali saja dan dapat diimport tanpa masalah.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Today I Learn - Farish</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
