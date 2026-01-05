@@ -6,8 +6,24 @@
     <description>Recent content in Posts on Today I Learn - Farish</description>
     <generator>Hugo -- 0.153.5</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 04 Jan 2026 19:51:47 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 05 Jan 2026 17:18:59 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>NestJS Database</title>
+      <link>http://localhost:1313/posts/nestjs-database/</link>
+      <pubDate>Mon, 05 Jan 2026 17:18:59 +0800</pubDate>
+      <guid>http://localhost:1313/posts/nestjs-database/</guid>
+      <description>&lt;h2 id=&#34;database&#34;&gt;Database&lt;/h2&gt;
+&lt;p&gt;Secara default NestJS tidak menyediakan fitur untuk database atau ORM (Object Relational Mapping), namun karena itu juga kita sebagai developer diberi kebebasan untuk menggunakan berbagai macam ORM yang ada seperti prisma, drizzle, dan lain-lain.&lt;/p&gt;
+&lt;p&gt;Pada praktek ini akan menggunakan prisma sebagai ORM nya.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;install library prisma&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-terminaloutput&#34; data-lang=&#34;terminaloutput&#34;&gt;bun add -d prisma
+bun add @prisma/client
+bun add @prisma/adapter-mariadb
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Disini saya cuma akan membuat schema sederhana dimana cuma mempunyai satu table &lt;strong&gt;users&lt;/strong&gt; yang cuma berisi id dan nama.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Mencoba Nest Js 4</title>
       <link>http://localhost:1313/posts/mencoba-nest-js-4/</link>
