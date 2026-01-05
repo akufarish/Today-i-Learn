@@ -166,7 +166,7 @@ export class UserController {
 }
 ```
 
-Note untuk sekarang tipe request menggunakan **type Request** dari **express**. Kedepannya akan menggunakan custom buatan sendiri.
+Note untuk sekarang tipe request menggunakan **type Request** dari **express**. Kedepannya tidak akan menggunakan type dari express lagi.
 
 > POST /api/users/create
 
