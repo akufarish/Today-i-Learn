@@ -2,3 +2,19 @@ baseURL = 'https://akufarish.my.id/'
 languageCode = 'en-us'
 title = 'Today I Learn - Farish'
 theme = ["PaperMod"]
+
+[params.homeInfoParams]
+    Title = "Hallo hallo"
+    Content = "Ini website untuk mendokumentasi apa yang ku pelajari aja sih. Makasih kalau ada yang baca."
+
+[[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/akufarish"
+
+[[params.socialIcons]]
+    name = "instagram"
+    url = "https://www.instagram.com/akuparish"
+
+[[params.socialIcons]]
+    name = "linkedin"
+    url = "https://www.linkedin.com/in/farish-asqalani"

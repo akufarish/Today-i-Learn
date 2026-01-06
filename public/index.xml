@@ -14,7 +14,7 @@
       <pubDate>Tue, 06 Jan 2026 13:45:02 +0800</pubDate>
       <guid>http://localhost:1313/posts/mencoba-nest-js-5/</guid>
       <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;Hari ke tujuh belajar NestJS materi yang dipelajari hari ini tidak kalah menarik, karena akan membahas validation dan middleware pada NestJS, selain itu ada juga materi untuk logging, global module, dan dynamic module.&lt;/p&gt;
+&lt;p&gt;Hari ke tujuh belajar NestJS materi yang dipelajari hari ini tidak kalah menarik, karena akan membahas validation pada NestJS, selain itu ada juga pembahasan untuk logging, global module, dan dynamic module.&lt;/p&gt;
 &lt;h2 id=&#34;logging&#34;&gt;Logging&lt;/h2&gt;
 &lt;p&gt;NestJS secara default sudah memiliki logger sendiri untuk menampilkan log ketika aplikasi dijalankan atau ketika terjadi error. Logger bawaan NestJS hanya akan melakukan logging ke console dan berupa text, terkadang beberapa developer ingin fitur logging yang lebih dari itu. Untungnya NestJS menyediakan cara untuk mengganti Logger nya dengan cara membuat object LoggerService, lalu pada file &lt;strong&gt;main.ts&lt;/strong&gt; bisa menggunakan method &lt;strong&gt;useLogger()&lt;/strong&gt; untuk mengganti logger pada Nest.&lt;/p&gt;</description>
     </item>
