@@ -204,4 +204,4 @@ export class ValidationModule {
 }
 ```
 
-Perlu catatan untuk nama method bebas tidak harus **forRoot()**. Ketika membuat return DynamicModule juga kita harus return module yang ingin digunakan dan global yang berarti module ini mau dibuat global atau tidak.
+Untuk nama method bebas tidak harus **forRoot()**. Ketika membuat return DynamicModule juga kita harus return module yang ingin digunakan dan global yang berarti module ini mau dibuat global atau tidak.
