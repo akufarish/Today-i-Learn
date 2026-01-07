@@ -1,0 +1,21 @@
+.img-dark {
+    display: none !important;
+}
+
+[data-theme="dark"] .img-dark {
+    display: block !important;
+}
+
+[data-theme="dark"] .img-light {
+    display: none !important;
+}
+
+[data-theme="light"] .img-light {
+    display: block !important;
+}
+
+.img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

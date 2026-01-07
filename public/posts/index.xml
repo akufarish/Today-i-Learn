@@ -6,8 +6,22 @@
     <description>Recent content in Posts on Today I Learn - Farish</description>
     <generator>Hugo -- 0.153.5</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 06 Jan 2026 13:45:02 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 07 Jan 2026 15:23:42 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Middleware</title>
+      <link>http://localhost:1313/posts/middleware/</link>
+      <pubDate>Wed, 07 Jan 2026 15:23:42 +0800</pubDate>
+      <guid>http://localhost:1313/posts/middleware/</guid>
+      <description>&lt;h2 id=&#34;middleware&#34;&gt;Middleware&lt;/h2&gt;
+&lt;p&gt;Middleware adalah sebuah jembatan antara request dari client ke server, yang memungkinkan kita untuk menambahkan logika yang akan dijalankan sebelum request tersebut mencapai route handler atau tujuan.&lt;/p&gt;
+&lt;p&gt;Berikut adalah diagram sederhana middleware.&lt;/p&gt;
+&lt;div class=&#34;img-container&#34;&gt;
+&lt;img alt=&#34;middleware-light-diagram&#34; src=&#34;http://localhost:1313/images/middleware-diagram.png&#34; class=&#34;img-light img&#34;&gt;
+&lt;img alt=&#34;middleware-dark-diagram&#34; src=&#34;http://localhost:1313/images/middleware-diagram-dark.png&#34; class=&#34;img-dark img&#34;&gt;
+&lt;/div&gt;
+&lt;p&gt;Cara kerja middleware itu sendiri adalah setiap request yang dikirim oleh client akan melewati middleware terlebih dahulu, yang dimana pada middleware ini request tersebut dapat diperiksa atau dimodifikasi tergantung dari logic middleware. Jika request dianggap valid maka middleware akan meneruskannya ke controller, jika tidak, middleware dapat langsung menghentikan proses dan mengirim respons kembali ke client.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Mencoba Nest Js (5)</title>
       <link>http://localhost:1313/posts/mencoba-nest-js-5/</link>
