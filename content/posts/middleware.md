@@ -1,7 +1,7 @@
 +++
 date = '2026-01-07T15:23:42+08:00'
 draft = false
-title = 'Middleware'
+title = 'Nest JS Middleware'
 +++
 
 ## Middleware
