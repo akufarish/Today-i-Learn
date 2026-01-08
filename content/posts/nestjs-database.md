@@ -1,7 +1,7 @@
 +++
 date = '2026-01-05T17:18:59+08:00'
 draft = false
-title = 'NestJS Database'
+title = 'Nest JS Database'
 +++
 
 ## Database

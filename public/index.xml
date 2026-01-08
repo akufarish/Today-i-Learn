@@ -6,8 +6,21 @@
     <description>Recent content on Today I Learn - Farish</description>
     <generator>Hugo -- 0.153.5</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 07 Jan 2026 15:23:42 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 08 Jan 2026 18:03:32 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Nest JS Exception Filter</title>
+      <link>http://localhost:1313/posts/exception/</link>
+      <pubDate>Thu, 08 Jan 2026 18:03:32 +0800</pubDate>
+      <guid>http://localhost:1313/posts/exception/</guid>
+      <description>&lt;h2 id=&#34;exception-filter&#34;&gt;Exception Filter&lt;/h2&gt;
+&lt;p&gt;Secara default jika terjadi error pada aplikasi NestJS, aplikasi akan return data berupa json dengan status code &lt;strong&gt;500 internal server error&lt;/strong&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;statusCode&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;500&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;message&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Internal server error&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Tapi terkadang kita sebagai developer juga ingin mengubah error yang dikembalikan, karena tidak semua error pada aplikasi itu bisa diberikan &lt;strong&gt;500 internal server error&lt;/strong&gt;, bisa saja error &lt;strong&gt;400 bad request&lt;/strong&gt; untuk validation request, atau &lt;strong&gt;401 unauthorized&lt;/strong&gt; untuk memberitahu kalau user ini tidak memiliki hak akses. Dan lain-lain.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Nest JS Middleware</title>
       <link>http://localhost:1313/posts/middleware/</link>
@@ -33,7 +46,7 @@
 &lt;p&gt;NestJS secara default sudah memiliki logger sendiri untuk menampilkan log ketika aplikasi dijalankan atau ketika terjadi error. Logger bawaan NestJS hanya akan melakukan logging ke console dan berupa text, terkadang beberapa developer ingin fitur logging yang lebih dari itu. Untungnya NestJS menyediakan cara untuk mengganti Logger nya dengan cara membuat object LoggerService, lalu pada file &lt;strong&gt;main.ts&lt;/strong&gt; bisa menggunakan method &lt;strong&gt;useLogger()&lt;/strong&gt; untuk mengganti logger pada Nest.&lt;/p&gt;</description>
     </item>
     <item>
-      <title>NestJS Database</title>
+      <title>Nest JS Database</title>
       <link>http://localhost:1313/posts/nestjs-database/</link>
       <pubDate>Mon, 05 Jan 2026 17:18:59 +0800</pubDate>
       <guid>http://localhost:1313/posts/nestjs-database/</guid>
