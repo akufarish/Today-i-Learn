@@ -6,8 +6,26 @@
     <description>Recent content on Today I Learn - Farish</description>
     <generator>Hugo -- 0.153.5</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 08 Jan 2026 18:03:32 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 09 Jan 2026 20:43:24 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Nest JS Pipe</title>
+      <link>http://localhost:1313/posts/nestjs-pipe/</link>
+      <pubDate>Fri, 09 Jan 2026 20:43:24 +0800</pubDate>
+      <guid>http://localhost:1313/posts/nestjs-pipe/</guid>
+      <description>&lt;h2 id=&#34;pipe&#34;&gt;Pipe&lt;/h2&gt;
+&lt;p&gt;Pipe adalah fitur yang ada pada NestJS yang memiliki dua fungsi, pertama bisa untuk melakukan transformasi/konversi request sebelum dikirim ke controller method, kedua berfungsi untuk melakukan validasi request.&lt;/p&gt;
+&lt;p&gt;Salah satu cara menggunakan pipe, bisa dengan cara menambahkan pipe ke decorator &lt;strong&gt;@Query()&lt;/strong&gt;, &lt;strong&gt;@Body()&lt;/strong&gt; dan &lt;strong&gt;@Param()&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;NestJS sendiri sudah menyediakan banyak pipe bawaan seperti ValidationPipe, ParseIntPipe, ParseFilePipe, ParseArrayPipe, dan lain-lain.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;user.controller.ts&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-typescript&#34; data-lang=&#34;typescript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;@Get&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/:id&amp;#39;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;async&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;getById&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;@Param&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;id&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;ParseIntPipe&lt;/span&gt;) &lt;span style=&#34;color:#a6e22e&#34;&gt;id&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;number&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Promise&lt;/span&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;User&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;null&lt;/span&gt;&amp;gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;await&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;userRepository&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;getById&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;id&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Diatas adalah contoh penggunaan pipe untuk memastikan parameter id yang dikirim berupa number, karena walaupun variabel id diberi tipe number kita tetap dapat mengirim string, karena kode typescript ini nanti akan dikonversi ke javascript, yang dimana pada javascript tidak ada type safe, jika id tersebut kita kirimkan data string maka aplikasi tetap berjalan, kecuali kita melakukan komputasi yang menggunakan tipe data number.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Nest JS Exception Filter</title>
       <link>http://localhost:1313/posts/exception/</link>
