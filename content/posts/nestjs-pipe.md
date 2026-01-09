@@ -153,6 +153,7 @@ Kode diatas error karena validation pipe yang kita buat sebelumnya itu validasi 
 
 Untuk mengatasi permasalahan tersebut, kita dapat melakukan pengecekkan pada pipe nya menggunakan tipe metadata yang nanti akan dikirim ke controller.
 
+> validation.pipe.ts
 ```typescript
 import { ArgumentMetadata, Injectable, PipeTransform } from '@nestjs/common';
 import { ZodType } from 'zod';
@@ -183,7 +184,7 @@ Request Body:
 ```
 
 Response Body:
-```json
+```html
 Hello admin! + 213asd
 ```
 
