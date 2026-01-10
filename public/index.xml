@@ -6,8 +6,23 @@
     <description>Recent content on Today I Learn - Farish</description>
     <generator>Hugo -- 0.153.5</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 09 Jan 2026 20:43:24 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 10 Jan 2026 20:49:01 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Nest JS Interceptor</title>
+      <link>http://localhost:1313/posts/nestjs-interceptor/</link>
+      <pubDate>Sat, 10 Jan 2026 20:49:01 +0800</pubDate>
+      <guid>http://localhost:1313/posts/nestjs-interceptor/</guid>
+      <description>&lt;h2 id=&#34;interceptor&#34;&gt;Interceptor&lt;/h2&gt;
+&lt;p&gt;Secara konsep, interceptor itu mirip dengan middleware, sama-sama menjadi jembatan antara request dari client ke controller, namun pembedanya adalah interceptor dapat mengubah response yang diberikan oleh controller.&lt;/p&gt;
+&lt;p&gt;Pembeda antara middleware dan interceptor hanya terdapat pada middleware yang cuma bisa mengolah request dan meneruskan request tersebut ke middleware selanjutnya atau ke controller. Sedangkan interceptor dapat menerima Response dari controller, dan mengubah response-nya.&lt;/p&gt;
+&lt;p&gt;Berikut adalah diagram sederhana dari interceptor&lt;/p&gt;
+&lt;div class=&#34;img-container&#34;&gt;
+&lt;img alt=&#34;middleware-light-diagram&#34; src=&#34;http://localhost:1313/images/interceptor-light.png&#34; class=&#34;img-light img&#34;&gt;
+&lt;img alt=&#34;middleware-dark-diagram&#34; src=&#34;http://localhost:1313/images/interceptor-dark.png&#34; class=&#34;img-dark img&#34;&gt;
+&lt;/div&gt;
+&lt;p&gt;Bisa diliat dari diagram diatas, memang mirip seperti diagram middleware, cuma yang jadi pembeda adalah request yang dikirim client akan masuk ke interceptor terlebih dahulu dan disini interceptor dapat mengubah atau melakukan pengecekkan terhadap request, lalu dikirim ke controller, dan dari controller, data yang dikembalikan juga akan masuk ke interceptor dan response tadi dapat dimodifikasi.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Nest JS Pipe</title>
       <link>http://localhost:1313/posts/nestjs-pipe/</link>
