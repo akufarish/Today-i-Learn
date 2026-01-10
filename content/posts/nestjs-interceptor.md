@@ -56,7 +56,7 @@ export class TimeInterceptor implements NestInterceptor {
 
 Diatas adalah contoh interceptor yang dimana untuk setiap response json, tambahkan field timestamp untuk mengetahui kapan request ini dijalankan, dan tambahkan field username dari request yang dikirim.
 
-Untuk menggunakan interceptor bisa gunakan decorator **@UseInterceptor()** di controller method atau di controller, atau jika ingin menambahkan interceptor secara global, didalam NestJS application file **main.ts**, bisa menggunakan method **useGlobalInterceptors()**.
+Untuk menggunakan interceptor bisa gunakan decorator **@UseInterceptor()** di controller method atau di controller, jika ingin menambahkan interceptor secara global, didalam NestJS application file **main.ts**, bisa menggunakan method **useGlobalInterceptors()**.
 
 ```typescript
 @Post('/login')
