@@ -6,8 +6,29 @@
     <description>Recent content on Today I Learn - Farish</description>
     <generator>Hugo -- 0.153.5</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 10 Jan 2026 20:49:01 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 11 Jan 2026 19:10:05 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Nest JS Custom Decorator</title>
+      <link>http://localhost:1313/posts/nestjs-custom-decorator/</link>
+      <pubDate>Sun, 11 Jan 2026 19:10:05 +0800</pubDate>
+      <guid>http://localhost:1313/posts/nestjs-custom-decorator/</guid>
+      <description>&lt;h2 id=&#34;custom-decorator&#34;&gt;Custom Decorator&lt;/h2&gt;
+&lt;p&gt;NestJS sudah banyak menyediakan decorator bawaan yang bisa kita gunakan di dalam controller seperti &lt;strong&gt;@Req()&lt;/strong&gt;, &lt;strong&gt;@Body()&lt;/strong&gt;, dan lain-lain. Namun, terkadang kita perlu menambahkan atribut ke object request, lalu datanya bisa diakses di controller.&lt;/p&gt;
+&lt;p&gt;Satu contoh kenapa kita perlu custom decorator adalah ketika untuk mendapatkan data user yang sedang login, biasanya kodenya akan seperti ini.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;user.controller.ts&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-typescript&#34; data-lang=&#34;typescript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;@Get&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/auth&amp;#39;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;auth&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;@Req&lt;/span&gt;() &lt;span style=&#34;color:#a6e22e&#34;&gt;request&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;Request&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Record&lt;/span&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;string&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;string&lt;/span&gt;&amp;gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;user&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;request&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;user&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;email&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;user.email&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;username&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;user.name&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    };
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;kode diatas dapat dijadikan custom decorator untuk membuat kode lebih mudah untuk dibaca. Untuk membuat custom decorator sendiri bisa menggunakan function &lt;strong&gt;createParamDecorator()&lt;/strong&gt;, atau bisa gunakan CLI NestJS dengan command.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Nest JS Interceptor</title>
       <link>http://localhost:1313/posts/nestjs-interceptor/</link>
