@@ -95,7 +95,7 @@ Response Body:
 
 Jika ingin exception filter digunakan disemua controller dan method, exception filter tersebut dapat dijadikan sebagai global dengan cara menambahkan exception filter di NestJS application menggunakan method **useGlobalFilters()**.
 
-> main.ts
+> app.module.ts
 ```typescript
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
