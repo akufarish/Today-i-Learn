@@ -150,6 +150,19 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Nest JS Guard
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Guard Guard adalah class yang berfungsi untuk melakukan proses authorization, yaitu sebuah proses untuk mengecek apakah user berhak untuk mengakses route tersebut atau tidak. Lantas kenapa tidak melakukan proses authorization didalam middleware? Kan didalam middleware kita melakukan proses authentication. Satu alasan kenapa melakukan proses authorization didalam middleware itu susah karena middleware tidak tahu route mana yang boleh diakses dan tidak boleh, yang dia tahu hanya memanggil fungsi next() entah itu next middleware atau next route. Oleh karena itulah untuk melakukan proses authorization menggunakan guard.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-01-12 21:10:27 +0800 +08'>January 12, 2026</span></footer>
+  <a class="entry-link" aria-label="post link to Nest JS Guard" href="http://localhost:1313/posts/nestjs-guard/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Nest JS Custom Decorator
     </h2>
   </header>
@@ -285,22 +298,6 @@ Atau ada juga kasus dimana provider yang kita buat itu sedikit kompleks sehingga
   </div>
   <footer class="entry-footer"><span title='2026-01-03 18:05:17 +0800 +08'>January 3, 2026</span></footer>
   <a class="entry-link" aria-label="post link to Custom Provider" href="http://localhost:1313/posts/custom-provider/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Mencoba Nest Js (3)
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Introduction Memasuki hari ketiga belajar nest-JS disini saya akan melakukan recap dari apa yang saya pelajari hari ini yaitu unit test, integration test, provider, dependency injection, dan custom provider.
-Unit Test Saat membuat controller menggunakan CLI nest, secara otomatis nest juga akan membuatkan unit test untuk controller tersebut. File unit test biasanya berformat *.spec.ts.
-Contoh kode unit test
-import { Test, TestingModule } from &#39;@nestjs/testing&#39;; import { UserController } from &#39;./user.controller&#39;; import { UserService } from &#39;./user.service&#39;; describe(&#39;UserController&#39;, () =&gt; { let controller: UserController; beforeEach(async () =&gt; { const module: TestingModule = await Test.createTestingModule({ controllers: [UserController], providers: [ UserService, ], }).compile(); controller = module.get&lt;UserController&gt;(UserController); }); it(&#39;should be return GET 1&#39;, () =&gt; { expect(controller.getById(&#39;1&#39;)).toBe(&#39;GET 1&#39;); }); it(&#39;should be return MongoDB&#39;, () =&gt; { expect(controller.getConnection()).toBe(&#39;MongoDB&#39;); }); }); Pada kode unit test, bagian beforeEach nya mirip dengan file module, kita harus memasukkan controller atau provider yang digunakan pada file controller supaya unit test ini dapat mengenali dependency apa saja yang digunakan.
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2026-01-02 10:22:59 +0800 +08'>January 2, 2026</span></footer>
-  <a class="entry-link" aria-label="post link to Mencoba Nest Js (3)" href="http://localhost:1313/posts/mencoba-nest-js-3/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

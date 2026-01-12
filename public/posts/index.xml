@@ -6,8 +6,16 @@
     <description>Recent content in Posts on Today I Learn - Farish</description>
     <generator>Hugo -- 0.153.5</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 11 Jan 2026 19:10:05 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 12 Jan 2026 21:10:27 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Nest JS Guard</title>
+      <link>http://localhost:1313/posts/nestjs-guard/</link>
+      <pubDate>Mon, 12 Jan 2026 21:10:27 +0800</pubDate>
+      <guid>http://localhost:1313/posts/nestjs-guard/</guid>
+      <description>&lt;h2 id=&#34;guard&#34;&gt;Guard&lt;/h2&gt;
+&lt;p&gt;Guard adalah class yang berfungsi untuk melakukan proses &lt;strong&gt;authorization&lt;/strong&gt;, yaitu sebuah proses untuk mengecek apakah user berhak untuk mengakses route tersebut atau tidak. Lantas kenapa tidak melakukan proses authorization didalam middleware? Kan didalam middleware kita melakukan proses authentication. Satu alasan kenapa melakukan proses authorization didalam middleware itu susah karena middleware tidak tahu route mana yang boleh diakses dan tidak boleh, yang dia tahu hanya memanggil fungsi next() entah itu next middleware atau next route. Oleh karena itulah untuk melakukan proses authorization menggunakan guard.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Nest JS Custom Decorator</title>
       <link>http://localhost:1313/posts/nestjs-custom-decorator/</link>

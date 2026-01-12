@@ -45,3 +45,101 @@ Kode diatas menggunakan fungsi **indexOf()** untuk melakukan pengecekan role, ya
 
 Untuk menggunakan guard bisa menambahkan decorator **@UseGuard()** didalam method controller, atau jika mau dijadikan global bisa menggunakan method **useGlobalGuards()** di application module, app.module.ts
 
+Pengujian guard
+
+```typescript
+@Get('/auth/user')
+@UseGuards(new RoleGuard(['user', 'admin']))
+auth(@Auth() user: User): Record<string, string> {
+    return {
+        email: user.email,
+        username: user.name,
+    };
+}
+
+@Get('/auth/admin')
+@UseGuards(new RoleGuard(['admin']))
+admin(@Auth() user: User): Record<string, string> {
+    return {
+        email: user.email,
+        username: user.name,
+    };
+}
+```
+
+> User mengakses route admin
+
+<div class="alert-container error"><strong>GET</strong> /api/users/auth/admin</div>
+
+Request Header:
+```json
+{
+  "Authorization": "Bearer {token}"
+}
+```
+
+Response Body:
+```json
+{
+  "message": "Forbidden resource",
+  "error": "Forbidden",
+  "statusCode": 403
+}
+```
+
+> User mengakses route user
+
+<div class="alert-container success"><strong>GET</strong> /api/users/auth/user</div>
+
+Request Header:
+```json
+{
+  "Authorization": "Bearer {token}"
+}
+```
+
+Response Body:
+```json
+{
+  "email": "farish@gmail.com",
+  "username": "farish"
+}
+```
+
+> Admin mengakses route admin
+
+<div class="alert-container success"><strong>GET</strong> /api/users/auth/admin</div>
+
+Request Header:
+```json
+{
+  "Authorization": "Bearer {token}"
+}
+```
+
+Response Body:
+```json
+{
+  "email": "admin@gmail.com",
+  "username": "admin"
+}
+```
+
+> Admin mengakses route user
+
+<div class="alert-container success"><strong>GET</strong> /api/users/auth/user</div>
+
+Request Header:
+```json
+{
+  "Authorization": "Bearer {token}"
+}
+```
+
+Response Body:
+```json
+{
+  "email": "admin@gmail.com",
+  "username": "admin"
+}
+```
