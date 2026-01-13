@@ -10,7 +10,7 @@
 <meta name="description" content="Posts - Today I Learn - Farish">
 <meta name="author" content="">
 <link rel="canonical" href="http://localhost:1313/posts/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.5ede8cadd0898885d9f9949c51117379b1953087d25c429e2883004d641af33a.css" integrity="sha256-Xt6MrdCJiIXZ&#43;ZScURFzebGVMIfSXEKeKIMATWQa8zo=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.ea5e07c191dc6fb48f5d3613026b37a0a7f49a80c19335b9044eebbcdb0bbcb6.css" integrity="sha256-6l4HwZHcb7SPXTYTAms3oKf0moDBkzW5BE7rvNsLvLY=" rel="preload stylesheet" as="style">
 <link rel="icon" href="http://localhost:1313/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
@@ -114,6 +114,18 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Nestjs Lifecycle
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p></p>
+  </div>
+  <footer class="entry-footer"><span title='2026-01-13 20:58:23 +0800 WITA'>January 13, 2026</span></footer>
+  <a class="entry-link" aria-label="post link to Nestjs Lifecycle" href="http://localhost:1313/posts/nestjs-lifecycle/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Nest JS Guard
     </h2>
   </header>
@@ -121,7 +133,7 @@
     <p>Guard Guard adalah class yang berfungsi untuk melakukan proses authorization, yaitu sebuah proses untuk mengecek apakah user berhak untuk mengakses route tersebut atau tidak. Lantas kenapa tidak melakukan proses authorization didalam middleware? Kan didalam middleware kita melakukan proses authentication. Satu alasan kenapa melakukan proses authorization didalam middleware itu susah karena middleware tidak tahu route mana yang boleh diakses dan tidak boleh, yang dia tahu hanya memanggil fungsi next() entah itu next middleware atau next route. Oleh karena itulah untuk melakukan proses authorization menggunakan guard.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2026-01-12 21:10:27 +0800 +08'>January 12, 2026</span></footer>
+  <footer class="entry-footer"><span title='2026-01-12 21:10:27 +0800 WITA'>January 12, 2026</span></footer>
   <a class="entry-link" aria-label="post link to Nest JS Guard" href="http://localhost:1313/posts/nestjs-guard/"></a>
 </article>
 
@@ -137,7 +149,7 @@ user.controller.ts
 @Get(&#39;/auth&#39;) auth(@Req() request: Request): Record&lt;string, string&gt; { const user = request.user; return { email: user.email, username: user.name, }; } kode diatas dapat dijadikan custom decorator untuk membuat kode lebih mudah untuk dibaca. Untuk membuat custom decorator sendiri bisa menggunakan function createParamDecorator(), atau bisa gunakan CLI NestJS dengan command.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2026-01-11 19:10:05 +0800 +08'>January 11, 2026</span></footer>
+  <footer class="entry-footer"><span title='2026-01-11 19:10:05 +0800 WITA'>January 11, 2026</span></footer>
   <a class="entry-link" aria-label="post link to Nest JS Custom Decorator" href="http://localhost:1313/posts/nestjs-custom-decorator/"></a>
 </article>
 
@@ -153,7 +165,7 @@ Berikut adalah diagram sederhana dari interceptor
 Bisa diliat dari diagram diatas, memang mirip seperti diagram middleware, cuma yang jadi pembeda adalah request yang dikirim client akan masuk ke interceptor terlebih dahulu dan disini interceptor dapat mengubah atau melakukan pengecekkan terhadap request, lalu dikirim ke controller, dan dari controller, data yang dikembalikan juga akan masuk ke interceptor dan response tadi dapat dimodifikasi.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2026-01-10 20:49:01 +0800 +08'>January 10, 2026</span></footer>
+  <footer class="entry-footer"><span title='2026-01-10 20:49:01 +0800 WITA'>January 10, 2026</span></footer>
   <a class="entry-link" aria-label="post link to Nest JS Interceptor" href="http://localhost:1313/posts/nestjs-interceptor/"></a>
 </article>
 
@@ -170,7 +182,7 @@ user.controller.ts
 @Get(&#39;/:id&#39;) async getById(@Param(&#39;id&#39;, ParseIntPipe) id: number): Promise&lt;User | null&gt; { return await this.userRepository.getById(id); } Diatas adalah contoh penggunaan pipe untuk memastikan parameter id yang dikirim berupa number, karena walaupun variabel id diberi tipe number kita tetap dapat mengirim string, karena kode typescript ini nanti akan dikonversi ke javascript, yang dimana pada javascript tidak ada type safe, jika id tersebut kita kirimkan data string maka aplikasi tetap berjalan, kecuali kita melakukan komputasi yang menggunakan tipe data number.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2026-01-09 20:43:24 +0800 +08'>January 9, 2026</span></footer>
+  <footer class="entry-footer"><span title='2026-01-09 20:43:24 +0800 WITA'>January 9, 2026</span></footer>
   <a class="entry-link" aria-label="post link to Nest JS Pipe" href="http://localhost:1313/posts/nestjs-pipe/"></a>
 </article>
 
@@ -184,7 +196,7 @@ user.controller.ts
 { &#34;statusCode&#34;: 500, &#34;message&#34;: &#34;Internal server error&#34; } Tapi terkadang kita sebagai developer juga ingin mengubah error yang dikembalikan, karena tidak semua error pada aplikasi itu bisa diberikan 500 internal server error, bisa saja error 400 bad request untuk validation request, atau 401 unauthorized untuk memberitahu kalau user ini tidak memiliki hak akses. Dan lain-lain.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2026-01-08 18:03:32 +0800 +08'>January 8, 2026</span></footer>
+  <footer class="entry-footer"><span title='2026-01-08 18:03:32 +0800 WITA'>January 8, 2026</span></footer>
   <a class="entry-link" aria-label="post link to Nest JS Exception Filter" href="http://localhost:1313/posts/exception/"></a>
 </article>
 
@@ -199,7 +211,7 @@ Berikut adalah diagram sederhana middleware.
 Cara kerja middleware itu sendiri adalah setiap request yang dikirim oleh client akan melewati middleware terlebih dahulu, yang dimana pada middleware ini request tersebut dapat diperiksa atau dimodifikasi tergantung dari logic middleware. Jika request dianggap valid maka middleware akan meneruskannya ke controller, jika tidak, middleware dapat langsung menghentikan proses dan mengirim respons kembali ke client.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2026-01-07 15:23:42 +0800 +08'>January 7, 2026</span></footer>
+  <footer class="entry-footer"><span title='2026-01-07 15:23:42 +0800 WITA'>January 7, 2026</span></footer>
   <a class="entry-link" aria-label="post link to Nest JS Middleware" href="http://localhost:1313/posts/middleware/"></a>
 </article>
 
@@ -213,7 +225,7 @@ Cara kerja middleware itu sendiri adalah setiap request yang dikirim oleh client
 Logging NestJS secara default sudah memiliki logger sendiri untuk menampilkan log ketika aplikasi dijalankan atau ketika terjadi error. Logger bawaan NestJS hanya akan melakukan logging ke console dan berupa text, terkadang beberapa developer ingin fitur logging yang lebih dari itu. Untungnya NestJS menyediakan cara untuk mengganti Logger nya dengan cara membuat object LoggerService, lalu pada file main.ts bisa menggunakan method useLogger() untuk mengganti logger pada Nest.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2026-01-06 13:45:02 +0800 +08'>January 6, 2026</span></footer>
+  <footer class="entry-footer"><span title='2026-01-06 13:45:02 +0800 WITA'>January 6, 2026</span></footer>
   <a class="entry-link" aria-label="post link to Mencoba Nest Js (5)" href="http://localhost:1313/posts/mencoba-nest-js-5/"></a>
 </article>
 
@@ -229,7 +241,7 @@ install library prisma
 bun add -d prisma bun add @prisma/client bun add @prisma/adapter-mariadb Disini saya cuma akan membuat schema sederhana dimana cuma mempunyai satu table users yang cuma berisi id dan nama.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2026-01-05 17:18:59 +0800 +08'>January 5, 2026</span></footer>
+  <footer class="entry-footer"><span title='2026-01-05 17:18:59 +0800 WITA'>January 5, 2026</span></footer>
   <a class="entry-link" aria-label="post link to Nest JS Database" href="http://localhost:1313/posts/nestjs-database/"></a>
 </article>
 
@@ -245,23 +257,8 @@ member-service.ts
 import { Injectable } from &#39;@nestjs/common&#39;; import { ModuleRef } from &#39;@nestjs/core&#39;; import { Connection } from &#39;../connection/connection&#39;; import { MailService } from &#39;../mail/mail.service&#39;; @Injectable() export class MemberService { constructor(private moduleRef: ModuleRef) {} getConnectionName(): string | null { const connection = this.moduleRef.get(Connection); return connection.getName(); } sendEmail() { const mailService = this.moduleRef.get(MailService); mailService.send(); } } Tapi penggunaan module reference ini memiliki kekurangan dimana berbeda dengan dependency injection yang melakukan pengecekkan dependency di awal saat aplikasi dijalankan untuk melakukan pengecekkan dependency ini ada atau tidak, dan kalau tidak ada, akan langsung return error. Sedangkan jika menggunakan module reference, pengecekkan akan dilakukan ditengah berjalannya aplikasi, contohnya saat aplikasi sudah jalan dan mencoba memanggil route atau method yang menggunakan module reference dan ternyata dependency yang diperlukan itu tidak ada, maka otomatis akan error.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2026-01-04 19:51:47 +0800 +08'>January 4, 2026</span></footer>
+  <footer class="entry-footer"><span title='2026-01-04 19:51:47 +0800 WITA'>January 4, 2026</span></footer>
   <a class="entry-link" aria-label="post link to Mencoba Nest Js (4)" href="http://localhost:1313/posts/mencoba-nest-js-4/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Custom Provider
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Introduction Seharusnya custom provider ini ada di postingan sebelumnya, tapi karena aku merasa ini adalah materi yang rumit jadi aku bikin postingan berbeda yang khusus membahas custom provider ini.
-Kenapa harus menggunakan custom provider? Karena terkadang kita bisa saja membuat provider yang bukan instance dari NestJS yang berarti provider third party misalnya MysqlClient, MongoClient, PrismaClient, dan lain-lain.
-Atau ada juga kasus dimana provider yang kita buat itu sedikit kompleks sehingga tidak bisa hanya dengan memanggil class nya saja. Oleh karena itu Nest mendukung beberapa cara pembuatan custom provider yang akan dibahas pada postingan ini.
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2026-01-03 18:05:17 +0800 +08'>January 3, 2026</span></footer>
-  <a class="entry-link" aria-label="post link to Custom Provider" href="http://localhost:1313/posts/custom-provider/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

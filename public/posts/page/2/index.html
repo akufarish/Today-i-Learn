@@ -10,7 +10,7 @@
 <meta name="description" content="Posts - Today I Learn - Farish">
 <meta name="author" content="">
 <link rel="canonical" href="http://localhost:1313/posts/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.5ede8cadd0898885d9f9949c51117379b1953087d25c429e2883004d641af33a.css" integrity="sha256-Xt6MrdCJiIXZ&#43;ZScURFzebGVMIfSXEKeKIMATWQa8zo=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.ea5e07c191dc6fb48f5d3613026b37a0a7f49a80c19335b9044eebbcdb0bbcb6.css" integrity="sha256-6l4HwZHcb7SPXTYTAms3oKf0moDBkzW5BE7rvNsLvLY=" rel="preload stylesheet" as="style">
 <link rel="icon" href="http://localhost:1313/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
@@ -114,6 +114,21 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Custom Provider
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Introduction Seharusnya custom provider ini ada di postingan sebelumnya, tapi karena aku merasa ini adalah materi yang rumit jadi aku bikin postingan berbeda yang khusus membahas custom provider ini.
+Kenapa harus menggunakan custom provider? Karena terkadang kita bisa saja membuat provider yang bukan instance dari NestJS yang berarti provider third party misalnya MysqlClient, MongoClient, PrismaClient, dan lain-lain.
+Atau ada juga kasus dimana provider yang kita buat itu sedikit kompleks sehingga tidak bisa hanya dengan memanggil class nya saja. Oleh karena itu Nest mendukung beberapa cara pembuatan custom provider yang akan dibahas pada postingan ini.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-01-03 18:05:17 +0800 WITA'>January 3, 2026</span></footer>
+  <a class="entry-link" aria-label="post link to Custom Provider" href="http://localhost:1313/posts/custom-provider/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Mencoba Nest Js (3)
     </h2>
   </header>
@@ -124,7 +139,7 @@ Contoh kode unit test
 import { Test, TestingModule } from &#39;@nestjs/testing&#39;; import { UserController } from &#39;./user.controller&#39;; import { UserService } from &#39;./user.service&#39;; describe(&#39;UserController&#39;, () =&gt; { let controller: UserController; beforeEach(async () =&gt; { const module: TestingModule = await Test.createTestingModule({ controllers: [UserController], providers: [ UserService, ], }).compile(); controller = module.get&lt;UserController&gt;(UserController); }); it(&#39;should be return GET 1&#39;, () =&gt; { expect(controller.getById(&#39;1&#39;)).toBe(&#39;GET 1&#39;); }); it(&#39;should be return MongoDB&#39;, () =&gt; { expect(controller.getConnection()).toBe(&#39;MongoDB&#39;); }); }); Pada kode unit test, bagian beforeEach nya mirip dengan file module, kita harus memasukkan controller atau provider yang digunakan pada file controller supaya unit test ini dapat mengenali dependency apa saja yang digunakan.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2026-01-02 10:22:59 +0800 +08'>January 2, 2026</span></footer>
+  <footer class="entry-footer"><span title='2026-01-02 10:22:59 +0800 WITA'>January 2, 2026</span></footer>
   <a class="entry-link" aria-label="post link to Mencoba Nest Js (3)" href="http://localhost:1313/posts/mencoba-nest-js-3/"></a>
 </article>
 
@@ -138,7 +153,7 @@ import { Test, TestingModule } from &#39;@nestjs/testing&#39;; import { UserCont
 Controller Sama seperti laravel, nest js merupakan framework yang menerapkan MVC yang dimana controller disini bertugas untuk memproses HTTP request maupun response. Dalam nest js untuk membuat controller kita bisa dengan mudah menggunakan CLI nest generate controller nama_controller path. controller dalam node js dapat dikenali dengan adanya decorater @Controller() yang pada parameter decorator tersebut kita dapat melakukan konfigurasi prefix path untuk controller.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2026-01-01 11:48:17 +0800 +08'>January 1, 2026</span></footer>
+  <footer class="entry-footer"><span title='2026-01-01 11:48:17 +0800 WITA'>January 1, 2026</span></footer>
   <a class="entry-link" aria-label="post link to Mencoba Nest Js (2)" href="http://localhost:1313/posts/mencoba-nest-js-2/"></a>
 </article>
 
@@ -151,7 +166,7 @@ Controller Sama seperti laravel, nest js merupakan framework yang menerapkan MVC
     <p>Introduction Untuk menghabiskan waktu liburku, aku berencana untuk meningkatkan skill dengan belajar nestjs, sebagai seseorang yang pernah menggunakan laravel selama 2 tahun. Dimulai dari belajar nest js dasar dari video pemrograman zaman now. Yang dimana pada video itu mas Eko (Programmer Zaman Now) menjelaskan alasan kenapa menggunakan framework yang menurut saya itu menarik. Karena beliau mengatakan karena menggunakan framework lah kita sebagai developer itu memiliki sebuah standar yang harus diikuti yang memiliki nilai positif karena kemudahan untuk mewariskan project yang sudah ada karena developer di masa depan yang akan datang akan mudah beradaptasi dengan code yang sudah ada karena mengikuti standar dari suatu framework.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2025-12-31 13:45:27 +0800 +08'>December 31, 2025</span></footer>
+  <footer class="entry-footer"><span title='2025-12-31 13:45:27 +0800 WITA'>December 31, 2025</span></footer>
   <a class="entry-link" aria-label="post link to Mencoba Nest Js (1)" href="http://localhost:1313/posts/mencoba-nest-js/"></a>
 </article>
 <footer class="page-footer">

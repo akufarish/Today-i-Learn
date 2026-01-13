@@ -4,10 +4,24 @@
     <title>Today I Learn - Farish</title>
     <link>http://localhost:1313/</link>
     <description>Recent content on Today I Learn - Farish</description>
-    <generator>Hugo -- 0.153.5</generator>
+    <generator>Hugo -- 0.154.4</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 12 Jan 2026 21:10:27 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 13 Jan 2026 20:58:23 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Nestjs Lifecycle</title>
+      <link>http://localhost:1313/posts/nestjs-lifecycle/</link>
+      <pubDate>Tue, 13 Jan 2026 20:58:23 +0800</pubDate>
+      <guid>http://localhost:1313/posts/nestjs-lifecycle/</guid>
+      <description>&lt;h2 id=&#34;lifecycle-event&#34;&gt;Lifecycle Event&lt;/h2&gt;
+&lt;p&gt;Pada aplikasi NestJS semua object yang ada seperti module, controller, dan provider itu memiliki lifecycle event atau alur hidup. Apa itu &lt;strong&gt;lifecycle&lt;/strong&gt; dalam NestJS? Sesuai dengan namanya lifecycle yang berarti alur hidup adalah rankaian tahapan yang dilalui oleh objek dimulai dari objek itu dibuat, sampai objek tersebut dihancurkan.&lt;/p&gt;
+&lt;p&gt;Berikut adalah diagram lifecycle dalam aplikasi NestJS:&lt;/p&gt;
+&lt;div class=&#34;img-container&#34;&gt;
+&lt;img alt=&#34;middleware-light-diagram&#34; src=&#34;http://localhost:1313/images/lifecycle-light.png&#34; class=&#34;img-light img&#34;&gt;
+&lt;img alt=&#34;middleware-dark-diagram&#34; src=&#34;http://localhost:1313/images/lifecycle-dark.png&#34; class=&#34;img-dark img&#34;&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;OnModuleInit&lt;/strong&gt; Dipanggil ketika semua module diload, maka akan memanggil function &lt;strong&gt;OnModuleInit()&lt;/strong&gt;.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Nest JS Guard</title>
       <link>http://localhost:1313/posts/nestjs-guard/</link>
