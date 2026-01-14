@@ -6,8 +6,28 @@
     <description>Recent content on Today I Learn - Farish</description>
     <generator>Hugo -- 0.154.4</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 13 Jan 2026 20:58:23 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 14 Jan 2026 20:19:38 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mencoba Nest Js (6)</title>
+      <link>http://localhost:1313/posts/mencoba-nest-js-6/</link>
+      <pubDate>Wed, 14 Jan 2026 20:19:38 +0800</pubDate>
+      <guid>http://localhost:1313/posts/mencoba-nest-js-6/</guid>
+      <description>&lt;h2 id=&#34;reflector&#34;&gt;Reflector&lt;/h2&gt;
+&lt;p&gt;Sebelumnya pada materi guard, kita membuat sebuah guard untuk melakukan authorization berdasarkan role untuk mengecek, role yang boleh mengakses handler, yang cara pemanggilannya dengan cara membuat object &lt;strong&gt;RoleGuard&lt;/strong&gt; baru disetiap handler.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;role.guard.ts&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-typescript&#34; data-lang=&#34;typescript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;@Get&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/auth/user&amp;#39;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;@UseGuards&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;RoleGuard&lt;/span&gt;([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;user&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;admin&amp;#39;&lt;/span&gt;]))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;auth&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;@Auth&lt;/span&gt;() &lt;span style=&#34;color:#a6e22e&#34;&gt;user&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;User&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Record&lt;/span&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;string&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;string&lt;/span&gt;&amp;gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;email&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;user.email&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;username&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;user.name&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    };
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Kode diatas akan menimbulkan masalah, karena &lt;strong&gt;RoleGuard&lt;/strong&gt; bukan merupakan singleton, yang berarti setap kali kita menambahkan &lt;strong&gt;RoleGuard&lt;/strong&gt; pada handler itu membuat object baru yang berarti akan memakan banyak memory. Nah kita bisa membuat RoleGuard menjadi singleton dengan bantuan &lt;strong&gt;Reflector&lt;/strong&gt;.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Nestjs Lifecycle</title>
       <link>http://localhost:1313/posts/nestjs-lifecycle/</link>

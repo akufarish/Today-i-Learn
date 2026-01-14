@@ -114,6 +114,22 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Mencoba Nest Js (4)
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Introduction Lanjut ke hari keempat belajar NestJS. Materi kali ini ada module reference, mengakses .env menggunakan configuration, dan membahas singleton object pada materi shared module.
+Module Reference Nest menyediakan class bernama ModuleRef yang berfungsi untuk mengambil data provider tanpa melakukan dependency injection. Cara penggunaannya adalah menggunakan method get() dari class ModuleRef yang menerima satu parameter yaitu provider yang ingin kita gunakan.
+member-service.ts
+import { Injectable } from &#39;@nestjs/common&#39;; import { ModuleRef } from &#39;@nestjs/core&#39;; import { Connection } from &#39;../connection/connection&#39;; import { MailService } from &#39;../mail/mail.service&#39;; @Injectable() export class MemberService { constructor(private moduleRef: ModuleRef) {} getConnectionName(): string | null { const connection = this.moduleRef.get(Connection); return connection.getName(); } sendEmail() { const mailService = this.moduleRef.get(MailService); mailService.send(); } } Tapi penggunaan module reference ini memiliki kekurangan dimana berbeda dengan dependency injection yang melakukan pengecekkan dependency di awal saat aplikasi dijalankan untuk melakukan pengecekkan dependency ini ada atau tidak, dan kalau tidak ada, akan langsung return error. Sedangkan jika menggunakan module reference, pengecekkan akan dilakukan ditengah berjalannya aplikasi, contohnya saat aplikasi sudah jalan dan mencoba memanggil route atau method yang menggunakan module reference dan ternyata dependency yang diperlukan itu tidak ada, maka otomatis akan error.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-01-04 19:51:47 +0800 WITA'>January 4, 2026</span></footer>
+  <a class="entry-link" aria-label="post link to Mencoba Nest Js (4)" href="http://localhost:1313/posts/mencoba-nest-js-4/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Custom Provider
     </h2>
   </header>
