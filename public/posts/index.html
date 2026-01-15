@@ -114,15 +114,17 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">Mencoba Nest Js 6
+    <h2 class="entry-hint-parent">Mencoba Nest Js (6)
     </h2>
   </header>
   <div class="entry-content">
-    <p>Reflector Sebelumnya pada materi decorator, saya membuat decorator
-Global Provider</p>
+    <p>Reflector Sebelumnya pada materi guard, kita membuat sebuah guard untuk melakukan authorization berdasarkan role untuk mengecek, role yang boleh mengakses handler, yang cara pemanggilannya dengan cara membuat object RoleGuard baru disetiap handler.
+role.guard.ts
+@Get(&#39;/auth/user&#39;) @UseGuards(new RoleGuard([&#39;user&#39;, &#39;admin&#39;])) auth(@Auth() user: User): Record&lt;string, string&gt; { return { email: user.email, username: user.name, }; } Kode diatas akan menimbulkan masalah, karena RoleGuard bukan merupakan singleton, yang berarti setap kali kita menambahkan RoleGuard pada handler itu membuat object baru yang berarti akan memakan banyak memory. Nah kita bisa membuat RoleGuard menjadi singleton dengan bantuan Reflector.
+...</p>
   </div>
   <footer class="entry-footer"><span title='2026-01-14 20:19:38 +0800 WITA'>January 14, 2026</span></footer>
-  <a class="entry-link" aria-label="post link to Mencoba Nest Js 6" href="http://localhost:1313/posts/mencoba-nest-js-6/"></a>
+  <a class="entry-link" aria-label="post link to Mencoba Nest Js (6)" href="http://localhost:1313/posts/mencoba-nest-js-6/"></a>
 </article>
 
 <article class="post-entry"> 
