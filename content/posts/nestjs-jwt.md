@@ -40,7 +40,7 @@ Berisi data atau yang disebut dengan **claims**. Seperti userId, role, email.
 
 ### Signature
 
-Signature adalah hasil kombinasi dari **header** dan **payload** yang sudah di encode, kemudian hashing menggunakan secret key **secret key**.
+Signature adalah hasil kombinasi dari **header** dan **payload** yang sudah di encode, kemudian hashing menggunakan **secret key**.
 
 Signature berfungsi untuk menghindari modifikasi data header maupun payload, karena jika salah satu data tersebut berubah, maka signature-nya secara otomatis akan dianggap tidak valid. Hal ini terjadi karena orang yang memodifikasi data tersebut tidak mengetahui **secret key** yang digunakan untuk mengubah signature-nya.
 
