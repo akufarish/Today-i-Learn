@@ -7,14 +7,14 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Nestjs Lifecycle | Today I Learn - Farish</title>
 <meta name="keywords" content="">
-<meta name="description" content="Lifecycle Event
-Pada aplikasi NestJS semua object yang ada seperti module, controller, dan provider itu memiliki lifecycle event atau alur hidup. Apa itu lifecycle dalam NestJS? Sesuai dengan namanya lifecycle yang berarti alur hidup adalah rankaian tahapan yang dilalui oleh objek dimulai dari objek itu dibuat, sampai objek tersebut dihancurkan.
+<meta name="description" content="Pada aplikasi NestJS semua object yang ada seperti module, controller, dan provider itu memiliki lifecycle event atau alur hidup. Apa itu lifecycle dalam NestJS? Sesuai dengan namanya lifecycle yang berarti alur hidup adalah rankaian tahapan yang dilalui oleh objek dimulai dari objek itu dibuat, sampai objek tersebut dihancurkan.
 Berikut adalah diagram lifecycle dalam aplikasi NestJS:
 
 
 
 
-OnModuleInit Dipanggil ketika semua module diload, maka akan memanggil function OnModuleInit().">
+OnModuleInit Dipanggil ketika semua module diload, maka akan memanggil function OnModuleInit().
+OnApplicationBootstrap Dipanggil setelah semua module sudah diinisialisasi, tetapi sebelum aplikasi terkoneksi dengan server.">
 <meta name="author" content="">
 <link rel="canonical" href="http://localhost:1313/posts/nestjs-lifecycle/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.ea5e07c191dc6fb48f5d3613026b37a0a7f49a80c19335b9044eebbcdb0bbcb6.css" integrity="sha256-6l4HwZHcb7SPXTYTAms3oKf0moDBkzW5BE7rvNsLvLY=" rel="preload stylesheet" as="style">
@@ -123,8 +123,7 @@ OnModuleInit Dipanggil ketika semua module diload, maka akan memanggil function 
 
 </div>
   </header> 
-  <div class="post-content"><h2 id="lifecycle-event">Lifecycle Event<a hidden class="anchor" aria-hidden="true" href="#lifecycle-event">#</a></h2>
-<p>Pada aplikasi NestJS semua object yang ada seperti module, controller, dan provider itu memiliki lifecycle event atau alur hidup. Apa itu <strong>lifecycle</strong> dalam NestJS? Sesuai dengan namanya lifecycle yang berarti alur hidup adalah rankaian tahapan yang dilalui oleh objek dimulai dari objek itu dibuat, sampai objek tersebut dihancurkan.</p>
+  <div class="post-content"><p>Pada aplikasi NestJS semua object yang ada seperti module, controller, dan provider itu memiliki lifecycle event atau alur hidup. Apa itu <strong>lifecycle</strong> dalam NestJS? Sesuai dengan namanya lifecycle yang berarti alur hidup adalah rankaian tahapan yang dilalui oleh objek dimulai dari objek itu dibuat, sampai objek tersebut dihancurkan.</p>
 <p>Berikut adalah diagram lifecycle dalam aplikasi NestJS:</p>
 <div class="img-container">
 <img alt="middleware-light-diagram" src="/images/lifecycle-light.png" class="img-light img">
@@ -173,8 +172,8 @@ OnModuleInit Dipanggil ketika semua module diload, maka akan memanggil function 
 </span></span></code></pre></div><blockquote>
 <p>main.ts</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NestFactory</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@nestjs/core&#39;</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./app.module&#39;</span>;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NestFactory</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/core&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./app.module&#34;</span>;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">bootstrap() {</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">NestFactory</span>.<span style="color:#a6e22e">create</span>(<span style="color:#a6e22e">AppModule</span>);

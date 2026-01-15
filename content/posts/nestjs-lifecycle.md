@@ -4,8 +4,6 @@ draft = false
 title = 'Nestjs Lifecycle'
 +++
 
-## Lifecycle Event
-
 Pada aplikasi NestJS semua object yang ada seperti module, controller, dan provider itu memiliki lifecycle event atau alur hidup. Apa itu **lifecycle** dalam NestJS? Sesuai dengan namanya lifecycle yang berarti alur hidup adalah rankaian tahapan yang dilalui oleh objek dimulai dari objek itu dibuat, sampai objek tersebut dihancurkan.
 
 Berikut adalah diagram lifecycle dalam aplikasi NestJS:
@@ -64,9 +62,10 @@ export class PrismaService
 ```
 
 > main.ts
+
 ```typescript
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { NestFactory } from "@nestjs/core";
+import { AppModule } from "./app.module";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -76,4 +75,4 @@ async function bootstrap() {
 bootstrap();
 ```
 
-Kenapa pada file main.ts ada tambahan kode berupa method **enableShutdownHooks()**? Itu karena OnModuleDestroy, BeforeApplicationShutdown, dan OnApplicationShutdown akan dijalankan ketika kita memanggil **app.close()** untuk menghentikan aplikasi, tapi dalam beberapa kasus kita mau menghentikan aplikasi dengan cara menggunakan signal termination dengan menggunakan **CTRL + C**, maka dari itulah pada main.ts dipanggil method **enableShutdownHooks()** untuk tiga lifecycle tadi dapat dipanggil ketika menerima signal termination. 
+Kenapa pada file main.ts ada tambahan kode berupa method **enableShutdownHooks()**? Itu karena OnModuleDestroy, BeforeApplicationShutdown, dan OnApplicationShutdown akan dijalankan ketika kita memanggil **app.close()** untuk menghentikan aplikasi, tapi dalam beberapa kasus kita mau menghentikan aplikasi dengan cara menggunakan signal termination dengan menggunakan **CTRL + C**, maka dari itulah pada main.ts dipanggil method **enableShutdownHooks()** untuk tiga lifecycle tadi dapat dipanggil ketika menerima signal termination.

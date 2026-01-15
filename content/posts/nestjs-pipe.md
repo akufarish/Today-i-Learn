@@ -4,7 +4,6 @@ draft = false
 title = 'Nest JS Pipe'
 +++
 
-## Pipe
 Pipe adalah fitur yang ada pada NestJS yang memiliki dua fungsi, pertama bisa untuk melakukan transformasi/konversi request sebelum dikirim ke controller method, kedua berfungsi untuk melakukan validasi request.
 
 Salah satu cara menggunakan pipe, bisa dengan cara menambahkan pipe ke decorator **@Query()**, **@Body()** dan **@Param()**.
@@ -12,6 +11,7 @@ Salah satu cara menggunakan pipe, bisa dengan cara menambahkan pipe ke decorator
 NestJS sendiri sudah menyediakan banyak pipe bawaan seperti ValidationPipe, ParseIntPipe, ParseFilePipe, ParseArrayPipe, dan lain-lain.
 
 > user.controller.ts
+
 ```typescript
 @Get('/:id')
 async getById(@Param('id', ParseIntPipe) id: number): Promise<User | null> {
@@ -28,9 +28,10 @@ nest generate pipe nama_file path_folder
 ```
 
 > validation.pipe.ts
+
 ```typescript
-import { ArgumentMetadata, Injectable, PipeTransform } from '@nestjs/common';
-import { ZodType } from 'zod';
+import { ArgumentMetadata, Injectable, PipeTransform } from "@nestjs/common";
+import { ZodType } from "zod";
 
 @Injectable()
 export class ValidationPipe implements PipeTransform {
@@ -45,6 +46,7 @@ export class ValidationPipe implements PipeTransform {
 File pipe custom diatas adalah pipe yang berfungsi untuk melakukan validasi menggunakan zod, yang menerima satu parameter yaitu schema zod.
 
 > user.controller.ts
+
 ```typescript
 @Post('/login')
 @UseFilters(ValidationFilter)
@@ -59,45 +61,44 @@ request: LoginUserRequest,
 <div class="alert-container error"><strong>POST</strong> /api/users/login</div>
 
 Request Body:
+
 ```json
 {
-    "username": "",
-    "password": ""
+  "username": "",
+  "password": ""
 }
 ```
 
 Response Body:
+
 ```json
 {
-    "code": 400,
-    "errors": [
-        {
-            "origin": "string",
-            "code": "too_small",
-            "minimum": 1,
-            "inclusive": true,
-            "path": [
-                "username"
-            ],
-            "message": "Too small: expected string to have >=1 characters"
-        },
-        {
-            "origin": "string",
-            "code": "too_small",
-            "minimum": 1,
-            "inclusive": true,
-            "path": [
-                "password"
-            ],
-            "message": "Too small: expected string to have >=1 characters"
-        }
-    ]
+  "code": 400,
+  "errors": [
+    {
+      "origin": "string",
+      "code": "too_small",
+      "minimum": 1,
+      "inclusive": true,
+      "path": ["username"],
+      "message": "Too small: expected string to have >=1 characters"
+    },
+    {
+      "origin": "string",
+      "code": "too_small",
+      "minimum": 1,
+      "inclusive": true,
+      "path": ["password"],
+      "message": "Too small: expected string to have >=1 characters"
+    }
+  ]
 }
 ```
 
 Selain menggunakan pipe dengan cara menambahkannya didalam decorator **@Query()**, **@Body()** dan **@Param()**. Kita juga bisa menambahkan decorator di class controller method menggunakan decorator **@UsePipes()**, atau jika ingin menambah pipe secara global, bisa ditambahkan ke application module menggunakan method **useGlobalPipes()**. Namun perlu dicatat jika menggunakan pipe secara global, kita harus memperhatikan pengecekkan karena perbedaan tipe data yang disett bisa menyebabkan error pada pipe.
 
 > user.controller.ts
+
 ```typescript
 @Post('/login')
 @UseFilters(ValidationFilter)
@@ -109,6 +110,7 @@ request: LoginUserRequest,
     return `Hello ${request.username}!`;
 }
 ```
+
 Kode diatas akan berjalan dengan semestinya, tapi ketika menambahkan request baru contohnya menggunakan **@Param()** maka akan terjadi error.
 
 ```typescript
@@ -127,25 +129,27 @@ request: LoginUserRequest,
 <div class="alert-container error"><strong>POST</strong> /api/users/login/213asd</div>
 
 Request Body:
+
 ```json
 {
-    "username": "admin",
-    "password": "admin123"
+  "username": "admin",
+  "password": "admin123"
 }
 ```
 
 Response Body:
+
 ```json
 {
-    "code": 400,
-    "errors": [
-        {
-            "expected": "object",
-            "code": "invalid_type",
-            "path": [],
-            "message": "Invalid input: expected object, received string"
-        }
-    ]
+  "code": 400,
+  "errors": [
+    {
+      "expected": "object",
+      "code": "invalid_type",
+      "path": [],
+      "message": "Invalid input: expected object, received string"
+    }
+  ]
 }
 ```
 
@@ -154,16 +158,17 @@ Kode diatas error karena validation pipe yang kita buat sebelumnya itu validasi 
 Untuk mengatasi permasalahan tersebut, kita dapat melakukan pengecekkan pada pipe nya menggunakan tipe metadata yang nanti akan dikirim ke controller.
 
 > validation.pipe.ts
+
 ```typescript
-import { ArgumentMetadata, Injectable, PipeTransform } from '@nestjs/common';
-import { ZodType } from 'zod';
+import { ArgumentMetadata, Injectable, PipeTransform } from "@nestjs/common";
+import { ZodType } from "zod";
 
 @Injectable()
 export class ValidationPipe implements PipeTransform {
   constructor(private zodType: ZodType) {}
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   transform(value: any, metadata: ArgumentMetadata) {
-    if (metadata.type == 'body') {
+    if (metadata.type == "body") {
       return this.zodType.parse(value);
     } else {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-return
@@ -176,15 +181,16 @@ export class ValidationPipe implements PipeTransform {
 <div class="alert-container success"><strong>POST</strong> /api/users/login/213asd</div>
 
 Request Body:
+
 ```json
 {
-    "username": "admin",
-    "password": "admin123"
+  "username": "admin",
+  "password": "admin123"
 }
 ```
 
 Response Body:
+
 ```html
 Hello admin! + 213asd
 ```
-

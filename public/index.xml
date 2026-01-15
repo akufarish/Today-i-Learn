@@ -42,30 +42,28 @@
       <link>http://localhost:1313/posts/nestjs-lifecycle/</link>
       <pubDate>Tue, 13 Jan 2026 20:58:23 +0800</pubDate>
       <guid>http://localhost:1313/posts/nestjs-lifecycle/</guid>
-      <description>&lt;h2 id=&#34;lifecycle-event&#34;&gt;Lifecycle Event&lt;/h2&gt;
-&lt;p&gt;Pada aplikasi NestJS semua object yang ada seperti module, controller, dan provider itu memiliki lifecycle event atau alur hidup. Apa itu &lt;strong&gt;lifecycle&lt;/strong&gt; dalam NestJS? Sesuai dengan namanya lifecycle yang berarti alur hidup adalah rankaian tahapan yang dilalui oleh objek dimulai dari objek itu dibuat, sampai objek tersebut dihancurkan.&lt;/p&gt;
+      <description>&lt;p&gt;Pada aplikasi NestJS semua object yang ada seperti module, controller, dan provider itu memiliki lifecycle event atau alur hidup. Apa itu &lt;strong&gt;lifecycle&lt;/strong&gt; dalam NestJS? Sesuai dengan namanya lifecycle yang berarti alur hidup adalah rankaian tahapan yang dilalui oleh objek dimulai dari objek itu dibuat, sampai objek tersebut dihancurkan.&lt;/p&gt;
 &lt;p&gt;Berikut adalah diagram lifecycle dalam aplikasi NestJS:&lt;/p&gt;
 &lt;div class=&#34;img-container&#34;&gt;
 &lt;img alt=&#34;middleware-light-diagram&#34; src=&#34;http://localhost:1313/images/lifecycle-light.png&#34; class=&#34;img-light img&#34;&gt;
 &lt;img alt=&#34;middleware-dark-diagram&#34; src=&#34;http://localhost:1313/images/lifecycle-dark.png&#34; class=&#34;img-dark img&#34;&gt;
 &lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;OnModuleInit&lt;/strong&gt; Dipanggil ketika semua module diload, maka akan memanggil function &lt;strong&gt;OnModuleInit()&lt;/strong&gt;.&lt;/p&gt;</description>
+&lt;p&gt;&lt;strong&gt;OnModuleInit&lt;/strong&gt; Dipanggil ketika semua module diload, maka akan memanggil function &lt;strong&gt;OnModuleInit()&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;OnApplicationBootstrap&lt;/strong&gt; Dipanggil setelah semua module sudah diinisialisasi, tetapi sebelum aplikasi terkoneksi dengan server.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Nest JS Guard</title>
       <link>http://localhost:1313/posts/nestjs-guard/</link>
       <pubDate>Mon, 12 Jan 2026 21:10:27 +0800</pubDate>
       <guid>http://localhost:1313/posts/nestjs-guard/</guid>
-      <description>&lt;h2 id=&#34;guard&#34;&gt;Guard&lt;/h2&gt;
-&lt;p&gt;Guard adalah class yang berfungsi untuk melakukan proses &lt;strong&gt;authorization&lt;/strong&gt;, yaitu sebuah proses untuk mengecek apakah user berhak untuk mengakses route tersebut atau tidak. Lantas kenapa tidak melakukan proses authorization didalam middleware? Kan didalam middleware kita melakukan proses authentication. Satu alasan kenapa melakukan proses authorization didalam middleware itu susah karena middleware tidak tahu route mana yang boleh diakses dan tidak boleh, yang dia tahu hanya memanggil fungsi next() entah itu next middleware atau next route. Oleh karena itulah untuk melakukan proses authorization menggunakan guard.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Guard adalah class yang berfungsi untuk melakukan proses &lt;strong&gt;authorization&lt;/strong&gt;, yaitu sebuah proses untuk mengecek apakah user berhak untuk mengakses route tersebut atau tidak. Lantas kenapa tidak melakukan proses authorization didalam middleware? Kan didalam middleware kita melakukan proses authentication. Satu alasan kenapa melakukan proses authorization didalam middleware itu susah karena middleware tidak tahu route mana yang boleh diakses dan tidak boleh, yang dia tahu hanya memanggil fungsi next() entah itu next middleware atau next route. Oleh karena itulah untuk melakukan proses authorization menggunakan guard.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Nest JS Custom Decorator</title>
       <link>http://localhost:1313/posts/nestjs-custom-decorator/</link>
       <pubDate>Sun, 11 Jan 2026 19:10:05 +0800</pubDate>
       <guid>http://localhost:1313/posts/nestjs-custom-decorator/</guid>
-      <description>&lt;h2 id=&#34;custom-decorator&#34;&gt;Custom Decorator&lt;/h2&gt;
-&lt;p&gt;NestJS sudah banyak menyediakan decorator bawaan yang bisa kita gunakan di dalam controller seperti &lt;strong&gt;@Req()&lt;/strong&gt;, &lt;strong&gt;@Body()&lt;/strong&gt;, dan lain-lain. Namun, terkadang kita perlu menambahkan atribut ke object request, lalu datanya bisa diakses di controller.&lt;/p&gt;
+      <description>&lt;p&gt;NestJS sudah banyak menyediakan decorator bawaan yang bisa kita gunakan di dalam controller seperti &lt;strong&gt;@Req()&lt;/strong&gt;, &lt;strong&gt;@Body()&lt;/strong&gt;, dan lain-lain. Namun, terkadang kita perlu menambahkan atribut ke object request, lalu datanya bisa diakses di controller.&lt;/p&gt;
 &lt;p&gt;Satu contoh kenapa kita perlu custom decorator adalah ketika untuk mendapatkan data user yang sedang login, biasanya kodenya akan seperti ini.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;user.controller.ts&lt;/p&gt;
@@ -85,8 +83,7 @@
       <link>http://localhost:1313/posts/nestjs-interceptor/</link>
       <pubDate>Sat, 10 Jan 2026 20:49:01 +0800</pubDate>
       <guid>http://localhost:1313/posts/nestjs-interceptor/</guid>
-      <description>&lt;h2 id=&#34;interceptor&#34;&gt;Interceptor&lt;/h2&gt;
-&lt;p&gt;Secara konsep, interceptor itu mirip dengan middleware, sama-sama menjadi jembatan antara request dari client ke controller, namun pembedanya adalah interceptor dapat mengubah response yang diberikan oleh controller.&lt;/p&gt;
+      <description>&lt;p&gt;Secara konsep, interceptor itu mirip dengan middleware, sama-sama menjadi jembatan antara request dari client ke controller, namun pembedanya adalah interceptor dapat mengubah response yang diberikan oleh controller.&lt;/p&gt;
 &lt;p&gt;Pembeda antara middleware dan interceptor hanya terdapat pada middleware yang cuma bisa mengolah request dan meneruskan request tersebut ke middleware selanjutnya atau ke controller. Sedangkan interceptor dapat menerima Response dari controller, dan mengubah response-nya.&lt;/p&gt;
 &lt;p&gt;Berikut adalah diagram sederhana dari interceptor&lt;/p&gt;
 &lt;div class=&#34;img-container&#34;&gt;
@@ -100,8 +97,7 @@
       <link>http://localhost:1313/posts/nestjs-pipe/</link>
       <pubDate>Fri, 09 Jan 2026 20:43:24 +0800</pubDate>
       <guid>http://localhost:1313/posts/nestjs-pipe/</guid>
-      <description>&lt;h2 id=&#34;pipe&#34;&gt;Pipe&lt;/h2&gt;
-&lt;p&gt;Pipe adalah fitur yang ada pada NestJS yang memiliki dua fungsi, pertama bisa untuk melakukan transformasi/konversi request sebelum dikirim ke controller method, kedua berfungsi untuk melakukan validasi request.&lt;/p&gt;
+      <description>&lt;p&gt;Pipe adalah fitur yang ada pada NestJS yang memiliki dua fungsi, pertama bisa untuk melakukan transformasi/konversi request sebelum dikirim ke controller method, kedua berfungsi untuk melakukan validasi request.&lt;/p&gt;
 &lt;p&gt;Salah satu cara menggunakan pipe, bisa dengan cara menambahkan pipe ke decorator &lt;strong&gt;@Query()&lt;/strong&gt;, &lt;strong&gt;@Body()&lt;/strong&gt; dan &lt;strong&gt;@Param()&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;NestJS sendiri sudah menyediakan banyak pipe bawaan seperti ValidationPipe, ParseIntPipe, ParseFilePipe, ParseArrayPipe, dan lain-lain.&lt;/p&gt;
 &lt;blockquote&gt;
@@ -118,11 +114,10 @@
       <link>http://localhost:1313/posts/exception/</link>
       <pubDate>Thu, 08 Jan 2026 18:03:32 +0800</pubDate>
       <guid>http://localhost:1313/posts/exception/</guid>
-      <description>&lt;h2 id=&#34;exception-filter&#34;&gt;Exception Filter&lt;/h2&gt;
-&lt;p&gt;Secara default jika terjadi error pada aplikasi NestJS, aplikasi akan return data berupa json dengan status code &lt;strong&gt;500 internal server error&lt;/strong&gt;.&lt;/p&gt;
+      <description>&lt;p&gt;Secara default jika terjadi error pada aplikasi NestJS, aplikasi akan return data berupa json dengan status code &lt;strong&gt;500 internal server error&lt;/strong&gt;.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;statusCode&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;500&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;message&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Internal server error&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;statusCode&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;500&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;message&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Internal server error&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Tapi terkadang kita sebagai developer juga ingin mengubah error yang dikembalikan, karena tidak semua error pada aplikasi itu bisa diberikan &lt;strong&gt;500 internal server error&lt;/strong&gt;, bisa saja error &lt;strong&gt;400 bad request&lt;/strong&gt; untuk validation request, atau &lt;strong&gt;401 unauthorized&lt;/strong&gt; untuk memberitahu kalau user ini tidak memiliki hak akses. Dan lain-lain.&lt;/p&gt;</description>
     </item>
@@ -155,8 +150,7 @@
       <link>http://localhost:1313/posts/nestjs-database/</link>
       <pubDate>Mon, 05 Jan 2026 17:18:59 +0800</pubDate>
       <guid>http://localhost:1313/posts/nestjs-database/</guid>
-      <description>&lt;h2 id=&#34;database&#34;&gt;Database&lt;/h2&gt;
-&lt;p&gt;Secara default NestJS tidak menyediakan fitur untuk database atau ORM (Object Relational Mapping), namun karena itu juga kita sebagai developer diberi kebebasan untuk menggunakan berbagai macam ORM yang ada seperti prisma, drizzle, dan lain-lain.&lt;/p&gt;
+      <description>&lt;p&gt;Secara default NestJS tidak menyediakan fitur untuk database atau ORM (Object Relational Mapping), namun karena itu juga kita sebagai developer diberi kebebasan untuk menggunakan berbagai macam ORM yang ada seperti prisma, drizzle, dan lain-lain.&lt;/p&gt;
 &lt;p&gt;Pada praktek ini akan menggunakan prisma sebagai ORM nya.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;install library prisma&lt;/p&gt;

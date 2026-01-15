@@ -184,9 +184,10 @@ role.guard.ts
     </h2>
   </header>
   <div class="entry-content">
-    <p>Lifecycle Event Pada aplikasi NestJS semua object yang ada seperti module, controller, dan provider itu memiliki lifecycle event atau alur hidup. Apa itu lifecycle dalam NestJS? Sesuai dengan namanya lifecycle yang berarti alur hidup adalah rankaian tahapan yang dilalui oleh objek dimulai dari objek itu dibuat, sampai objek tersebut dihancurkan.
+    <p>Pada aplikasi NestJS semua object yang ada seperti module, controller, dan provider itu memiliki lifecycle event atau alur hidup. Apa itu lifecycle dalam NestJS? Sesuai dengan namanya lifecycle yang berarti alur hidup adalah rankaian tahapan yang dilalui oleh objek dimulai dari objek itu dibuat, sampai objek tersebut dihancurkan.
 Berikut adalah diagram lifecycle dalam aplikasi NestJS:
 OnModuleInit Dipanggil ketika semua module diload, maka akan memanggil function OnModuleInit().
+OnApplicationBootstrap Dipanggil setelah semua module sudah diinisialisasi, tetapi sebelum aplikasi terkoneksi dengan server.
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2026-01-13 20:58:23 +0800 WITA'>January 13, 2026</span></footer>
@@ -199,7 +200,7 @@ OnModuleInit Dipanggil ketika semua module diload, maka akan memanggil function 
     </h2>
   </header>
   <div class="entry-content">
-    <p>Guard Guard adalah class yang berfungsi untuk melakukan proses authorization, yaitu sebuah proses untuk mengecek apakah user berhak untuk mengakses route tersebut atau tidak. Lantas kenapa tidak melakukan proses authorization didalam middleware? Kan didalam middleware kita melakukan proses authentication. Satu alasan kenapa melakukan proses authorization didalam middleware itu susah karena middleware tidak tahu route mana yang boleh diakses dan tidak boleh, yang dia tahu hanya memanggil fungsi next() entah itu next middleware atau next route. Oleh karena itulah untuk melakukan proses authorization menggunakan guard.
+    <p>Guard adalah class yang berfungsi untuk melakukan proses authorization, yaitu sebuah proses untuk mengecek apakah user berhak untuk mengakses route tersebut atau tidak. Lantas kenapa tidak melakukan proses authorization didalam middleware? Kan didalam middleware kita melakukan proses authentication. Satu alasan kenapa melakukan proses authorization didalam middleware itu susah karena middleware tidak tahu route mana yang boleh diakses dan tidak boleh, yang dia tahu hanya memanggil fungsi next() entah itu next middleware atau next route. Oleh karena itulah untuk melakukan proses authorization menggunakan guard.
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2026-01-12 21:10:27 +0800 WITA'>January 12, 2026</span></footer>
@@ -212,7 +213,7 @@ OnModuleInit Dipanggil ketika semua module diload, maka akan memanggil function 
     </h2>
   </header>
   <div class="entry-content">
-    <p>Custom Decorator NestJS sudah banyak menyediakan decorator bawaan yang bisa kita gunakan di dalam controller seperti @Req(), @Body(), dan lain-lain. Namun, terkadang kita perlu menambahkan atribut ke object request, lalu datanya bisa diakses di controller.
+    <p>NestJS sudah banyak menyediakan decorator bawaan yang bisa kita gunakan di dalam controller seperti @Req(), @Body(), dan lain-lain. Namun, terkadang kita perlu menambahkan atribut ke object request, lalu datanya bisa diakses di controller.
 Satu contoh kenapa kita perlu custom decorator adalah ketika untuk mendapatkan data user yang sedang login, biasanya kodenya akan seperti ini.
 user.controller.ts
 @Get(&#39;/auth&#39;) auth(@Req() request: Request): Record&lt;string, string&gt; { const user = request.user; return { email: user.email, username: user.name, }; } kode diatas dapat dijadikan custom decorator untuk membuat kode lebih mudah untuk dibaca. Untuk membuat custom decorator sendiri bisa menggunakan function createParamDecorator(), atau bisa gunakan CLI NestJS dengan command.
@@ -228,7 +229,7 @@ user.controller.ts
     </h2>
   </header>
   <div class="entry-content">
-    <p>Interceptor Secara konsep, interceptor itu mirip dengan middleware, sama-sama menjadi jembatan antara request dari client ke controller, namun pembedanya adalah interceptor dapat mengubah response yang diberikan oleh controller.
+    <p>Secara konsep, interceptor itu mirip dengan middleware, sama-sama menjadi jembatan antara request dari client ke controller, namun pembedanya adalah interceptor dapat mengubah response yang diberikan oleh controller.
 Pembeda antara middleware dan interceptor hanya terdapat pada middleware yang cuma bisa mengolah request dan meneruskan request tersebut ke middleware selanjutnya atau ke controller. Sedangkan interceptor dapat menerima Response dari controller, dan mengubah response-nya.
 Berikut adalah diagram sederhana dari interceptor
 Bisa diliat dari diagram diatas, memang mirip seperti diagram middleware, cuma yang jadi pembeda adalah request yang dikirim client akan masuk ke interceptor terlebih dahulu dan disini interceptor dapat mengubah atau melakukan pengecekkan terhadap request, lalu dikirim ke controller, dan dari controller, data yang dikembalikan juga akan masuk ke interceptor dan response tadi dapat dimodifikasi.
@@ -244,7 +245,7 @@ Bisa diliat dari diagram diatas, memang mirip seperti diagram middleware, cuma y
     </h2>
   </header>
   <div class="entry-content">
-    <p>Pipe Pipe adalah fitur yang ada pada NestJS yang memiliki dua fungsi, pertama bisa untuk melakukan transformasi/konversi request sebelum dikirim ke controller method, kedua berfungsi untuk melakukan validasi request.
+    <p>Pipe adalah fitur yang ada pada NestJS yang memiliki dua fungsi, pertama bisa untuk melakukan transformasi/konversi request sebelum dikirim ke controller method, kedua berfungsi untuk melakukan validasi request.
 Salah satu cara menggunakan pipe, bisa dengan cara menambahkan pipe ke decorator @Query(), @Body() dan @Param().
 NestJS sendiri sudah menyediakan banyak pipe bawaan seperti ValidationPipe, ParseIntPipe, ParseFilePipe, ParseArrayPipe, dan lain-lain.
 user.controller.ts
@@ -261,7 +262,7 @@ user.controller.ts
     </h2>
   </header>
   <div class="entry-content">
-    <p>Exception Filter Secara default jika terjadi error pada aplikasi NestJS, aplikasi akan return data berupa json dengan status code 500 internal server error.
+    <p>Secara default jika terjadi error pada aplikasi NestJS, aplikasi akan return data berupa json dengan status code 500 internal server error.
 { &#34;statusCode&#34;: 500, &#34;message&#34;: &#34;Internal server error&#34; } Tapi terkadang kita sebagai developer juga ingin mengubah error yang dikembalikan, karena tidak semua error pada aplikasi itu bisa diberikan 500 internal server error, bisa saja error 400 bad request untuk validation request, atau 401 unauthorized untuk memberitahu kalau user ini tidak memiliki hak akses. Dan lain-lain.
 ...</p>
   </div>

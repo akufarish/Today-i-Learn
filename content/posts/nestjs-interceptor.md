@@ -4,8 +4,7 @@ draft = false
 title = 'Nest JS Interceptor'
 +++
 
-## Interceptor
-Secara konsep, interceptor itu mirip dengan middleware, sama-sama menjadi jembatan antara request dari client ke controller, namun pembedanya adalah interceptor dapat mengubah response yang diberikan oleh controller. 
+Secara konsep, interceptor itu mirip dengan middleware, sama-sama menjadi jembatan antara request dari client ke controller, namun pembedanya adalah interceptor dapat mengubah response yang diberikan oleh controller.
 
 Pembeda antara middleware dan interceptor hanya terdapat pada middleware yang cuma bisa mengolah request dan meneruskan request tersebut ke middleware selanjutnya atau ke controller. Sedangkan interceptor dapat menerima Response dari controller, dan mengubah response-nya.
 
@@ -16,7 +15,7 @@ Berikut adalah diagram sederhana dari interceptor
 <img alt="middleware-dark-diagram" src="/images/interceptor-dark.png" class="img-dark img">
 </div>
 
-Bisa diliat dari diagram diatas, memang mirip seperti diagram middleware, cuma yang jadi pembeda adalah request yang dikirim client akan masuk ke interceptor terlebih dahulu dan disini interceptor dapat mengubah atau melakukan pengecekkan terhadap request, lalu dikirim ke controller, dan dari controller, data yang dikembalikan juga akan masuk ke interceptor dan response tadi dapat dimodifikasi. 
+Bisa diliat dari diagram diatas, memang mirip seperti diagram middleware, cuma yang jadi pembeda adalah request yang dikirim client akan masuk ke interceptor terlebih dahulu dan disini interceptor dapat mengubah atau melakukan pengecekkan terhadap request, lalu dikirim ke controller, dan dari controller, data yang dikembalikan juga akan masuk ke interceptor dan response tadi dapat dimodifikasi.
 
 Untuk membuat interceptor, bisa membuat class turunan interface **NestInterceptor**, atau bisa menggunakan CLI NestJS.
 
@@ -25,15 +24,16 @@ nest generate interceptor nama_file path_file
 ```
 
 > time.interceptor.ts
+
 ```typescript
 import {
   CallHandler,
   ExecutionContext,
   Injectable,
   NestInterceptor,
-} from '@nestjs/common';
-import { map, Observable } from 'rxjs';
-import { type Request } from 'express';
+} from "@nestjs/common";
+import { map, Observable } from "rxjs";
+import { type Request } from "express";
 
 @Injectable()
 export class TimeInterceptor implements NestInterceptor {
@@ -43,12 +43,12 @@ export class TimeInterceptor implements NestInterceptor {
     return next.handle().pipe(
       map((value) => {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
-        value.username = request.body['username'];
+        value.username = request.body["username"];
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         value.timestamp = new Date();
         // eslint-disable-next-line @typescript-eslint/no-unsafe-return
         return value;
-      }),
+      })
     );
   }
 }
@@ -73,19 +73,20 @@ login( @Body() request: LoginUserRequest): any {
 <div class="alert-container success"><strong>POST</strong> /api/users/login</div>
 
 Request Body:
+
 ```json
 {
-    "username": "admin",
-    "password": "admin"
+  "username": "admin",
+  "password": "admin"
 }
 ```
 
 Response Body:
+
 ```json
 {
-    "data": "Hello admin",
-    "username": "admin",
-    "timestamp": "2026-01-10T13:12:29.271Z"
+  "data": "Hello admin",
+  "username": "admin",
+  "timestamp": "2026-01-10T13:12:29.271Z"
 }
 ```
-

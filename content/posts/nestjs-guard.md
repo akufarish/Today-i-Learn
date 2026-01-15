@@ -4,7 +4,6 @@ draft = false
 title = 'Nest JS Guard'
 +++
 
-## Guard
 Guard adalah class yang berfungsi untuk melakukan proses **authorization**, yaitu sebuah proses untuk mengecek apakah user berhak untuk mengakses route tersebut atau tidak. Lantas kenapa tidak melakukan proses authorization didalam middleware? Kan didalam middleware kita melakukan proses authentication. Satu alasan kenapa melakukan proses authorization didalam middleware itu susah karena middleware tidak tahu route mana yang boleh diakses dan tidak boleh, yang dia tahu hanya memanggil fungsi next() entah itu next middleware atau next route. Oleh karena itulah untuk melakukan proses authorization menggunakan guard.
 
 Untuk membuat guard pada NestJS, bisa dengan cara membuat class turunan **CanActivate**, atau bisa menggunakan CLI Nest:
@@ -14,16 +13,17 @@ nest generate guard nama_guard path_guard
 ```
 
 > role.guard.ts
+
 ```typescript
-import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
-import { Observable } from 'rxjs';
+import { CanActivate, ExecutionContext, Injectable } from "@nestjs/common";
+import { Observable } from "rxjs";
 
 @Injectable()
 export class RoleGuard implements CanActivate {
   constructor(private roles: string[]) {}
 
   canActivate(
-    context: ExecutionContext,
+    context: ExecutionContext
   ): boolean | Promise<boolean> | Observable<boolean> {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
     const user = context.switchToHttp().getRequest().user;
@@ -72,6 +72,7 @@ admin(@Auth() user: User): Record<string, string> {
 <div class="alert-container error"><strong>GET</strong> /api/users/auth/admin</div>
 
 Request Header:
+
 ```json
 {
   "Authorization": "Bearer {token}"
@@ -79,6 +80,7 @@ Request Header:
 ```
 
 Response Body:
+
 ```json
 {
   "message": "Forbidden resource",
@@ -92,6 +94,7 @@ Response Body:
 <div class="alert-container success"><strong>GET</strong> /api/users/auth/user</div>
 
 Request Header:
+
 ```json
 {
   "Authorization": "Bearer {token}"
@@ -99,6 +102,7 @@ Request Header:
 ```
 
 Response Body:
+
 ```json
 {
   "email": "farish@gmail.com",
@@ -111,6 +115,7 @@ Response Body:
 <div class="alert-container success"><strong>GET</strong> /api/users/auth/admin</div>
 
 Request Header:
+
 ```json
 {
   "Authorization": "Bearer {token}"
@@ -118,6 +123,7 @@ Request Header:
 ```
 
 Response Body:
+
 ```json
 {
   "email": "admin@gmail.com",
@@ -130,6 +136,7 @@ Response Body:
 <div class="alert-container success"><strong>GET</strong> /api/users/auth/user</div>
 
 Request Header:
+
 ```json
 {
   "Authorization": "Bearer {token}"
@@ -137,6 +144,7 @@ Request Header:
 ```
 
 Response Body:
+
 ```json
 {
   "email": "admin@gmail.com",
