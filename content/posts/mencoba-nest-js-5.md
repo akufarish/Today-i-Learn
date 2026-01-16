@@ -4,7 +4,6 @@ draft = false
 title = 'Mencoba Nest Js (5)'
 +++
 
-## Introduction
 Hari ke tujuh belajar NestJS materi yang dipelajari hari ini tidak kalah menarik, karena akan membahas validation pada NestJS, selain itu ada juga pembahasan untuk logging, global module, dan dynamic module.
 
 ## Logging

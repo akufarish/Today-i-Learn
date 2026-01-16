@@ -4,7 +4,6 @@ draft = false
 title = 'Nest JS Middleware'
 +++
 
-## Middleware
 Middleware adalah sebuah jembatan antara request dari client ke server, yang memungkinkan kita untuk menambahkan logika yang akan dijalankan sebelum request tersebut mencapai route handler atau tujuan. 
 
 Berikut adalah diagram sederhana middleware.
