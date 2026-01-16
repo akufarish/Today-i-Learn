@@ -5,6 +5,9 @@
     <loc>http://localhost:1313/posts/implementasi-jwt-nestjs/</loc>
     <lastmod>2026-01-16T20:57:26+08:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/tags/indonesia/</loc>
+    <lastmod>2026-01-16T20:57:26+08:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/tags/nestjs/</loc>
     <lastmod>2026-01-16T20:57:26+08:00</lastmod>
   </url><url>
@@ -57,9 +60,6 @@
     <lastmod>2026-01-04T19:51:47+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/custom-provider/</loc>
-    <lastmod>2026-01-03T18:05:17+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/indonesia/</loc>
     <lastmod>2026-01-03T18:05:17+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/mencoba-nest-js-3/</loc>

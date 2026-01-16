@@ -26,3 +26,8 @@ theme = ["PaperMod"]
   tag = "tags"
   category = "categories"
   lang = "language"
+
+[[menu.main]]
+    name = "Tags"
+    url = "tags/"
+    weight = 10
