@@ -604,8 +604,7 @@ Response Body:
   "data": {
     "id": 3,
     "name": "testing",
-    "email": "test@gmail.com",
-    "role": null
+    "email": "test@gmail.com"
   }
 }
 ```
