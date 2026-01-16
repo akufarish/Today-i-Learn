@@ -2,6 +2,7 @@
 date = '2026-01-04T19:51:47+08:00'
 draft = false
 title = 'Mencoba Nest Js (4)'
+tags = ['Indonesia', 'NestJS', 'Programming']
 +++
 
 Lanjut ke hari keempat belajar NestJS. Materi kali ini ada module reference, mengakses .env menggunakan configuration, dan membahas singleton object pada materi shared module.

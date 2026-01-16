@@ -2,6 +2,7 @@
 date = '2026-01-11T19:10:05+08:00'
 draft = false
 title = 'Nest JS Custom Decorator'
+tags = ['Indonesia', 'NestJS', 'Programming']
 +++
 
 NestJS sudah banyak menyediakan decorator bawaan yang bisa kita gunakan di dalam controller seperti **@Req()**, **@Body()**, dan lain-lain. Namun, terkadang kita perlu menambahkan atribut ke object request, lalu datanya bisa diakses di controller.

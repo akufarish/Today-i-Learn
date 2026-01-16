@@ -2,6 +2,7 @@
 date = '2026-01-14T20:19:38+08:00'
 draft = false
 title = 'Mencoba Nest Js (6)'
+tags = ['Indonesia', 'NestJS', 'Programming']
 +++
 
 ## Reflector

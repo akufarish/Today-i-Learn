@@ -2,6 +2,7 @@
 date = '2026-01-05T17:18:59+08:00'
 draft = false
 title = 'Nest JS Database'
+tags = ['Indonesia', 'NestJS', 'Programming']
 +++
 
 Secara default NestJS tidak menyediakan fitur untuk database atau ORM (Object Relational Mapping), namun karena itu juga kita sebagai developer diberi kebebasan untuk menggunakan berbagai macam ORM yang ada seperti prisma, drizzle, dan lain-lain.

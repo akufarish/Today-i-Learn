@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>NestJS on Today I Learn - Farish</title>
+    <link>http://localhost:1313/tags/nestjs/</link>
+    <description>Recent content in NestJS on Today I Learn - Farish</description>
+    <generator>Hugo -- 0.154.4</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 16 Jan 2026 20:57:26 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/nestjs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Implementasi JWT NestJS</title>
+      <link>http://localhost:1313/posts/implementasi-jwt-nestjs/</link>
+      <pubDate>Fri, 16 Jan 2026 20:57:26 +0800</pubDate>
+      <guid>http://localhost:1313/posts/implementasi-jwt-nestjs/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Custom Provider</title>
+      <link>http://localhost:1313/posts/custom-provider/</link>
+      <pubDate>Sat, 03 Jan 2026 18:05:17 +0800</pubDate>
+      <guid>http://localhost:1313/posts/custom-provider/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Seharusnya &lt;strong&gt;custom provider&lt;/strong&gt; ini ada di postingan sebelumnya, tapi karena aku merasa ini adalah materi yang rumit jadi aku bikin postingan berbeda yang khusus membahas &lt;strong&gt;custom provider&lt;/strong&gt; ini.&lt;/p&gt;
+&lt;p&gt;Kenapa harus menggunakan custom provider? Karena terkadang kita bisa saja membuat provider yang bukan instance dari NestJS yang berarti provider third party misalnya MysqlClient, MongoClient, PrismaClient, dan lain-lain.&lt;/p&gt;
+&lt;p&gt;Atau ada juga kasus dimana provider yang kita buat itu sedikit kompleks sehingga tidak bisa hanya dengan memanggil class nya saja. Oleh karena itu Nest mendukung beberapa cara pembuatan custom provider yang akan dibahas pada postingan ini.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Mencoba Nest Js (2)</title>
+      <link>http://localhost:1313/posts/mencoba-nest-js-2/</link>
+      <pubDate>Thu, 01 Jan 2026 11:48:17 +0800</pubDate>
+      <guid>http://localhost:1313/posts/mencoba-nest-js-2/</guid>
+      <description>&lt;p&gt;Memasuki hari kedua belajar nestjs, sebelum itu selamat tahun baru 2026, semoga di tahun ini lebih sering produktif dan ada peningkatan dari tahun sebelumnya. Kembali ke topik utama, disini saya akan melakukan recap untuk materi controller, http method, http request, http response, asynchronous, cookie, dan view pada materi nest js dasar dari programmer zaman now.&lt;/p&gt;
+&lt;h2 id=&#34;controller&#34;&gt;Controller&lt;/h2&gt;
+&lt;p&gt;Sama seperti laravel, nest js merupakan framework yang menerapkan MVC yang dimana controller disini bertugas untuk memproses HTTP request maupun response. Dalam nest js untuk membuat controller kita bisa dengan mudah menggunakan CLI nest generate controller nama_controller path. controller dalam node js dapat dikenali dengan adanya decorater &lt;strong&gt;@Controller()&lt;/strong&gt; yang pada parameter decorator tersebut kita dapat melakukan konfigurasi prefix path untuk controller.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

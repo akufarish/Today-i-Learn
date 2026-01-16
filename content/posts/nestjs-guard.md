@@ -2,6 +2,7 @@
 date = '2026-01-12T21:10:27+08:00'
 draft = false
 title = 'Nest JS Guard'
+tags = ['Indonesia', 'NestJS', 'Programming']
 +++
 
 Guard adalah class yang berfungsi untuk melakukan proses **authorization**, yaitu sebuah proses untuk mengecek apakah user berhak untuk mengakses route tersebut atau tidak. Lantas kenapa tidak melakukan proses authorization didalam middleware? Kan didalam middleware kita melakukan proses authentication. Satu alasan kenapa melakukan proses authorization didalam middleware itu susah karena middleware tidak tahu route mana yang boleh diakses dan tidak boleh, yang dia tahu hanya memanggil fungsi next() entah itu next middleware atau next route. Oleh karena itulah untuk melakukan proses authorization menggunakan guard.

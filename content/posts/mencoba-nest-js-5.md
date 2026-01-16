@@ -2,6 +2,7 @@
 date = '2026-01-06T13:45:02+08:00'
 draft = false
 title = 'Mencoba Nest Js (5)'
+tags = ['Indonesia', 'NestJS', 'Programming']
 +++
 
 Hari ke tujuh belajar NestJS materi yang dipelajari hari ini tidak kalah menarik, karena akan membahas validation pada NestJS, selain itu ada juga pembahasan untuk logging, global module, dan dynamic module.

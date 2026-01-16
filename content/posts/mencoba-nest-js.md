@@ -2,6 +2,7 @@
 date = '2025-12-31T13:45:27+08:00'
 draft = false
 title = 'Mencoba Nest Js (1)'
+tags = ['Indonesia', 'NestJS', 'Programming']
 +++
 
 

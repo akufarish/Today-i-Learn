@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Indonesia on Today I Learn - Farish</title>
+    <link>http://localhost:1313/tags/indonesia/</link>
+    <description>Recent content in Indonesia on Today I Learn - Farish</description>
+    <generator>Hugo -- 0.154.4</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 03 Jan 2026 18:05:17 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/indonesia/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Custom Provider</title>
+      <link>http://localhost:1313/posts/custom-provider/</link>
+      <pubDate>Sat, 03 Jan 2026 18:05:17 +0800</pubDate>
+      <guid>http://localhost:1313/posts/custom-provider/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Seharusnya &lt;strong&gt;custom provider&lt;/strong&gt; ini ada di postingan sebelumnya, tapi karena aku merasa ini adalah materi yang rumit jadi aku bikin postingan berbeda yang khusus membahas &lt;strong&gt;custom provider&lt;/strong&gt; ini.&lt;/p&gt;
+&lt;p&gt;Kenapa harus menggunakan custom provider? Karena terkadang kita bisa saja membuat provider yang bukan instance dari NestJS yang berarti provider third party misalnya MysqlClient, MongoClient, PrismaClient, dan lain-lain.&lt;/p&gt;
+&lt;p&gt;Atau ada juga kasus dimana provider yang kita buat itu sedikit kompleks sehingga tidak bisa hanya dengan memanggil class nya saja. Oleh karena itu Nest mendukung beberapa cara pembuatan custom provider yang akan dibahas pada postingan ini.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

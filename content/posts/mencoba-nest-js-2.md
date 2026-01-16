@@ -2,8 +2,8 @@
 date = '2026-01-01T11:48:17+08:00'
 draft = false
 title = 'Mencoba Nest Js (2)'
+tags = ['Indonesia', 'NestJS', 'Programming']
 +++
-
 
 Memasuki hari kedua belajar nestjs, sebelum itu selamat tahun baru 2026, semoga di tahun ini lebih sering produktif dan ada peningkatan dari tahun sebelumnya. Kembali ke topik utama, disini saya akan melakukan recap untuk materi controller, http method, http request, http response, asynchronous, cookie, dan view pada materi nest js dasar dari programmer zaman now.
 
@@ -12,9 +12,8 @@ Memasuki hari kedua belajar nestjs, sebelum itu selamat tahun baru 2026, semoga 
 Sama seperti laravel, nest js merupakan framework yang menerapkan MVC yang dimana controller disini bertugas untuk memproses HTTP request maupun response. Dalam nest js untuk membuat controller kita bisa dengan mudah menggunakan CLI nest generate controller nama_controller path. controller dalam node js dapat dikenali dengan adanya decorater **@Controller()** yang pada parameter decorator tersebut kita dapat melakukan konfigurasi prefix path untuk controller.
 
 ```typescript
-@Controller('/api/users')
-export class UserController {
-}
+@Controller("/api/users")
+export class UserController {}
 ```
 
 ## HTTP Method
@@ -113,11 +112,11 @@ bun add -d @types/cookie-parser
 > Konfigurasi main.ts
 
 ```typescript
-import * as cookieParser from 'cookie-parser';
+import * as cookieParser from "cookie-parser";
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
-  app.use(cookieParser.default('SECRET'));
+  app.use(cookieParser.default("SECRET"));
 
   await app.listen(process.env.PORT ?? 3000);
 }
@@ -154,16 +153,16 @@ bun add -d @types/mustache-express
 > Konfigurasi main.ts
 
 ```typescript
-import * as mustache from 'mustache-express';
-import { NestExpressApplication } from '@nestjs/platform-express';
+import * as mustache from "mustache-express";
+import { NestExpressApplication } from "@nestjs/platform-express";
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
-  app.use(cookieParser.default('SECRET'));
+  app.use(cookieParser.default("SECRET"));
 
-  app.set('views', __dirname + '/../views');
-  app.set('view engine', 'html');
-  app.engine('html', mustache.default());
+  app.set("views", __dirname + "/../views");
+  app.set("view engine", "html");
+  app.engine("html", mustache.default());
   await app.listen(process.env.PORT ?? 3000);
 }
 ```

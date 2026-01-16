@@ -2,6 +2,7 @@
 date = '2026-01-08T18:03:32+08:00'
 draft = false
 title = 'Nest JS Exception Filter'
+tags = ['Indonesia', 'NestJS', 'Programming']
 +++
 
 Secara default jika terjadi error pada aplikasi NestJS, aplikasi akan return data berupa json dengan status code **500 internal server error**.

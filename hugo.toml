@@ -21,3 +21,8 @@ theme = ["PaperMod"]
 
 [markup.goldmark.renderer]
   unsafe = true
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+  lang = "language"

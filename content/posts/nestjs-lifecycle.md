@@ -2,6 +2,7 @@
 date = '2026-01-13T20:58:23+08:00'
 draft = false
 title = 'Nestjs Lifecycle'
+tags = ['Indonesia', 'NestJS', 'Programming']
 +++
 
 Pada aplikasi NestJS semua object yang ada seperti module, controller, dan provider itu memiliki lifecycle event atau alur hidup. Apa itu **lifecycle** dalam NestJS? Sesuai dengan namanya lifecycle yang berarti alur hidup adalah rankaian tahapan yang dilalui oleh objek dimulai dari objek itu dibuat, sampai objek tersebut dihancurkan.

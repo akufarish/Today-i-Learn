@@ -2,6 +2,7 @@
 date = '2026-01-09T20:43:24+08:00'
 draft = false
 title = 'Nest JS Pipe'
+tags = ['Indonesia', 'NestJS', 'Programming']
 +++
 
 Pipe adalah fitur yang ada pada NestJS yang memiliki dua fungsi, pertama bisa untuk melakukan transformasi/konversi request sebelum dikirim ke controller method, kedua berfungsi untuk melakukan validasi request.

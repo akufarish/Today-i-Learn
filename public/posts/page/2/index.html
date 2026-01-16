@@ -114,6 +114,20 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Mencoba Nest Js (5)
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Hari ke tujuh belajar NestJS materi yang dipelajari hari ini tidak kalah menarik, karena akan membahas validation pada NestJS, selain itu ada juga pembahasan untuk logging, global module, dan dynamic module.
+Logging NestJS secara default sudah memiliki logger sendiri untuk menampilkan log ketika aplikasi dijalankan atau ketika terjadi error. Logger bawaan NestJS hanya akan melakukan logging ke console dan berupa text, terkadang beberapa developer ingin fitur logging yang lebih dari itu. Untungnya NestJS menyediakan cara untuk mengganti Logger nya dengan cara membuat object LoggerService, lalu pada file main.ts bisa menggunakan method useLogger() untuk mengganti logger pada Nest.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-01-06 13:45:02 +0800 WITA'>January 6, 2026</span></footer>
+  <a class="entry-link" aria-label="post link to Mencoba Nest Js (5)" href="http://localhost:1313/posts/mencoba-nest-js-5/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Nest JS Database
     </h2>
   </header>
@@ -134,10 +148,10 @@ bun add -d prisma bun add @prisma/client bun add @prisma/adapter-mariadb Disini 
     </h2>
   </header>
   <div class="entry-content">
-    <p>Introduction Lanjut ke hari keempat belajar NestJS. Materi kali ini ada module reference, mengakses .env menggunakan configuration, dan membahas singleton object pada materi shared module.
+    <p>Lanjut ke hari keempat belajar NestJS. Materi kali ini ada module reference, mengakses .env menggunakan configuration, dan membahas singleton object pada materi shared module.
 Module Reference Nest menyediakan class bernama ModuleRef yang berfungsi untuk mengambil data provider tanpa melakukan dependency injection. Cara penggunaannya adalah menggunakan method get() dari class ModuleRef yang menerima satu parameter yaitu provider yang ingin kita gunakan.
 member-service.ts
-import { Injectable } from &#39;@nestjs/common&#39;; import { ModuleRef } from &#39;@nestjs/core&#39;; import { Connection } from &#39;../connection/connection&#39;; import { MailService } from &#39;../mail/mail.service&#39;; @Injectable() export class MemberService { constructor(private moduleRef: ModuleRef) {} getConnectionName(): string | null { const connection = this.moduleRef.get(Connection); return connection.getName(); } sendEmail() { const mailService = this.moduleRef.get(MailService); mailService.send(); } } Tapi penggunaan module reference ini memiliki kekurangan dimana berbeda dengan dependency injection yang melakukan pengecekkan dependency di awal saat aplikasi dijalankan untuk melakukan pengecekkan dependency ini ada atau tidak, dan kalau tidak ada, akan langsung return error. Sedangkan jika menggunakan module reference, pengecekkan akan dilakukan ditengah berjalannya aplikasi, contohnya saat aplikasi sudah jalan dan mencoba memanggil route atau method yang menggunakan module reference dan ternyata dependency yang diperlukan itu tidak ada, maka otomatis akan error.
+import { Injectable } from &#34;@nestjs/common&#34;; import { ModuleRef } from &#34;@nestjs/core&#34;; import { Connection } from &#34;../connection/connection&#34;; import { MailService } from &#34;../mail/mail.service&#34;; @Injectable() export class MemberService { constructor(private moduleRef: ModuleRef) {} getConnectionName(): string | null { const connection = this.moduleRef.get(Connection); return connection.getName(); } sendEmail() { const mailService = this.moduleRef.get(MailService); mailService.send(); } } Tapi penggunaan module reference ini memiliki kekurangan dimana berbeda dengan dependency injection yang melakukan pengecekkan dependency di awal saat aplikasi dijalankan untuk melakukan pengecekkan dependency ini ada atau tidak, dan kalau tidak ada, akan langsung return error. Sedangkan jika menggunakan module reference, pengecekkan akan dilakukan ditengah berjalannya aplikasi, contohnya saat aplikasi sudah jalan dan mencoba memanggil route atau method yang menggunakan module reference dan ternyata dependency yang diperlukan itu tidak ada, maka otomatis akan error.
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2026-01-04 19:51:47 +0800 WITA'>January 4, 2026</span></footer>
@@ -165,7 +179,7 @@ Atau ada juga kasus dimana provider yang kita buat itu sedikit kompleks sehingga
     </h2>
   </header>
   <div class="entry-content">
-    <p>Introduction Memasuki hari ketiga belajar nest-JS disini saya akan melakukan recap dari apa yang saya pelajari hari ini yaitu unit test, integration test, provider, dependency injection, dan custom provider.
+    <p>Memasuki hari ketiga belajar nest-JS disini saya akan melakukan recap dari apa yang saya pelajari hari ini yaitu unit test, integration test, provider, dependency injection, dan custom provider.
 Unit Test Saat membuat controller menggunakan CLI nest, secara otomatis nest juga akan membuatkan unit test untuk controller tersebut. File unit test biasanya berformat *.spec.ts.
 Contoh kode unit test
 import { Test, TestingModule } from &#39;@nestjs/testing&#39;; import { UserController } from &#39;./user.controller&#39;; import { UserService } from &#39;./user.service&#39;; describe(&#39;UserController&#39;, () =&gt; { let controller: UserController; beforeEach(async () =&gt; { const module: TestingModule = await Test.createTestingModule({ controllers: [UserController], providers: [ UserService, ], }).compile(); controller = module.get&lt;UserController&gt;(UserController); }); it(&#39;should be return GET 1&#39;, () =&gt; { expect(controller.getById(&#39;1&#39;)).toBe(&#39;GET 1&#39;); }); it(&#39;should be return MongoDB&#39;, () =&gt; { expect(controller.getConnection()).toBe(&#39;MongoDB&#39;); }); }); Pada kode unit test, bagian beforeEach nya mirip dengan file module, kita harus memasukkan controller atau provider yang digunakan pada file controller supaya unit test ini dapat mengenali dependency apa saja yang digunakan.
@@ -181,7 +195,7 @@ import { Test, TestingModule } from &#39;@nestjs/testing&#39;; import { UserCont
     </h2>
   </header>
   <div class="entry-content">
-    <p>Introduction Memasuki hari kedua belajar nestjs, sebelum itu selamat tahun baru 2026, semoga di tahun ini lebih sering produktif dan ada peningkatan dari tahun sebelumnya. Kembali ke topik utama, disini saya akan melakukan recap untuk materi controller, http method, http request, http response, asynchronous, cookie, dan view pada materi nest js dasar dari programmer zaman now.
+    <p>Memasuki hari kedua belajar nestjs, sebelum itu selamat tahun baru 2026, semoga di tahun ini lebih sering produktif dan ada peningkatan dari tahun sebelumnya. Kembali ke topik utama, disini saya akan melakukan recap untuk materi controller, http method, http request, http response, asynchronous, cookie, dan view pada materi nest js dasar dari programmer zaman now.
 Controller Sama seperti laravel, nest js merupakan framework yang menerapkan MVC yang dimana controller disini bertugas untuk memproses HTTP request maupun response. Dalam nest js untuk membuat controller kita bisa dengan mudah menggunakan CLI nest generate controller nama_controller path. controller dalam node js dapat dikenali dengan adanya decorater @Controller() yang pada parameter decorator tersebut kita dapat melakukan konfigurasi prefix path untuk controller.
 ...</p>
   </div>
@@ -195,7 +209,7 @@ Controller Sama seperti laravel, nest js merupakan framework yang menerapkan MVC
     </h2>
   </header>
   <div class="entry-content">
-    <p>Introduction Untuk menghabiskan waktu liburku, aku berencana untuk meningkatkan skill dengan belajar nestjs, sebagai seseorang yang pernah menggunakan laravel selama 2 tahun. Dimulai dari belajar nest js dasar dari video pemrograman zaman now. Yang dimana pada video itu mas Eko (Programmer Zaman Now) menjelaskan alasan kenapa menggunakan framework yang menurut saya itu menarik. Karena beliau mengatakan karena menggunakan framework lah kita sebagai developer itu memiliki sebuah standar yang harus diikuti yang memiliki nilai positif karena kemudahan untuk mewariskan project yang sudah ada karena developer di masa depan yang akan datang akan mudah beradaptasi dengan code yang sudah ada karena mengikuti standar dari suatu framework.
+    <p>Untuk menghabiskan waktu liburku, aku berencana untuk meningkatkan skill dengan belajar nestjs, sebagai seseorang yang pernah menggunakan laravel selama 2 tahun. Dimulai dari belajar nest js dasar dari video pemrograman zaman now. Yang dimana pada video itu mas Eko (Programmer Zaman Now) menjelaskan alasan kenapa menggunakan framework yang menurut saya itu menarik. Karena beliau mengatakan karena menggunakan framework lah kita sebagai developer itu memiliki sebuah standar yang harus diikuti yang memiliki nilai positif karena kemudahan untuk mewariskan project yang sudah ada karena developer di masa depan yang akan datang akan mudah beradaptasi dengan code yang sudah ada karena mengikuti standar dari suatu framework.
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2025-12-31 13:45:27 +0800 WITA'>December 31, 2025</span></footer>

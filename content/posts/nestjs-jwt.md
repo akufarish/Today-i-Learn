@@ -2,6 +2,7 @@
 date = '2026-01-15T20:59:14+08:00'
 draft = false
 title = 'JWT'
+tags = ['Indonesia', 'NestJS', 'Programming']
 +++
 
 **Json Web Token** atau yang sering disebut **JWT** adalah standar terbuka (RFC 7519) yang mendefinisikan cara untuk passing data seperti informasi user seperti (id user, role user, email user) dalam bentuk token, yang aman dan dapat diverifikasi oleh server.
