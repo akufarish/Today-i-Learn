@@ -605,7 +605,6 @@ Response Body:
     "id": 3,
     "name": "testing",
     "email": "test@gmail.com",
-    "password": "$2b$10$l5afQfTyBBpC8rvF4vj7ouXc9tBwYFJM8sqJzIq./45hsgwz5b0bW",
     "role": null
   }
 }
