@@ -610,3 +610,228 @@ Response Body:
 ```
 
 ## Login
+
+Sebelum membuat fungsi login, buat terlebih dahulu interface untuk request dan response login.
+
+> user-model.ts
+
+```typescript
+export interface LoginRequest {
+  email: string;
+  password: string;
+}
+
+export interface LoginResponse {
+  name: string;
+  email: string;
+  token: string;
+}
+```
+
+Pada file user.service.ts, sekarang buat function login yang menerima satu parameter yaitu payload dengan tipe LoginRequest, dengan balikan fungsi berupa WebResponse dengan tipe LoginResponse.
+
+> user.service.ts
+
+```typescript
+async login(payload: LoginRequest): Promise<WebResponse<LoginResponse>> {
+    const schema = z.object({
+      email: z.email().nonempty(),
+      password: z.string().nonempty(),
+    });
+
+    payload = this.validationService.validate(schema, payload);
+
+    const user = await this.prismaService.user.findFirst({
+      where: {
+        email: payload.email,
+      },
+    });
+
+    if (!user) {
+      throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+    }
+
+    const isPasswordValid = await bcrpt.compare(
+      payload.password,
+      user.password,
+    );
+
+    if (!isPasswordValid) {
+      throw new HttpException('Incorrect Password', HttpStatus.BAD_REQUEST);
+    }
+
+    const jwt = await this.jwtService.createToken({
+      id: user.id,
+      role: user.role as string,
+    });
+
+    const loginResponse: LoginResponse = {
+      email: user.email,
+      name: user.name,
+      token: jwt,
+    };
+
+    return {
+      data: loginResponse,
+      status: HttpStatus.OK,
+    };
+  }
+```
+
+Sama seperti pada fungsi register, hal pertama yang dilakukan adalah membuat schema zod untuk validasi request yang dikirim ke handler login.
+
+```typescript
+const schema = z.object({
+  email: z.email().nonempty(),
+  password: z.string().nonempty(),
+});
+
+payload = this.validationService.validate(schema, payload);
+```
+
+Untuk penjelasan validitas schema diatas bisa lihat table dibawah.
+
+| Attribute | Validation |     | Description                           |
+| --------- | ---------- | --- | ------------------------------------- |
+| email     | email      |     | request harus berupa email yang valid |
+|           | nonempty   |     | request harus berupa email yang valid |
+| password  | string     |     | request harus berupa string           |
+|           | nonempty   |     | request harus berupa email yang valid |
+
+Lakukan query ke database untuk mencari data user, berdasarkan email dari request.
+
+```typescript
+const user = await this.prismaService.user.findFirst({
+  where: {
+    email: payload.email,
+  },
+});
+```
+
+Jika data user tidak ditemukan, maka return error dengan pesan "User not found", dengan http status code 404 not found.
+
+```typescript
+if (!user) {
+  throw new HttpException("User not found", HttpStatus.NOT_FOUND);
+}
+```
+
+Validasi password yang dihash menggunakan fungsi compare dari bcrypt yang menerima dua parameter yaitu password dari request, dan password yang di-hash, yang nantinya akan return boolean.
+
+```typescript
+const isPasswordValid = await bcrpt.compare(payload.password, user.password);
+```
+
+Jika password tidak valid, maka tampilkan pesan "Incorrect Password" dengan http code 401 bad request.
+
+```typescript
+if (!isPasswordValid) {
+  throw new HttpException("Incorrect Password", HttpStatus.BAD_REQUEST);
+}
+```
+
+Panggil fungsi createToken dari jwt service untuk membuat jwt, dengan id user, dan role user sebagai claims.
+
+```typescript
+const loginResponse: LoginResponse = {
+  email: user.email,
+  name: user.name,
+  token: jwt,
+};
+```
+
+Kembalikan LoginResponse dengan http status code 200, jika request sukses.
+
+```typescript
+return {
+  data: loginResponse,
+  status: HttpStatus.OK,
+};
+```
+
+Panggil method login dari user service ke controller. Buat fungsi login dengan decorator **@Post()** untuk membuat post request, dan jika sukses, maka return http status code 200 ok.
+
+Pada fungsi login juga karena akan mengirim request, jadi tambahkan decorator **@Body()** untuk mengambil request yang dikirim.
+
+> user.controller.ts
+
+```typescript
+@Post('/login')
+@HttpCode(HttpStatus.OK)
+async login(
+    @Body() payload: LoginRequest,
+  ): Promise<WebResponse<LoginResponse>> {
+    return this.usersService.login(payload);
+}
+```
+
+Pengujian login berhasil
+
+<div class="alert-container success"><strong>POST</strong> /api/v1/login</div>
+
+Request Body:
+
+```json
+{
+  "email": "test@gmail.com",
+  "password": "testing"
+}
+```
+
+Response Body:
+
+```json
+{
+  "data": {
+    "email": "testa@gmail.com",
+    "name": "testing",
+    "token": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6NCwicm9sZSI6bnVsbCwiaWF0IjoxNzY4NjUzNTI2LCJpc3MiOiJ1cm46ZXhhbXBsZTppc3N1ZXIiLCJhdWQiOiJ1cm46ZXhhbXBsZTphdWRpZW5jZSJ9._8gGXDhRwC_quSPwKRVcUVRRS7CI-pp7WJ22p3iJYkU"
+  },
+  "status": 200
+}
+```
+
+Pengujian login akun tidak terdaftar
+
+<div class="alert-container error"><strong>POST</strong> /api/v1/login</div>
+
+Request Body:
+
+```json
+{
+  "email": "tidakadaa@gmail.com",
+  "password": "testing"
+}
+```
+
+Response Body:
+
+```json
+{
+  "statusCode": 404,
+  "message": "User not found"
+}
+```
+
+Pengujian login akun password tidak cocok
+
+<div class="alert-container error"><strong>POST</strong> /api/v1/login</div>
+
+Request Body:
+
+```json
+{
+  "email": "testa@gmail.com",
+  "password": "salah"
+}
+```
+
+Response Body:
+
+```json
+{
+  "statusCode": 400,
+  "message": "Incorrect Password"
+}
+```
+
