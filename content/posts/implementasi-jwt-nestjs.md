@@ -155,7 +155,7 @@ export class JwtService {
 
   constructor(private configService: ConfigService) {
     this.secret = new TextEncoder().encode(
-      this.configService.get<string>("SECRET")
+      this.configService.get<string>("SECRET"),
     );
     this.issuer = this.configService.get<string>("ISSUER") as string;
     this.audience = this.configService.get<string>("AUDIENCE") as string;
@@ -365,11 +365,11 @@ import * as bcrpt from "bcrypt";
 export class UsersService {
   constructor(
     private prismaService: PrismaService,
-    private validationService: ValidationService
+    private validationService: ValidationService,
   ) {}
 
   async register(
-    payload: RegisterRequest
+    payload: RegisterRequest,
   ): Promise<WebResponse<RegisterResponse>> {
     const schema = z.object({
       email: z.email().nonempty().min(5),
@@ -835,3 +835,299 @@ Response Body:
 }
 ```
 
+## Setup Middleware, Custom Decorator dan Role Guard
+
+Setelah berhasil membuat handler untuk melakukan register dan login, sekarang masuk ke pembuatan middleware, untuk penjelasan middleware sendiri sudah pernah dibahas, bisa dicek ke postingan [middleware](https://akufarish.my.id/posts/middleware/), dan untuk custom decorator juga sama bisa cek ke [custom decorator](https://akufarish.my.id/posts/nestjs-custom-decorator/).
+
+Untuk membuat middleware, bisa menggunakan CLI Nest dengan perintah.
+
+```terminaloutput
+nest generate middleware auth common
+```
+
+Setelah menjalankan command diatas, maka nest akan mengenerate file auth.middleware didalam folder common/auth.
+
+> auth.middleware.ts
+
+```typescript
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  NestMiddleware,
+} from "@nestjs/common";
+import { type Response } from "express";
+import { JwtService } from "../jwt/jwt.service";
+import { AuthUser } from "src/model/user-model";
+
+@Injectable()
+export class AuthMiddleware implements NestMiddleware {
+  constructor(private jwtService: JwtService) {}
+
+  async use(req: any, res: Response, next: () => void) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
+    const header = req?.headers.authorization;
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
+    const token = header?.split(" ")[1];
+
+    if (!token) {
+      throw new HttpException("Token missing", HttpStatus.UNAUTHORIZED);
+    }
+
+    try {
+      const validate = await this.jwtService.validate(token as string);
+
+      const user: AuthUser = {
+        id: validate.id as number,
+        role: validate.role as string,
+      };
+
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      req.user = user;
+      next();
+    } catch (e) {
+      console.error(e);
+      throw new HttpException("Unauthorized", HttpStatus.UNAUTHORIZED);
+    }
+  }
+}
+```
+
+Karena token yang dikirim itu memiliki teks **`Bearer`** didepan, maka saat membaca nilai yang dikirim pada header authorization, harus dipisah terlebih dahulu. Untuk memisah string pada javascript, bisa menggunakan method **split()**, disini menggunakan **split(' ')** yang berarti memisah string berdasarkan spasi, yang nantinya untuk bisa diakses dengan memanggil urutannya menggunakan indeks array. Maka dari itu, disini token mengambil indeks ke 1 karena indeks 1 mengambil data token saja, dan bukan `bearer`.
+
+```typescript
+const header = req?.headers.authorization;
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
+const token = header?.split(" ")[1];
+```
+
+Lakukan pengecekan apakah token itu diinclude didalam request atau tidak, jika tidak ada maka tampilkan pesan Token missing.
+
+```typescript
+if (!token) {
+  throw new HttpException("Token missing", HttpStatus.UNAUTHORIZED);
+}
+```
+
+Lanjut ke verifikasi token JWT dengan memanggil method validate dari jwt service, lalu buat data object dengan tipe `AuthUser` yang berisi id, dan role dari user yang sedang login. Lalu masukkan data user tadi ke dalam objek request, supaya data-nya dapat diakses oleh custom decorator nanti.
+
+Jika token jwt yang dikirimkan tidak valid, maka tampilkan pesan **`Unauthorized`**.
+
+```typescript
+try {
+  const validate = await this.jwtService.validate(token as string);
+
+  const user: AuthUser = {
+    id: validate.id as number,
+    role: validate.role as string,
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+  req.user = user;
+  next();
+} catch (e) {
+  console.error(e);
+  throw new HttpException("Unauthorized", HttpStatus.UNAUTHORIZED);
+}
+```
+
+Setelah selesai membuat middleware, sekarang akan dilanjut dengan membuat custom decorator. Kenapa perlu menggunakan custom decorator? Itu supaya bisa mengakses objek user dari objek request yang sudah disetting middleware sebelumnya.
+
+Untuk membuat custom decorator, bisa menggunakan CLI Nest dengan commmand.
+
+```terminaloutput
+nest generate decorator auth common
+```
+
+> auth.decorator.ts
+
+```typescript
+import { createParamDecorator, ExecutionContext } from "@nestjs/common";
+import { User } from "../../../generated/prisma/client";
+
+export const Auth = createParamDecorator(
+  (data: User, context: ExecutionContext) => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const request = context.switchToHttp().getRequest();
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-member-access
+    return request.user;
+  },
+);
+```
+
+DIdalam decorator auth, ambil request dari handler yang dituju, dan balikkan objek user dari request.
+
+```typescript
+const request = context.switchToHttp().getRequest();
+return request.user;
+```
+
+Setelah selesai membuat middleware dan custom decorator untuk mengambil data user yang sedang login, sekarang tinggal menggunakan middleware dan decorator auth yang baru saja dibuat.
+
+Untuk menggunakan middleware, pada application module implement **NestModule** untuk mengakses method **configure** untuk menambahkan middleware. Pada praktek ini gunakan middleware auth untuk routes /api/v1/auth/\*, dan request method nya semua method.
+
+> app.module.ts
+
+```typescript
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(AuthMiddleware).forRoutes({
+      path: "/api/v1/auth/*",
+      method: RequestMethod.ALL,
+    });
+  }
+}
+```
+
+Terkahir membuat guard untuk proses _auhtorization_ menggunakan guard dengan reflector untuk membuat guard singleton. Untuk membuat guard dapat menggunakan CLI Nest dengan command.
+
+```terminaloutput
+nest generate guard role common
+```
+
+Sedangkan untuk reflector, dapat dibuat dengan memanggil method **createDecorator** dari class **Reflector**. Disini diberi tipe string array, karena reflector ini nantinya dapat diberi nilai string array berupa role seperti ['admin', 'user'] dan lain-lain.
+
+> role.decorator.ts
+
+```typescript
+import { Reflector } from "@nestjs/core";
+
+export const Role = Reflector.createDecorator<string[]>();
+```
+
+> role.guard.ts
+
+```typescript
+import { CanActivate, ExecutionContext, Injectable } from "@nestjs/common";
+import { Reflector } from "@nestjs/core";
+import { Observable } from "rxjs";
+import { Role } from "./role.decorator";
+
+@Injectable()
+export class RoleGuard implements CanActivate {
+  constructor(private reflector: Reflector) {}
+
+  canActivate(
+    context: ExecutionContext,
+  ): boolean | Promise<boolean> | Observable<boolean> {
+    const roles: string[] = this.reflector.get(Role, context.getHandler());
+
+    if (!roles) {
+      return true;
+    }
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
+    const user = context.switchToHttp().getRequest().user;
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-argument
+    return roles.indexOf(user.role) != -1;
+  }
+}
+```
+
+Pertama-tama ambil data string array dari reflector menggunakan reflector yang sudah di-dependency injection pada constructor dengan method **get()** yang menerima dua parameter, yaitu reflector-nya disini berupa Role, dan handler dari routes yang dituju. Jika data role tidak ada maka return true, yang berarti handler boleh diakses.
+
+```typescript
+const roles: string[] = this.reflector.get(Role, context.getHandler());
+
+if (!roles) {
+  return true;
+}
+```
+
+Ambil data user dari object request, lalu cek apakah role user dari objek user ada atau tidak didalam array string dari reflector.
+
+```typescript
+const user = context.switchToHttp().getRequest().user;
+return roles.indexOf(user.role) != -1;
+```
+
+Setelah selesai semua, sekarang tinggal membuat route yang memerlukan authorization, yang menggunakan guard, reflector dan custom decorator yang dibuat tadi, dengan routes harus `/auth/*`.
+
+> user.controller.ts
+
+```typescript
+@Get('/auth/user')
+@UseGuards(RoleGuard)
+@Role(['admin', 'user'])
+auth(@Auth() user: AuthUser): Record<keyof AuthUser, string | number> {
+    return {
+      id: user.id,
+      role: user.role,
+    };
+}
+
+@Get('/auth/admin')
+@UseGuards(RoleGuard)
+@Role(['admin'])
+admin(@Auth() user: AuthUser): Record<keyof AuthUser, string | number> {
+    console.info(user);
+    return {
+      id: user.id,
+      role: user.role,
+    };
+}
+```
+
+## Pengujian
+
+Pengujian token kosong
+
+<div class="alert-container error"><strong>GET</strong> /api/v1/auth/admin</div>
+
+Request Header:
+
+```json
+{
+  "Authorization": "Bearer"
+}
+```
+
+Response Body:3
+
+```json
+{
+  "statusCode": 401,
+  "message": "Token missing"
+}
+```
+
+Pengujian token invalid
+
+<div class="alert-container error"><strong>GET</strong> /api/v1/auth/admin</div>
+
+Request Header:
+
+```json
+{
+  "Authorization": "Bearer asdasdasdasdasdasd12312"
+}
+```
+
+Response Body:
+
+```json
+{
+  "statusCode": 401,
+  "message": "Unauthorized"
+}
+```
+
+Pengujian token valid
+
+<div class="alert-container error"><strong>GET</strong> /api/v1/auth/admin</div>
+
+Request Header:
+
+```json
+{
+  "Authorization": "Bearer {token}"
+}
+```
+
+Response Body:
+
+```json
+{
+  "id": 1,
+  "role": "admin"
+}
+```

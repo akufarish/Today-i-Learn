@@ -230,7 +230,7 @@ nest generate service prisma common
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">configService</span>: <span style="color:#66d9ef">ConfigService</span>) {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">secret</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">TextEncoder</span>().<span style="color:#a6e22e">encode</span>(
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">configService</span>.<span style="color:#66d9ef">get</span>&lt;<span style="color:#f92672">string</span>&gt;(<span style="color:#e6db74">&#34;SECRET&#34;</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">configService</span>.<span style="color:#66d9ef">get</span>&lt;<span style="color:#f92672">string</span>&gt;(<span style="color:#e6db74">&#34;SECRET&#34;</span>),
 </span></span><span style="display:flex;"><span>    );
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">issuer</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">configService</span>.<span style="color:#66d9ef">get</span>&lt;<span style="color:#f92672">string</span>&gt;(<span style="color:#e6db74">&#34;ISSUER&#34;</span>) <span style="color:#66d9ef">as</span> <span style="color:#66d9ef">string</span>;
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">audience</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">configService</span>.<span style="color:#66d9ef">get</span>&lt;<span style="color:#f92672">string</span>&gt;(<span style="color:#e6db74">&#34;AUDIENCE&#34;</span>) <span style="color:#66d9ef">as</span> <span style="color:#66d9ef">string</span>;
@@ -394,11 +394,11 @@ nest generate service user
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UsersService</span> {
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>(
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">prismaService</span>: <span style="color:#66d9ef">PrismaService</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">validationService</span>: <span style="color:#66d9ef">ValidationService</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">validationService</span>: <span style="color:#66d9ef">ValidationService</span>,
 </span></span><span style="display:flex;"><span>  ) {}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">register</span>(
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">payload</span>: <span style="color:#66d9ef">RegisterRequest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">payload</span>: <span style="color:#66d9ef">RegisterRequest</span>,
 </span></span><span style="display:flex;"><span>  )<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span>&lt;<span style="color:#f92672">WebResponse</span>&lt;<span style="color:#f92672">RegisterResponse</span>&gt;&gt; {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">schema</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">z</span>.<span style="color:#66d9ef">object</span>({
 </span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">email</span>: <span style="color:#66d9ef">z.email</span>().<span style="color:#a6e22e">nonempty</span>().<span style="color:#a6e22e">min</span>(<span style="color:#ae81ff">5</span>),
@@ -833,6 +833,215 @@ nest generate service user
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;statusCode&#34;</span>: <span style="color:#ae81ff">400</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;message&#34;</span>: <span style="color:#e6db74">&#34;Incorrect Password&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="setup-middleware-custom-decorator-dan-role-guard">Setup Middleware, Custom Decorator dan Role Guard<a hidden class="anchor" aria-hidden="true" href="#setup-middleware-custom-decorator-dan-role-guard">#</a></h2>
+<p>Setelah berhasil membuat handler untuk melakukan register dan login, sekarang masuk ke pembuatan middleware, untuk penjelasan middleware sendiri sudah pernah dibahas, bisa dicek ke postingan <a href="https://akufarish.my.id/posts/middleware/">middleware</a>, dan untuk custom decorator juga sama bisa cek ke <a href="https://akufarish.my.id/posts/nestjs-custom-decorator/">custom decorator</a>.</p>
+<p>Untuk membuat middleware, bisa menggunakan CLI Nest dengan perintah.</p>
+<pre tabindex="0"><code class="language-terminaloutput" data-lang="terminaloutput">nest generate middleware auth common
+</code></pre><p>Setelah menjalankan command diatas, maka nest akan mengenerate file auth.middleware didalam folder common/auth.</p>
+<blockquote>
+<p>auth.middleware.ts</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">HttpException</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">HttpStatus</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Injectable</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">NestMiddleware</span>,
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/common&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Response</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;express&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">JwtService</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;../jwt/jwt.service&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AuthUser</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;src/model/user-model&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Injectable</span>()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AuthMiddleware</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">NestMiddleware</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">jwtService</span>: <span style="color:#66d9ef">JwtService</span>) {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">req</span>: <span style="color:#66d9ef">any</span>, <span style="color:#a6e22e">res</span>: <span style="color:#66d9ef">Response</span>, <span style="color:#a6e22e">next</span><span style="color:#f92672">:</span> () <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">void</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">header</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">req</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">headers</span>.<span style="color:#a6e22e">authorization</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">token</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">header</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#34; &#34;</span>)[<span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">token</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">HttpException</span>(<span style="color:#e6db74">&#34;Token missing&#34;</span>, <span style="color:#a6e22e">HttpStatus</span>.<span style="color:#a6e22e">UNAUTHORIZED</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">validate</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">jwtService</span>.<span style="color:#a6e22e">validate</span>(<span style="color:#a6e22e">token</span> <span style="color:#66d9ef">as</span> <span style="color:#66d9ef">string</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user</span>: <span style="color:#66d9ef">AuthUser</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">validate.id</span> <span style="color:#66d9ef">as</span> <span style="color:#66d9ef">number</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">role</span>: <span style="color:#66d9ef">validate.role</span> <span style="color:#66d9ef">as</span> <span style="color:#66d9ef">string</span>,
+</span></span><span style="display:flex;"><span>      };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+</span></span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">user</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">next</span>();
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">e</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">error</span>(<span style="color:#a6e22e">e</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">HttpException</span>(<span style="color:#e6db74">&#34;Unauthorized&#34;</span>, <span style="color:#a6e22e">HttpStatus</span>.<span style="color:#a6e22e">UNAUTHORIZED</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Karena token yang dikirim itu memiliki teks <strong><code>Bearer</code></strong> didepan, maka saat membaca nilai yang dikirim pada header authorization, harus dipisah terlebih dahulu. Untuk memisah string pada javascript, bisa menggunakan method <strong>split()</strong>, disini menggunakan <strong>split(&rsquo; &lsquo;)</strong> yang berarti memisah string berdasarkan spasi, yang nantinya untuk bisa diakses dengan memanggil urutannya menggunakan indeks array. Maka dari itu, disini token mengambil indeks ke 1 karena indeks 1 mengambil data token saja, dan bukan <code>bearer</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">header</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">req</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">headers</span>.<span style="color:#a6e22e">authorization</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">token</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">header</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#34; &#34;</span>)[<span style="color:#ae81ff">1</span>];
+</span></span></code></pre></div><p>Lakukan pengecekan apakah token itu diinclude didalam request atau tidak, jika tidak ada maka tampilkan pesan Token missing.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">token</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">HttpException</span>(<span style="color:#e6db74">&#34;Token missing&#34;</span>, <span style="color:#a6e22e">HttpStatus</span>.<span style="color:#a6e22e">UNAUTHORIZED</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Lanjut ke verifikasi token JWT dengan memanggil method validate dari jwt service, lalu buat data object dengan tipe <code>AuthUser</code> yang berisi id, dan role dari user yang sedang login. Lalu masukkan data user tadi ke dalam objek request, supaya data-nya dapat diakses oleh custom decorator nanti.</p>
+<p>Jika token jwt yang dikirimkan tidak valid, maka tampilkan pesan <strong><code>Unauthorized</code></strong>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">validate</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">jwtService</span>.<span style="color:#a6e22e">validate</span>(<span style="color:#a6e22e">token</span> <span style="color:#66d9ef">as</span> <span style="color:#66d9ef">string</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user</span>: <span style="color:#66d9ef">AuthUser</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">validate.id</span> <span style="color:#66d9ef">as</span> <span style="color:#66d9ef">number</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">role</span>: <span style="color:#66d9ef">validate.role</span> <span style="color:#66d9ef">as</span> <span style="color:#66d9ef">string</span>,
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+</span></span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">user</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">next</span>();
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">e</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">error</span>(<span style="color:#a6e22e">e</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">HttpException</span>(<span style="color:#e6db74">&#34;Unauthorized&#34;</span>, <span style="color:#a6e22e">HttpStatus</span>.<span style="color:#a6e22e">UNAUTHORIZED</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Setelah selesai membuat middleware, sekarang akan dilanjut dengan membuat custom decorator. Kenapa perlu menggunakan custom decorator? Itu supaya bisa mengakses objek user dari objek request yang sudah disetting middleware sebelumnya.</p>
+<p>Untuk membuat custom decorator, bisa menggunakan CLI Nest dengan commmand.</p>
+<pre tabindex="0"><code class="language-terminaloutput" data-lang="terminaloutput">nest generate decorator auth common
+</code></pre><blockquote>
+<p>auth.decorator.ts</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">createParamDecorator</span>, <span style="color:#a6e22e">ExecutionContext</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/common&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">User</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;../../../generated/prisma/client&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Auth</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createParamDecorator</span>(
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">data</span>: <span style="color:#66d9ef">User</span>, <span style="color:#a6e22e">context</span>: <span style="color:#66d9ef">ExecutionContext</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">request</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">switchToHttp</span>().<span style="color:#a6e22e">getRequest</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// eslint-disable-next-line @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-member-access
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">user</span>;
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><p>DIdalam decorator auth, ambil request dari handler yang dituju, dan balikkan objek user dari request.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">request</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">switchToHttp</span>().<span style="color:#a6e22e">getRequest</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> <span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">user</span>;
+</span></span></code></pre></div><p>Setelah selesai membuat middleware dan custom decorator untuk mengambil data user yang sedang login, sekarang tinggal menggunakan middleware dan decorator auth yang baru saja dibuat.</p>
+<p>Untuk menggunakan middleware, pada application module implement <strong>NestModule</strong> untuk mengakses method <strong>configure</strong> untuk menambahkan middleware. Pada praktek ini gunakan middleware auth untuk routes /api/v1/auth/*, dan request method nya semua method.</p>
+<blockquote>
+<p>app.module.ts</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppModule</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">NestModule</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">configure</span>(<span style="color:#a6e22e">consumer</span>: <span style="color:#66d9ef">MiddlewareConsumer</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">consumer</span>.<span style="color:#a6e22e">apply</span>(<span style="color:#a6e22e">AuthMiddleware</span>).<span style="color:#a6e22e">forRoutes</span>({
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;/api/v1/auth/*&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">method</span>: <span style="color:#66d9ef">RequestMethod.ALL</span>,
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Terkahir membuat guard untuk proses <em>auhtorization</em> menggunakan guard dengan reflector untuk membuat guard singleton. Untuk membuat guard dapat menggunakan CLI Nest dengan command.</p>
+<pre tabindex="0"><code class="language-terminaloutput" data-lang="terminaloutput">nest generate guard role common
+</code></pre><p>Sedangkan untuk reflector, dapat dibuat dengan memanggil method <strong>createDecorator</strong> dari class <strong>Reflector</strong>. Disini diberi tipe string array, karena reflector ini nantinya dapat diberi nilai string array berupa role seperti [&lsquo;admin&rsquo;, &lsquo;user&rsquo;] dan lain-lain.</p>
+<blockquote>
+<p>role.decorator.ts</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Reflector</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/core&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Role</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Reflector</span>.<span style="color:#a6e22e">createDecorator</span>&lt;<span style="color:#f92672">string</span><span style="color:#960050;background-color:#1e0010">[]</span>&gt;();
+</span></span></code></pre></div><blockquote>
+<p>role.guard.ts</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">CanActivate</span>, <span style="color:#a6e22e">ExecutionContext</span>, <span style="color:#a6e22e">Injectable</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/common&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Reflector</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/core&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Observable</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;rxjs&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Role</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./role.decorator&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Injectable</span>()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RoleGuard</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">CanActivate</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">reflector</span>: <span style="color:#66d9ef">Reflector</span>) {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">canActivate</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">context</span>: <span style="color:#66d9ef">ExecutionContext</span>,
+</span></span><span style="display:flex;"><span>  )<span style="color:#f92672">:</span> <span style="color:#66d9ef">boolean</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">Promise</span>&lt;<span style="color:#f92672">boolean</span>&gt; <span style="color:#f92672">|</span> <span style="color:#a6e22e">Observable</span>&lt;<span style="color:#f92672">boolean</span>&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">roles</span>: <span style="color:#66d9ef">string</span>[] <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">reflector</span>.<span style="color:#66d9ef">get</span>(<span style="color:#a6e22e">Role</span>, <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">getHandler</span>());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">roles</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">switchToHttp</span>().<span style="color:#a6e22e">getRequest</span>().<span style="color:#a6e22e">user</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-argument
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">roles</span>.<span style="color:#a6e22e">indexOf</span>(<span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">role</span>) <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Pertama-tama ambil data string array dari reflector menggunakan reflector yang sudah di-dependency injection pada constructor dengan method <strong>get()</strong> yang menerima dua parameter, yaitu reflector-nya disini berupa Role, dan handler dari routes yang dituju. Jika data role tidak ada maka return true, yang berarti handler boleh diakses.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">roles</span>: <span style="color:#66d9ef">string</span>[] <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">reflector</span>.<span style="color:#66d9ef">get</span>(<span style="color:#a6e22e">Role</span>, <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">getHandler</span>());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">roles</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Ambil data user dari object request, lalu cek apakah role user dari objek user ada atau tidak didalam array string dari reflector.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">switchToHttp</span>().<span style="color:#a6e22e">getRequest</span>().<span style="color:#a6e22e">user</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> <span style="color:#a6e22e">roles</span>.<span style="color:#a6e22e">indexOf</span>(<span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">role</span>) <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span></code></pre></div><p>Setelah selesai semua, sekarang tinggal membuat route yang memerlukan authorization, yang menggunakan guard, reflector dan custom decorator yang dibuat tadi, dengan routes harus <code>/auth/*</code>.</p>
+<blockquote>
+<p>user.controller.ts</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">@Get</span>(<span style="color:#e6db74">&#39;/auth/user&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@UseGuards</span>(<span style="color:#a6e22e">RoleGuard</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Role</span>([<span style="color:#e6db74">&#39;admin&#39;</span>, <span style="color:#e6db74">&#39;user&#39;</span>])
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">auth</span>(<span style="color:#66d9ef">@Auth</span>() <span style="color:#a6e22e">user</span>: <span style="color:#66d9ef">AuthUser</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Record</span>&lt;<span style="color:#f92672">keyof</span> <span style="color:#a6e22e">AuthUser</span>, <span style="color:#a6e22e">string</span> <span style="color:#960050;background-color:#1e0010">|</span> <span style="color:#a6e22e">number</span>&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">user.id</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">role</span>: <span style="color:#66d9ef">user.role</span>,
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Get</span>(<span style="color:#e6db74">&#39;/auth/admin&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@UseGuards</span>(<span style="color:#a6e22e">RoleGuard</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Role</span>([<span style="color:#e6db74">&#39;admin&#39;</span>])
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">admin</span>(<span style="color:#66d9ef">@Auth</span>() <span style="color:#a6e22e">user</span>: <span style="color:#66d9ef">AuthUser</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Record</span>&lt;<span style="color:#f92672">keyof</span> <span style="color:#a6e22e">AuthUser</span>, <span style="color:#a6e22e">string</span> <span style="color:#960050;background-color:#1e0010">|</span> <span style="color:#a6e22e">number</span>&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">info</span>(<span style="color:#a6e22e">user</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">user.id</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">role</span>: <span style="color:#66d9ef">user.role</span>,
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="pengujian">Pengujian<a hidden class="anchor" aria-hidden="true" href="#pengujian">#</a></h2>
+<p>Pengujian token kosong</p>
+<div class="alert-container error"><strong>GET</strong> /api/v1/auth/admin</div>
+<p>Request Header:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Authorization&#34;</span>: <span style="color:#e6db74">&#34;Bearer&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Response Body:3</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;statusCode&#34;</span>: <span style="color:#ae81ff">401</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;message&#34;</span>: <span style="color:#e6db74">&#34;Token missing&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Pengujian token invalid</p>
+<div class="alert-container error"><strong>GET</strong> /api/v1/auth/admin</div>
+<p>Request Header:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Authorization&#34;</span>: <span style="color:#e6db74">&#34;Bearer asdasdasdasdasdasd12312&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Response Body:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;statusCode&#34;</span>: <span style="color:#ae81ff">401</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;message&#34;</span>: <span style="color:#e6db74">&#34;Unauthorized&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Pengujian token valid</p>
+<div class="alert-container error"><strong>GET</strong> /api/v1/auth/admin</div>
+<p>Request Header:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Authorization&#34;</span>: <span style="color:#e6db74">&#34;Bearer {token}&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Response Body:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;admin&#34;</span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div>
 
