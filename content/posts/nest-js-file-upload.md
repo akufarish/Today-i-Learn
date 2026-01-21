@@ -2,9 +2,10 @@
 date = '2026-01-18T20:53:02+08:00'
 draft = false
 title = 'Nest Js File Upload'
+tags = ['Indonesia', 'NestJS', 'Programming']
 +++
 
-Untuk menghandle proses upload file, nest sudah mennyediakan module bawaan berbasis `multer`. Apa itu multer? Multer adalah middleware untuk node ataupun express yang menangani `multipart/form-data`, yang sering digunakan untuk upload file via HTTP `POST`.
+Untuk menghandle proses upload file, nest sudah menyediakan module bawaan berbasis `multer`. Apa itu multer? Multer adalah middleware untuk node ataupun express yang menangani `multipart/form-data`, yang sering digunakan untuk upload file via HTTP `POST`.
 
 Karena nest secara default menggunakan typescript, alangkah baiknya untuk menambah dependency types multer, untuk type safety.
 
@@ -100,3 +101,39 @@ Test hit api menggunakan insomnia
 Ukuran file setelah diupload
 
 ![Ukuran file setelah](/images/compress-image.png)
+
+## Akses file
+
+Untuk mengakses file gambar yang sudah diupload, bisa dengan cara `ServeStaticModule` yang disediakan oleh nest.
+
+```terminaloutput
+bun add @nestjs/serve-static
+```
+
+Pada application module, import ServeStaticModule, lalu konfigurasi `rootPath` yang merupakan path yang mau dibuat static, dan `serveRoot` untuk prefix URL.
+
+> app.module.ts
+
+```typescript
+import { Module } from "@nestjs/common";
+import { AppController } from "./app.controller";
+import { AppService } from "./app.service";
+import { ServeStaticModule } from "@nestjs/serve-static";
+import { join } from "path";
+
+@Module({
+  imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, "..", "images"),
+      serveRoot: "/images",
+    }),
+  ],
+  controllers: [AppController],
+  providers: [AppService],
+})
+export class AppModule {}
+```
+
+<div class="alert-container success"><strong>GET</strong> /images/1769004950912.jpg</div>
+
+![Akses Gambar](/images/output-module.png)
