@@ -14,6 +14,12 @@ bun add -d @types/multer
 
 Setelah menginstall dependency diatas, maka kita bisa memberikan tipe `Express.Multer.File` ke variabel yang menyimpan file yang akan diupload nantinya.
 
+Pada praktek ini juga akan implementasi proses _compress_ gambar yang akan diupload menggunakan sharp.
+
+```terminaloutput
+bun add sharp
+```
+
 Membuat handler degan route `/api/v1/upload` dengan http method post.
 
 > app.controller.ts
@@ -80,3 +86,17 @@ Simpan file ke output menggunakan fungsi `ToFile` dari sharp.
 ```typescript
 await compressedImage.toFile(filePath);
 ```
+
+## Pengujian
+
+Ukuran filel yang akan diupload
+
+![ukuran file original](/images/original-image.png)
+
+Test hit api menggunakan insomnia
+
+![Hit api](/images/upload-success.png)
+
+Ukuran file setelah diupload
+
+![Ukuran file setelah](/images/compress-image.png)

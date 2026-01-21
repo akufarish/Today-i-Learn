@@ -6,8 +6,18 @@
     <description>Recent content in Posts on Today I Learn - Farish</description>
     <generator>Hugo -- 0.154.5</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 16 Jan 2026 20:57:26 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 18 Jan 2026 20:53:02 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Nest Js File Upload</title>
+      <link>http://localhost:1313/posts/nest-js-file-upload/</link>
+      <pubDate>Sun, 18 Jan 2026 20:53:02 +0800</pubDate>
+      <guid>http://localhost:1313/posts/nest-js-file-upload/</guid>
+      <description>&lt;p&gt;Untuk menghandle proses upload file, nest sudah mennyediakan module bawaan berbasis &lt;code&gt;multer&lt;/code&gt;. Apa itu multer? Multer adalah middleware untuk node ataupun express yang menangani &lt;code&gt;multipart/form-data&lt;/code&gt;, yang sering digunakan untuk upload file via HTTP &lt;code&gt;POST&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Karena nest secara default menggunakan typescript, alangkah baiknya untuk menambah dependency types multer, untuk type safety.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-terminaloutput&#34; data-lang=&#34;terminaloutput&#34;&gt;bun add -d @types/multer
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Setelah menginstall dependency diatas, maka kita bisa memberikan tipe &lt;code&gt;Express.Multer.File&lt;/code&gt; ke variabel yang menyimpan file yang akan diupload nantinya.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Implementasi JWT Pada NestJS</title>
       <link>http://localhost:1313/posts/implementasi-jwt-nestjs/</link>
