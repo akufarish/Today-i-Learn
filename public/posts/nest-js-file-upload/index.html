@@ -8,9 +8,9 @@
 <title>Nest Js File Upload | Today I Learn - Farish</title>
 <meta name="keywords" content="">
 <meta name="description" content="Untuk menghandle proses upload file, nest sudah mennyediakan module bawaan berbasis multer. Apa itu multer? Multer adalah middleware untuk node ataupun express yang menangani multipart/form-data, yang sering digunakan untuk upload file via HTTP POST.
-Karena nest secara default menggunakan typescript, alangkah baiknya untuk menambah dependency types multer, untuk type safty.
+Karena nest secara default menggunakan typescript, alangkah baiknya untuk menambah dependency types multer, untuk type safety.
 bun add -d @types/multer
-">
+Setelah menginstall dependency diatas, maka kita bisa memberikan tipe Express.Multer.File ke variabel yang menyimpan file yang akan diupload nantinya.">
 <meta name="author" content="">
 <link rel="canonical" href="http://localhost:1313/posts/nest-js-file-upload/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.ea5e07c191dc6fb48f5d3613026b37a0a7f49a80c19335b9044eebbcdb0bbcb6.css" integrity="sha256-6l4HwZHcb7SPXTYTAms3oKf0moDBkzW5BE7rvNsLvLY=" rel="preload stylesheet" as="style">
@@ -125,9 +125,55 @@ bun add -d @types/multer
 </div>
   </header> 
   <div class="post-content"><p>Untuk menghandle proses upload file, nest sudah mennyediakan module bawaan berbasis <code>multer</code>. Apa itu multer? Multer adalah middleware untuk node ataupun express yang menangani <code>multipart/form-data</code>, yang sering digunakan untuk upload file via HTTP <code>POST</code>.</p>
-<p>Karena nest secara default menggunakan typescript, alangkah baiknya untuk menambah dependency types multer, untuk type safty.</p>
+<p>Karena nest secara default menggunakan typescript, alangkah baiknya untuk menambah dependency types multer, untuk type safety.</p>
 <pre tabindex="0"><code class="language-terminaloutput" data-lang="terminaloutput">bun add -d @types/multer
-</code></pre>
+</code></pre><p>Setelah menginstall dependency diatas, maka kita bisa memberikan tipe <code>Express.Multer.File</code> ke variabel yang menyimpan file yang akan diupload nantinya.</p>
+<p>Membuat handler degan route <code>/api/v1/upload</code> dengan http method post.</p>
+<blockquote>
+<p>app.controller.ts</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">@Post</span>(<span style="color:#e6db74">&#39;/api/v1/upload&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@UseInterceptors</span>(<span style="color:#a6e22e">FileInterceptor</span>(<span style="color:#e6db74">&#39;image&#39;</span>))
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#a6e22e">uploadFile</span>(<span style="color:#66d9ef">@UploadedFile</span>() <span style="color:#a6e22e">image</span>: <span style="color:#66d9ef">Express.Multer.File</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">appService</span>.<span style="color:#a6e22e">handleFileUpload</span>(<span style="color:#a6e22e">image</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Untuk mengupload satu file, bisa menggunakan interceptor <code>FileInterceptor</code> yang akan menghandle request file menggunakan decorator <code>@@UploadedFile</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">@UseInterceptors</span>(<span style="color:#a6e22e">FileInterceptor</span>(<span style="color:#e6db74">&#39;image&#39;</span>))
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#a6e22e">uploadFile</span>(<span style="color:#66d9ef">@UploadedFile</span>() <span style="color:#a6e22e">image</span>: <span style="color:#66d9ef">Express.Multer.File</span>)
+</span></span></code></pre></div><p>Pada service layer, buat fungsi dengan nama handleFileUpload yang menerima satu parameter image dengan tipe <code>Express.Multer.File</code>.</p>
+<blockquote>
+<p>app.service.ts</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#a6e22e">handleFileUpload</span>(<span style="color:#a6e22e">image</span>: <span style="color:#66d9ef">Express.Multer.File</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">uploadDir</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;./images&#39;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fileExtension</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">extname</span>(<span style="color:#a6e22e">image</span>.<span style="color:#a6e22e">originalname</span>).<span style="color:#a6e22e">toLowerCase</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fileName</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">${</span>Date.<span style="color:#a6e22e">now</span>()<span style="color:#e6db74">}${</span><span style="color:#a6e22e">fileExtension</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">filePath</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">join</span>(<span style="color:#a6e22e">uploadDir</span>, <span style="color:#a6e22e">fileName</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">compressedImage</span>: <span style="color:#66d9ef">sharp.Sharp</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">sharp</span>(<span style="color:#a6e22e">image</span>.<span style="color:#a6e22e">buffer</span>)
+</span></span><span style="display:flex;"><span>      .<span style="color:#a6e22e">png</span>({
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">quality</span>: <span style="color:#66d9ef">80</span>,
+</span></span><span style="display:flex;"><span>      })
+</span></span><span style="display:flex;"><span>      .<span style="color:#a6e22e">jpeg</span>({ <span style="color:#a6e22e">quality</span>: <span style="color:#66d9ef">80</span> });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">compressedImage</span>.<span style="color:#a6e22e">toFile</span>(<span style="color:#a6e22e">filePath</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">compressedImage</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Pertama-tama tentuka dimana gambar akan disimpan, disini gambar akan disimpan pada folder images, ambil extension file yang diupload, lalu generate nama flie yang <em>unique</em> menggunakan <code>Date.now</code>, lalu gunakan fungsi join dari path untuk mendapatkan path file.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">uploadDir</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;./images&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fileExtension</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">extname</span>(<span style="color:#a6e22e">image</span>.<span style="color:#a6e22e">originalname</span>).<span style="color:#a6e22e">toLowerCase</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fileName</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">${</span>Date.<span style="color:#a6e22e">now</span>()<span style="color:#e6db74">}${</span><span style="color:#a6e22e">fileExtension</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">filePath</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">join</span>(<span style="color:#a6e22e">uploadDir</span>, <span style="color:#a6e22e">fileName</span>);
+</span></span></code></pre></div><p>Gunakan sharp untuk melakukan proses <em>compress</em> gambar dan turunkan kualitas gambar yang diupload menjadi 80%</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">compressedImage</span>: <span style="color:#66d9ef">sharp.Sharp</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">sharp</span>(<span style="color:#a6e22e">image</span>.<span style="color:#a6e22e">buffer</span>)
+</span></span><span style="display:flex;"><span>  .<span style="color:#a6e22e">png</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">quality</span>: <span style="color:#66d9ef">80</span>,
+</span></span><span style="display:flex;"><span>  })
+</span></span><span style="display:flex;"><span>  .<span style="color:#a6e22e">jpeg</span>({ <span style="color:#a6e22e">quality</span>: <span style="color:#66d9ef">80</span> });
+</span></span></code></pre></div><p>Simpan file ke output menggunakan fungsi <code>ToFile</code> dari sharp.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">compressedImage</span>.<span style="color:#a6e22e">toFile</span>(<span style="color:#a6e22e">filePath</span>);
+</span></span></code></pre></div>
 
   </div>
 
