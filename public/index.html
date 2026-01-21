@@ -2,7 +2,7 @@
 <html lang="en" dir="auto" data-theme="auto">
 
 <head>
-	<meta name="generator" content="Hugo 0.154.4"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+	<meta name="generator" content="Hugo 0.154.5"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="noindex, nofollow">
@@ -155,6 +155,20 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Nest Js File Upload
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Untuk menghandle proses upload file, nest sudah mennyediakan module bawaan berbasis multer. Apa itu multer? Multer adalah middleware untuk node ataupun express yang menangani multipart/form-data, yang sering digunakan untuk upload file via HTTP POST.
+Karena nest secara default menggunakan typescript, alangkah baiknya untuk menambah dependency types multer, untuk type safty.
+bun add -d @types/multer </p>
+  </div>
+  <footer class="entry-footer"><span title='2026-01-18 20:53:02 +0800 WITA'>January 18, 2026</span></footer>
+  <a class="entry-link" aria-label="post link to Nest Js File Upload" href="http://localhost:1313/posts/nest-js-file-upload/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Implementasi JWT Pada NestJS
     </h2>
   </header>
@@ -290,21 +304,6 @@ user.controller.ts
   </div>
   <footer class="entry-footer"><span title='2026-01-08 18:03:32 +0800 WITA'>January 8, 2026</span></footer>
   <a class="entry-link" aria-label="post link to Nest JS Exception Filter" href="http://localhost:1313/posts/exception/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Nest JS Middleware
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Middleware adalah sebuah jembatan antara request dari client ke server, yang memungkinkan kita untuk menambahkan logika yang akan dijalankan sebelum request tersebut mencapai route handler atau tujuan.
-Berikut adalah diagram sederhana middleware.
-Cara kerja middleware itu sendiri adalah setiap request yang dikirim oleh client akan melewati middleware terlebih dahulu, yang dimana pada middleware ini request tersebut dapat diperiksa atau dimodifikasi tergantung dari logic middleware. Jika request dianggap valid maka middleware akan meneruskannya ke controller, jika tidak, middleware dapat langsung menghentikan proses dan mengirim respons kembali ke client.
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2026-01-07 15:23:42 +0800 WITA'>January 7, 2026</span></footer>
-  <a class="entry-link" aria-label="post link to Nest JS Middleware" href="http://localhost:1313/posts/middleware/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
