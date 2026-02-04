@@ -2,76 +2,76 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/posts/nest-js-file-upload/</loc>
+    <loc>http://localhost:1313/tags/indonesia/</loc>
+    <lastmod>2026-01-18T20:53:02+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/nestjs/nest-js-file-upload/</loc>
+    <lastmod>2026-01-18T20:53:02+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/nestjs/</loc>
     <lastmod>2026-01-18T20:53:02+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/</loc>
     <lastmod>2026-01-18T20:53:02+08:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/tags/programming/</loc>
+    <lastmod>2026-01-18T20:53:02+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2026-01-18T20:53:02+08:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/</loc>
     <lastmod>2026-01-18T20:53:02+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/implementasi-jwt-nestjs/</loc>
+    <loc>http://localhost:1313/posts/nestjs/implementasi-jwt-nestjs/</loc>
     <lastmod>2026-01-16T20:57:26+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/indonesia/</loc>
-    <lastmod>2026-01-16T20:57:26+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/nestjs/</loc>
-    <lastmod>2026-01-16T20:57:26+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/programming/</loc>
-    <lastmod>2026-01-16T20:57:26+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2026-01-16T20:57:26+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/nestjs-jwt/</loc>
+    <loc>http://localhost:1313/posts/nestjs/nestjs-jwt/</loc>
     <lastmod>2026-01-15T20:59:14+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/mencoba-nest-js-6/</loc>
+    <loc>http://localhost:1313/posts/nestjs/mencoba-nest-js-6/</loc>
     <lastmod>2026-01-14T20:19:38+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/nestjs-lifecycle/</loc>
+    <loc>http://localhost:1313/posts/nestjs/nestjs-lifecycle/</loc>
     <lastmod>2026-01-13T20:58:23+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/nestjs-guard/</loc>
+    <loc>http://localhost:1313/posts/nestjs/nestjs-guard/</loc>
     <lastmod>2026-01-12T21:10:27+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/nestjs-custom-decorator/</loc>
+    <loc>http://localhost:1313/posts/nestjs/nestjs-custom-decorator/</loc>
     <lastmod>2026-01-11T19:10:05+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/nestjs-interceptor/</loc>
+    <loc>http://localhost:1313/posts/nestjs/nestjs-interceptor/</loc>
     <lastmod>2026-01-10T20:49:01+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/nestjs-pipe/</loc>
+    <loc>http://localhost:1313/posts/nestjs/nestjs-pipe/</loc>
     <lastmod>2026-01-09T20:43:24+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/exception/</loc>
+    <loc>http://localhost:1313/posts/nestjs/exception/</loc>
     <lastmod>2026-01-08T18:03:32+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/middleware/</loc>
+    <loc>http://localhost:1313/posts/nestjs/middleware/</loc>
     <lastmod>2026-01-07T15:23:42+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/mencoba-nest-js-5/</loc>
+    <loc>http://localhost:1313/posts/nestjs/mencoba-nest-js-5/</loc>
     <lastmod>2026-01-06T13:45:02+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/nestjs-database/</loc>
+    <loc>http://localhost:1313/posts/nestjs/nestjs-database/</loc>
     <lastmod>2026-01-05T17:18:59+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/mencoba-nest-js-4/</loc>
+    <loc>http://localhost:1313/posts/nestjs/mencoba-nest-js-4/</loc>
     <lastmod>2026-01-04T19:51:47+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/custom-provider/</loc>
+    <loc>http://localhost:1313/posts/nestjs/custom-provider/</loc>
     <lastmod>2026-01-03T18:05:17+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/mencoba-nest-js-3/</loc>
+    <loc>http://localhost:1313/posts/nestjs/mencoba-nest-js-3/</loc>
     <lastmod>2026-01-02T10:22:59+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/mencoba-nest-js-2/</loc>
+    <loc>http://localhost:1313/posts/nestjs/mencoba-nest-js-2/</loc>
     <lastmod>2026-01-01T11:48:17+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/mencoba-nest-js/</loc>
+    <loc>http://localhost:1313/posts/nestjs/mencoba-nest-js/</loc>
     <lastmod>2025-12-31T13:45:27+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/</loc>

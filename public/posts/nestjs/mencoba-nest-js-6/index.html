@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Mencoba Nest Js (6) | Today I Learn - Farish</title>
+<meta name="keywords" content="Indonesia, NestJS, Programming">
+<meta name="description" content="Reflector
+Sebelumnya pada materi guard, kita membuat sebuah guard untuk melakukan authorization berdasarkan role untuk mengecek, role yang boleh mengakses handler, yang cara pemanggilannya dengan cara membuat object RoleGuard baru disetiap handler.
+
+role.guard.ts
+
+@Get(&#39;/auth/user&#39;)
+@UseGuards(new RoleGuard([&#39;user&#39;, &#39;admin&#39;]))
+auth(@Auth() user: User): Record&lt;string, string&gt; {
+    return {
+        email: user.email,
+        username: user.name,
+    };
+}
+Kode diatas akan menimbulkan masalah, karena RoleGuard bukan merupakan singleton, yang berarti setap kali kita menambahkan RoleGuard pada handler itu membuat object baru yang berarti akan memakan banyak memory. Nah kita bisa membuat RoleGuard menjadi singleton dengan bantuan Reflector.">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/posts/nestjs/mencoba-nest-js-6/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.ea5e07c191dc6fb48f5d3613026b37a0a7f49a80c19335b9044eebbcdb0bbcb6.css" integrity="sha256-6l4HwZHcb7SPXTYTAms3oKf0moDBkzW5BE7rvNsLvLY=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/nestjs/mencoba-nest-js-6/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Today I Learn - Farish (Alt + H)">Today I Learn - Farish</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Mencoba Nest Js (6)
+    </h1>
+    <div class="post-meta"><span title='2026-01-14 20:19:38 +0800 WITA'>January 14, 2026</span>
+
+</div>
+  </header> 
+  <div class="post-content"><h2 id="reflector">Reflector<a hidden class="anchor" aria-hidden="true" href="#reflector">#</a></h2>
+<p>Sebelumnya pada materi guard, kita membuat sebuah guard untuk melakukan authorization berdasarkan role untuk mengecek, role yang boleh mengakses handler, yang cara pemanggilannya dengan cara membuat object <strong>RoleGuard</strong> baru disetiap handler.</p>
+<blockquote>
+<p>role.guard.ts</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">@Get</span>(<span style="color:#e6db74">&#39;/auth/user&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@UseGuards</span>(<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">RoleGuard</span>([<span style="color:#e6db74">&#39;user&#39;</span>, <span style="color:#e6db74">&#39;admin&#39;</span>]))
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">auth</span>(<span style="color:#66d9ef">@Auth</span>() <span style="color:#a6e22e">user</span>: <span style="color:#66d9ef">User</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Record</span>&lt;<span style="color:#f92672">string</span>, <span style="color:#a6e22e">string</span>&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">email</span>: <span style="color:#66d9ef">user.email</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">username</span>: <span style="color:#66d9ef">user.name</span>,
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Kode diatas akan menimbulkan masalah, karena <strong>RoleGuard</strong> bukan merupakan singleton, yang berarti setap kali kita menambahkan <strong>RoleGuard</strong> pada handler itu membuat object baru yang berarti akan memakan banyak memory. Nah kita bisa membuat RoleGuard menjadi singleton dengan bantuan <strong>Reflector</strong>.</p>
+<p>Apa itu reflector? Reflector adalah sebuah fitur pada NestJS yang memiliki kemampuan untuk mengambil atau membaca metadata pada handler menggunakan decorator. Untuk membuat reflector bisa menggunakan method <strong>Reflector.createDecorator</strong>.</p>
+<blockquote>
+<p>role.decorator.ts</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Reflector</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/core&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Role</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Reflector</span>.<span style="color:#a6e22e">createDecorator</span>&lt;<span style="color:#f92672">string</span><span style="color:#960050;background-color:#1e0010">[]</span>&gt;();
+</span></span></code></pre></div><p>Pada kode diatas kita membuat reflector yang bertipe string array, karena decorator ini akan menerima data berupa string array yang berisi role-role yang boleh mengakses handler yang dituju.</p>
+<p>Supaya RoleGuard bisa menerima metadata dari decorator role, bisa dengan cara melakukan dependency injection reflector nya. lalu menggunakan method get yang menerima dua parameter yaitu decorator, dan function. Pada kode dibawah dua parameter tersebut diisi dengan decorator <strong>Role</strong> karena kita ingin membaca data dari decorator <strong>Role</strong>, dan <strong>context.getHandler()</strong> untuk mengetahui handler/function yang sedang dieksekusi.</p>
+<blockquote>
+<p>role,guard.ts</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">CanActivate</span>, <span style="color:#a6e22e">ExecutionContext</span>, <span style="color:#a6e22e">Injectable</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/common&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Reflector</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/core&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Observable</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;rxjs&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Role</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./role.decorator&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Injectable</span>()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RoleGuard</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">CanActivate</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">reflector</span>: <span style="color:#66d9ef">Reflector</span>) {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">canActivate</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">context</span>: <span style="color:#66d9ef">ExecutionContext</span>
+</span></span><span style="display:flex;"><span>  )<span style="color:#f92672">:</span> <span style="color:#66d9ef">boolean</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">Promise</span>&lt;<span style="color:#f92672">boolean</span>&gt; <span style="color:#f92672">|</span> <span style="color:#a6e22e">Observable</span>&lt;<span style="color:#f92672">boolean</span>&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">roles</span>: <span style="color:#66d9ef">string</span>[] <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">reflector</span>.<span style="color:#66d9ef">get</span>(<span style="color:#a6e22e">Role</span>, <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">getHandler</span>());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">roles</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">switchToHttp</span>().<span style="color:#a6e22e">getRequest</span>().<span style="color:#a6e22e">user</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-argument
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">roles</span>.<span style="color:#a6e22e">indexOf</span>(<span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">role</span>) <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>user.controller.ts</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">@Get</span>(<span style="color:#e6db74">&#39;/auth/admin&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@UseGuards</span>(<span style="color:#a6e22e">RoleGuard</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Role</span>([<span style="color:#e6db74">&#39;admin&#39;</span>])
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">admin</span>(<span style="color:#66d9ef">@Auth</span>() <span style="color:#a6e22e">user</span>: <span style="color:#66d9ef">User</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Record</span>&lt;<span style="color:#f92672">string</span>, <span style="color:#a6e22e">string</span>&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">email</span>: <span style="color:#66d9ef">user.email</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">username</span>: <span style="color:#66d9ef">user.name</span>,
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="pengujian">Pengujian<a hidden class="anchor" aria-hidden="true" href="#pengujian">#</a></h3>
+<blockquote>
+<p>Admin mengakses route admin</p>
+</blockquote>
+<div class="alert-container success"><strong>GET</strong> /api/users/auth/admin</div>
+<p>Request Header:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Authorization&#34;</span>: <span style="color:#e6db74">&#34;Bearer {token}&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Response Body:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;email&#34;</span>: <span style="color:#e6db74">&#34;admin@gmail.com&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;username&#34;</span>: <span style="color:#e6db74">&#34;admin&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="global-provider">Global Provider<a hidden class="anchor" aria-hidden="true" href="#global-provider">#</a></h2>
+<p>Pada mater-materi sebelumnya, kita sudah tau jika ingin membuat global filter, interceptor, guard, dan pipe, itu bisa menjadikannya global dengan menambahkannya ke NestJS application <strong>main.ts</strong>. Tapi muncul masalah baru karena penggunaan method <strong>useGlobal</strong> pada file <strong>main.ts</strong> tidak dapat melakukan dependency injection. Maka dari itu digunakannya lah global provider yang merupakan cara yang lebih efisien.</p>
+<p>NestJS sudah menyediakan alias name untuk globel provider yaitu:</p>
+<ol>
+<li>APP_INTERCEPTOR</li>
+<li>APP_PIPE</li>
+<li>APP_GUARD</li>
+<li>APP_FILTER</li>
+</ol>
+<p>Cara penggunaannya juga mirip dengan cara biasa saat kita menambahkan provider ke NestJS application provider, namun dengan catatatan untuk nama alias nya harus menggunakan alias name global yang sudah disediakan oleh NestJS.</p>
+<blockquote>
+<p>app.module.ts</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">MiddlewareConsumer</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Module</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">NestModule</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">RequestMethod</span>,
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/common&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppController</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./app.controller&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppService</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./app.service&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">UsersModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./users/users.module&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">PrismaModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./common/prisma/prisma.module&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ConfigModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/config&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ValidationModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./validation/validation.module&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AuthMiddleware</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./common/auth/auth.middleware&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">JwtModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./common/jwt/jwt.module&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">RoleGuard</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./common/role/role.guard&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">APP_GUARD</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/core&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Module</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">imports</span><span style="color:#f92672">:</span> [],
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">controllers</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">AppController</span>],
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">providers</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">AppService</span>,
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">provide</span>: <span style="color:#66d9ef">APP_GUARD</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">useClass</span>: <span style="color:#66d9ef">RoleGuard</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>  ],
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div><h3 id="pengujian-1">Pengujian<a hidden class="anchor" aria-hidden="true" href="#pengujian-1">#</a></h3>
+<blockquote>
+<p>Admin mengakses route admin</p>
+</blockquote>
+<div class="alert-container success"><strong>GET</strong> /api/users/auth/admin</div>
+<p>Request Header:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Authorization&#34;</span>: <span style="color:#e6db74">&#34;Bearer {token}&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Response Body:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;email&#34;</span>: <span style="color:#e6db74">&#34;admin@gmail.com&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;username&#34;</span>: <span style="color:#e6db74">&#34;admin&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/indonesia/">Indonesia</a></li>
+      <li><a href="http://localhost:1313/tags/nestjs/">NestJS</a></li>
+      <li><a href="http://localhost:1313/tags/programming/">Programming</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Today I Learn - Farish</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

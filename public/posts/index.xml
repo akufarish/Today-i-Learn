@@ -10,19 +10,19 @@
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Nest Js File Upload</title>
-      <link>http://localhost:1313/posts/nest-js-file-upload/</link>
+      <link>http://localhost:1313/posts/nestjs/nest-js-file-upload/</link>
       <pubDate>Sun, 18 Jan 2026 20:53:02 +0800</pubDate>
-      <guid>http://localhost:1313/posts/nest-js-file-upload/</guid>
-      <description>&lt;p&gt;Untuk menghandle proses upload file, nest sudah mennyediakan module bawaan berbasis &lt;code&gt;multer&lt;/code&gt;. Apa itu multer? Multer adalah middleware untuk node ataupun express yang menangani &lt;code&gt;multipart/form-data&lt;/code&gt;, yang sering digunakan untuk upload file via HTTP &lt;code&gt;POST&lt;/code&gt;.&lt;/p&gt;
+      <guid>http://localhost:1313/posts/nestjs/nest-js-file-upload/</guid>
+      <description>&lt;p&gt;Untuk menghandle proses upload file, nest sudah menyediakan module bawaan berbasis &lt;code&gt;multer&lt;/code&gt;. Apa itu multer? Multer adalah middleware untuk node ataupun express yang menangani &lt;code&gt;multipart/form-data&lt;/code&gt;, yang sering digunakan untuk upload file via HTTP &lt;code&gt;POST&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Karena nest secara default menggunakan typescript, alangkah baiknya untuk menambah dependency types multer, untuk type safety.&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-terminaloutput&#34; data-lang=&#34;terminaloutput&#34;&gt;bun add -d @types/multer
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Setelah menginstall dependency diatas, maka kita bisa memberikan tipe &lt;code&gt;Express.Multer.File&lt;/code&gt; ke variabel yang menyimpan file yang akan diupload nantinya.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Implementasi JWT Pada NestJS</title>
-      <link>http://localhost:1313/posts/implementasi-jwt-nestjs/</link>
+      <link>http://localhost:1313/posts/nestjs/implementasi-jwt-nestjs/</link>
       <pubDate>Fri, 16 Jan 2026 20:57:26 +0800</pubDate>
-      <guid>http://localhost:1313/posts/implementasi-jwt-nestjs/</guid>
+      <guid>http://localhost:1313/posts/nestjs/implementasi-jwt-nestjs/</guid>
       <description>&lt;p&gt;Setelah sebelumnya sudah belajar NestJS dasar, dan juga JWT. Pada kali ini kita akan mencoba untuk mengimplementasikan JWT kedalam aplikasi NestJS.&lt;/p&gt;
 &lt;h2 id=&#34;setup-project&#34;&gt;Setup Project&lt;/h2&gt;
 &lt;p&gt;Membuat project baru dengan command:&lt;/p&gt;
@@ -36,18 +36,18 @@ bun add -d prisma
     </item>
     <item>
       <title>JWT</title>
-      <link>http://localhost:1313/posts/nestjs-jwt/</link>
+      <link>http://localhost:1313/posts/nestjs/nestjs-jwt/</link>
       <pubDate>Thu, 15 Jan 2026 20:59:14 +0800</pubDate>
-      <guid>http://localhost:1313/posts/nestjs-jwt/</guid>
+      <guid>http://localhost:1313/posts/nestjs/nestjs-jwt/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Json Web Token&lt;/strong&gt; atau yang sering disebut &lt;strong&gt;JWT&lt;/strong&gt; adalah standar terbuka (RFC 7519) yang mendefinisikan cara untuk passing data seperti informasi user seperti (id user, role user, email user) dalam bentuk token, yang aman dan dapat diverifikasi oleh server.&lt;/p&gt;
 &lt;p&gt;Sederhananya JWT merupakan web token yang berisi object json yang digunakan untuk proses authentication atau authorization.&lt;/p&gt;
 &lt;p&gt;Kenapa kita perlu menggunakan jwt? Karena jwt itu &lt;strong&gt;stateless&lt;/strong&gt; yang berarti server tidak menyimpan token di database. Kenapa demikian? Karena salah satu permasalahan jika menyimpan token di database, adalah server akan terbebani, karena setiap kali kita melakukan proses request yang memerlukan &lt;em&gt;authentication&lt;/em&gt; maupun &lt;em&gt;authorization&lt;/em&gt;, dia akan terus melakukan query terus-menerus ke database.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Mencoba Nest Js (6)</title>
-      <link>http://localhost:1313/posts/mencoba-nest-js-6/</link>
+      <link>http://localhost:1313/posts/nestjs/mencoba-nest-js-6/</link>
       <pubDate>Wed, 14 Jan 2026 20:19:38 +0800</pubDate>
-      <guid>http://localhost:1313/posts/mencoba-nest-js-6/</guid>
+      <guid>http://localhost:1313/posts/nestjs/mencoba-nest-js-6/</guid>
       <description>&lt;h2 id=&#34;reflector&#34;&gt;Reflector&lt;/h2&gt;
 &lt;p&gt;Sebelumnya pada materi guard, kita membuat sebuah guard untuk melakukan authorization berdasarkan role untuk mengecek, role yang boleh mengakses handler, yang cara pemanggilannya dengan cara membuat object &lt;strong&gt;RoleGuard&lt;/strong&gt; baru disetiap handler.&lt;/p&gt;
 &lt;blockquote&gt;
@@ -65,9 +65,9 @@ bun add -d prisma
     </item>
     <item>
       <title>Nestjs Lifecycle</title>
-      <link>http://localhost:1313/posts/nestjs-lifecycle/</link>
+      <link>http://localhost:1313/posts/nestjs/nestjs-lifecycle/</link>
       <pubDate>Tue, 13 Jan 2026 20:58:23 +0800</pubDate>
-      <guid>http://localhost:1313/posts/nestjs-lifecycle/</guid>
+      <guid>http://localhost:1313/posts/nestjs/nestjs-lifecycle/</guid>
       <description>&lt;p&gt;Pada aplikasi NestJS semua object yang ada seperti module, controller, dan provider itu memiliki lifecycle event atau alur hidup. Apa itu &lt;strong&gt;lifecycle&lt;/strong&gt; dalam NestJS? Sesuai dengan namanya lifecycle yang berarti alur hidup adalah rankaian tahapan yang dilalui oleh objek dimulai dari objek itu dibuat, sampai objek tersebut dihancurkan.&lt;/p&gt;
 &lt;p&gt;Berikut adalah diagram lifecycle dalam aplikasi NestJS:&lt;/p&gt;
 &lt;div class=&#34;img-container&#34;&gt;
@@ -79,16 +79,16 @@ bun add -d prisma
     </item>
     <item>
       <title>Nest JS Guard</title>
-      <link>http://localhost:1313/posts/nestjs-guard/</link>
+      <link>http://localhost:1313/posts/nestjs/nestjs-guard/</link>
       <pubDate>Mon, 12 Jan 2026 21:10:27 +0800</pubDate>
-      <guid>http://localhost:1313/posts/nestjs-guard/</guid>
+      <guid>http://localhost:1313/posts/nestjs/nestjs-guard/</guid>
       <description>&lt;p&gt;Guard adalah class yang berfungsi untuk melakukan proses &lt;strong&gt;authorization&lt;/strong&gt;, yaitu sebuah proses untuk mengecek apakah user berhak untuk mengakses route tersebut atau tidak. Lantas kenapa tidak melakukan proses authorization didalam middleware? Kan didalam middleware kita melakukan proses authentication. Satu alasan kenapa melakukan proses authorization didalam middleware itu susah karena middleware tidak tahu route mana yang boleh diakses dan tidak boleh, yang dia tahu hanya memanggil fungsi next() entah itu next middleware atau next route. Oleh karena itulah untuk melakukan proses authorization menggunakan guard.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Nest JS Custom Decorator</title>
-      <link>http://localhost:1313/posts/nestjs-custom-decorator/</link>
+      <link>http://localhost:1313/posts/nestjs/nestjs-custom-decorator/</link>
       <pubDate>Sun, 11 Jan 2026 19:10:05 +0800</pubDate>
-      <guid>http://localhost:1313/posts/nestjs-custom-decorator/</guid>
+      <guid>http://localhost:1313/posts/nestjs/nestjs-custom-decorator/</guid>
       <description>&lt;p&gt;NestJS sudah banyak menyediakan decorator bawaan yang bisa kita gunakan di dalam controller seperti &lt;strong&gt;@Req()&lt;/strong&gt;, &lt;strong&gt;@Body()&lt;/strong&gt;, dan lain-lain. Namun, terkadang kita perlu menambahkan atribut ke object request, lalu datanya bisa diakses di controller.&lt;/p&gt;
 &lt;p&gt;Satu contoh kenapa kita perlu custom decorator adalah ketika untuk mendapatkan data user yang sedang login, biasanya kodenya akan seperti ini.&lt;/p&gt;
 &lt;blockquote&gt;
@@ -106,9 +106,9 @@ bun add -d prisma
     </item>
     <item>
       <title>Nest JS Interceptor</title>
-      <link>http://localhost:1313/posts/nestjs-interceptor/</link>
+      <link>http://localhost:1313/posts/nestjs/nestjs-interceptor/</link>
       <pubDate>Sat, 10 Jan 2026 20:49:01 +0800</pubDate>
-      <guid>http://localhost:1313/posts/nestjs-interceptor/</guid>
+      <guid>http://localhost:1313/posts/nestjs/nestjs-interceptor/</guid>
       <description>&lt;p&gt;Secara konsep, interceptor itu mirip dengan middleware, sama-sama menjadi jembatan antara request dari client ke controller, namun pembedanya adalah interceptor dapat mengubah response yang diberikan oleh controller.&lt;/p&gt;
 &lt;p&gt;Pembeda antara middleware dan interceptor hanya terdapat pada middleware yang cuma bisa mengolah request dan meneruskan request tersebut ke middleware selanjutnya atau ke controller. Sedangkan interceptor dapat menerima Response dari controller, dan mengubah response-nya.&lt;/p&gt;
 &lt;p&gt;Berikut adalah diagram sederhana dari interceptor&lt;/p&gt;
@@ -120,9 +120,9 @@ bun add -d prisma
     </item>
     <item>
       <title>Nest JS Pipe</title>
-      <link>http://localhost:1313/posts/nestjs-pipe/</link>
+      <link>http://localhost:1313/posts/nestjs/nestjs-pipe/</link>
       <pubDate>Fri, 09 Jan 2026 20:43:24 +0800</pubDate>
-      <guid>http://localhost:1313/posts/nestjs-pipe/</guid>
+      <guid>http://localhost:1313/posts/nestjs/nestjs-pipe/</guid>
       <description>&lt;p&gt;Pipe adalah fitur yang ada pada NestJS yang memiliki dua fungsi, pertama bisa untuk melakukan transformasi/konversi request sebelum dikirim ke controller method, kedua berfungsi untuk melakukan validasi request.&lt;/p&gt;
 &lt;p&gt;Salah satu cara menggunakan pipe, bisa dengan cara menambahkan pipe ke decorator &lt;strong&gt;@Query()&lt;/strong&gt;, &lt;strong&gt;@Body()&lt;/strong&gt; dan &lt;strong&gt;@Param()&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;NestJS sendiri sudah menyediakan banyak pipe bawaan seperti ValidationPipe, ParseIntPipe, ParseFilePipe, ParseArrayPipe, dan lain-lain.&lt;/p&gt;
@@ -137,9 +137,9 @@ bun add -d prisma
     </item>
     <item>
       <title>Nest JS Exception Filter</title>
-      <link>http://localhost:1313/posts/exception/</link>
+      <link>http://localhost:1313/posts/nestjs/exception/</link>
       <pubDate>Thu, 08 Jan 2026 18:03:32 +0800</pubDate>
-      <guid>http://localhost:1313/posts/exception/</guid>
+      <guid>http://localhost:1313/posts/nestjs/exception/</guid>
       <description>&lt;p&gt;Secara default jika terjadi error pada aplikasi NestJS, aplikasi akan return data berupa json dengan status code &lt;strong&gt;500 internal server error&lt;/strong&gt;.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;statusCode&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;500&lt;/span&gt;,
@@ -149,9 +149,9 @@ bun add -d prisma
     </item>
     <item>
       <title>Nest JS Middleware</title>
-      <link>http://localhost:1313/posts/middleware/</link>
+      <link>http://localhost:1313/posts/nestjs/middleware/</link>
       <pubDate>Wed, 07 Jan 2026 15:23:42 +0800</pubDate>
-      <guid>http://localhost:1313/posts/middleware/</guid>
+      <guid>http://localhost:1313/posts/nestjs/middleware/</guid>
       <description>&lt;p&gt;Middleware adalah sebuah jembatan antara request dari client ke server, yang memungkinkan kita untuk menambahkan logika yang akan dijalankan sebelum request tersebut mencapai route handler atau tujuan.&lt;/p&gt;
 &lt;p&gt;Berikut adalah diagram sederhana middleware.&lt;/p&gt;
 &lt;div class=&#34;img-container&#34;&gt;
@@ -162,18 +162,18 @@ bun add -d prisma
     </item>
     <item>
       <title>Mencoba Nest Js (5)</title>
-      <link>http://localhost:1313/posts/mencoba-nest-js-5/</link>
+      <link>http://localhost:1313/posts/nestjs/mencoba-nest-js-5/</link>
       <pubDate>Tue, 06 Jan 2026 13:45:02 +0800</pubDate>
-      <guid>http://localhost:1313/posts/mencoba-nest-js-5/</guid>
+      <guid>http://localhost:1313/posts/nestjs/mencoba-nest-js-5/</guid>
       <description>&lt;p&gt;Hari ke tujuh belajar NestJS materi yang dipelajari hari ini tidak kalah menarik, karena akan membahas validation pada NestJS, selain itu ada juga pembahasan untuk logging, global module, dan dynamic module.&lt;/p&gt;
 &lt;h2 id=&#34;logging&#34;&gt;Logging&lt;/h2&gt;
 &lt;p&gt;NestJS secara default sudah memiliki logger sendiri untuk menampilkan log ketika aplikasi dijalankan atau ketika terjadi error. Logger bawaan NestJS hanya akan melakukan logging ke console dan berupa text, terkadang beberapa developer ingin fitur logging yang lebih dari itu. Untungnya NestJS menyediakan cara untuk mengganti Logger nya dengan cara membuat object LoggerService, lalu pada file &lt;strong&gt;main.ts&lt;/strong&gt; bisa menggunakan method &lt;strong&gt;useLogger()&lt;/strong&gt; untuk mengganti logger pada Nest.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Nest JS Database</title>
-      <link>http://localhost:1313/posts/nestjs-database/</link>
+      <link>http://localhost:1313/posts/nestjs/nestjs-database/</link>
       <pubDate>Mon, 05 Jan 2026 17:18:59 +0800</pubDate>
-      <guid>http://localhost:1313/posts/nestjs-database/</guid>
+      <guid>http://localhost:1313/posts/nestjs/nestjs-database/</guid>
       <description>&lt;p&gt;Secara default NestJS tidak menyediakan fitur untuk database atau ORM (Object Relational Mapping), namun karena itu juga kita sebagai developer diberi kebebasan untuk menggunakan berbagai macam ORM yang ada seperti prisma, drizzle, dan lain-lain.&lt;/p&gt;
 &lt;p&gt;Pada praktek ini akan menggunakan prisma sebagai ORM nya.&lt;/p&gt;
 &lt;blockquote&gt;
@@ -186,9 +186,9 @@ bun add @prisma/adapter-mariadb
     </item>
     <item>
       <title>Mencoba Nest Js (4)</title>
-      <link>http://localhost:1313/posts/mencoba-nest-js-4/</link>
+      <link>http://localhost:1313/posts/nestjs/mencoba-nest-js-4/</link>
       <pubDate>Sun, 04 Jan 2026 19:51:47 +0800</pubDate>
-      <guid>http://localhost:1313/posts/mencoba-nest-js-4/</guid>
+      <guid>http://localhost:1313/posts/nestjs/mencoba-nest-js-4/</guid>
       <description>&lt;p&gt;Lanjut ke hari keempat belajar NestJS. Materi kali ini ada module reference, mengakses .env menggunakan configuration, dan membahas singleton object pada materi shared module.&lt;/p&gt;
 &lt;h2 id=&#34;module-reference&#34;&gt;Module Reference&lt;/h2&gt;
 &lt;p&gt;Nest menyediakan class bernama &lt;strong&gt;ModuleRef&lt;/strong&gt; yang berfungsi untuk mengambil data provider tanpa melakukan dependency injection. Cara penggunaannya adalah menggunakan method &lt;strong&gt;get()&lt;/strong&gt; dari class &lt;strong&gt;ModuleRef&lt;/strong&gt; yang menerima satu parameter yaitu provider yang ingin kita gunakan.&lt;/p&gt;
@@ -218,9 +218,9 @@ bun add @prisma/adapter-mariadb
     </item>
     <item>
       <title>Custom Provider</title>
-      <link>http://localhost:1313/posts/custom-provider/</link>
+      <link>http://localhost:1313/posts/nestjs/custom-provider/</link>
       <pubDate>Sat, 03 Jan 2026 18:05:17 +0800</pubDate>
-      <guid>http://localhost:1313/posts/custom-provider/</guid>
+      <guid>http://localhost:1313/posts/nestjs/custom-provider/</guid>
       <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;Seharusnya &lt;strong&gt;custom provider&lt;/strong&gt; ini ada di postingan sebelumnya, tapi karena aku merasa ini adalah materi yang rumit jadi aku bikin postingan berbeda yang khusus membahas &lt;strong&gt;custom provider&lt;/strong&gt; ini.&lt;/p&gt;
 &lt;p&gt;Kenapa harus menggunakan custom provider? Karena terkadang kita bisa saja membuat provider yang bukan instance dari NestJS yang berarti provider third party misalnya MysqlClient, MongoClient, PrismaClient, dan lain-lain.&lt;/p&gt;
@@ -228,9 +228,9 @@ bun add @prisma/adapter-mariadb
     </item>
     <item>
       <title>Mencoba Nest Js (3)</title>
-      <link>http://localhost:1313/posts/mencoba-nest-js-3/</link>
+      <link>http://localhost:1313/posts/nestjs/mencoba-nest-js-3/</link>
       <pubDate>Fri, 02 Jan 2026 10:22:59 +0800</pubDate>
-      <guid>http://localhost:1313/posts/mencoba-nest-js-3/</guid>
+      <guid>http://localhost:1313/posts/nestjs/mencoba-nest-js-3/</guid>
       <description>&lt;p&gt;Memasuki hari ketiga belajar nest-JS disini saya akan melakukan recap dari apa yang saya pelajari hari ini yaitu unit test, integration test, provider, dependency injection, dan custom provider.&lt;/p&gt;
 &lt;h2 id=&#34;unit-test&#34;&gt;Unit Test&lt;/h2&gt;
 &lt;p&gt;Saat membuat controller menggunakan CLI nest, secara otomatis nest juga akan membuatkan unit test untuk controller tersebut. File unit test biasanya berformat *&lt;strong&gt;.spec.ts&lt;/strong&gt;.&lt;/p&gt;
@@ -267,18 +267,18 @@ bun add @prisma/adapter-mariadb
     </item>
     <item>
       <title>Mencoba Nest Js (2)</title>
-      <link>http://localhost:1313/posts/mencoba-nest-js-2/</link>
+      <link>http://localhost:1313/posts/nestjs/mencoba-nest-js-2/</link>
       <pubDate>Thu, 01 Jan 2026 11:48:17 +0800</pubDate>
-      <guid>http://localhost:1313/posts/mencoba-nest-js-2/</guid>
+      <guid>http://localhost:1313/posts/nestjs/mencoba-nest-js-2/</guid>
       <description>&lt;p&gt;Memasuki hari kedua belajar nestjs, sebelum itu selamat tahun baru 2026, semoga di tahun ini lebih sering produktif dan ada peningkatan dari tahun sebelumnya. Kembali ke topik utama, disini saya akan melakukan recap untuk materi controller, http method, http request, http response, asynchronous, cookie, dan view pada materi nest js dasar dari programmer zaman now.&lt;/p&gt;
 &lt;h2 id=&#34;controller&#34;&gt;Controller&lt;/h2&gt;
 &lt;p&gt;Sama seperti laravel, nest js merupakan framework yang menerapkan MVC yang dimana controller disini bertugas untuk memproses HTTP request maupun response. Dalam nest js untuk membuat controller kita bisa dengan mudah menggunakan CLI nest generate controller nama_controller path. controller dalam node js dapat dikenali dengan adanya decorater &lt;strong&gt;@Controller()&lt;/strong&gt; yang pada parameter decorator tersebut kita dapat melakukan konfigurasi prefix path untuk controller.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Mencoba Nest Js (1)</title>
-      <link>http://localhost:1313/posts/mencoba-nest-js/</link>
+      <link>http://localhost:1313/posts/nestjs/mencoba-nest-js/</link>
       <pubDate>Wed, 31 Dec 2025 13:45:27 +0800</pubDate>
-      <guid>http://localhost:1313/posts/mencoba-nest-js/</guid>
+      <guid>http://localhost:1313/posts/nestjs/mencoba-nest-js/</guid>
       <description>&lt;p&gt;Untuk menghabiskan waktu liburku, aku berencana untuk meningkatkan skill dengan belajar nestjs, sebagai seseorang yang pernah menggunakan laravel selama 2 tahun. Dimulai dari belajar nest js dasar dari video pemrograman zaman now. Yang dimana pada video itu mas Eko (Programmer Zaman Now) menjelaskan alasan kenapa menggunakan framework yang menurut saya itu menarik. Karena beliau mengatakan karena menggunakan framework lah kita sebagai developer itu memiliki sebuah standar yang harus diikuti yang memiliki nilai positif karena kemudahan untuk mewariskan project yang sudah ada karena developer di masa depan yang akan datang akan mudah beradaptasi dengan code yang sudah ada karena mengikuti standar dari suatu framework.&lt;/p&gt;</description>
     </item>
   </channel>

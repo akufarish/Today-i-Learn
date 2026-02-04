@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Nest JS Database | Today I Learn - Farish</title>
+<meta name="keywords" content="Indonesia, NestJS, Programming">
+<meta name="description" content="Secara default NestJS tidak menyediakan fitur untuk database atau ORM (Object Relational Mapping), namun karena itu juga kita sebagai developer diberi kebebasan untuk menggunakan berbagai macam ORM yang ada seperti prisma, drizzle, dan lain-lain.
+Pada praktek ini akan menggunakan prisma sebagai ORM nya.
+
+install library prisma
+
+bun add -d prisma
+bun add @prisma/client
+bun add @prisma/adapter-mariadb
+Disini saya cuma akan membuat schema sederhana dimana cuma mempunyai satu table users yang cuma berisi id dan nama.">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/posts/nestjs/nestjs-database/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.ea5e07c191dc6fb48f5d3613026b37a0a7f49a80c19335b9044eebbcdb0bbcb6.css" integrity="sha256-6l4HwZHcb7SPXTYTAms3oKf0moDBkzW5BE7rvNsLvLY=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/nestjs/nestjs-database/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Today I Learn - Farish (Alt + H)">Today I Learn - Farish</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Nest JS Database
+    </h1>
+    <div class="post-meta"><span title='2026-01-05 17:18:59 +0800 WITA'>January 5, 2026</span>
+
+</div>
+  </header> 
+  <div class="post-content"><p>Secara default NestJS tidak menyediakan fitur untuk database atau ORM (Object Relational Mapping), namun karena itu juga kita sebagai developer diberi kebebasan untuk menggunakan berbagai macam ORM yang ada seperti prisma, drizzle, dan lain-lain.</p>
+<p>Pada praktek ini akan menggunakan prisma sebagai ORM nya.</p>
+<blockquote>
+<p>install library prisma</p>
+</blockquote>
+<pre tabindex="0"><code class="language-terminaloutput" data-lang="terminaloutput">bun add -d prisma
+bun add @prisma/client
+bun add @prisma/adapter-mariadb
+</code></pre><p>Disini saya cuma akan membuat schema sederhana dimana cuma mempunyai satu table <strong>users</strong> yang cuma berisi id dan nama.</p>
+<blockquote>
+<p>init prisma</p>
+</blockquote>
+<pre tabindex="0"><code class="language-terminaloutput" data-lang="terminaloutput">bunx prisma init
+</code></pre><p>command diatas akan membuat file .env dan folder prisma yang berisi <strong>schema prisma</strong>. Pada file <strong>schema.prisma</strong> lah kita membuat schema database nya, seperti membuat table dan memberi relasi.</p>
+<blockquote>
+<p>schema.prisma</p>
+</blockquote>
+<pre tabindex="0"><code class="language-prisma" data-lang="prisma">generator client {
+  provider     = &#34;prisma-client&#34;
+  output       = &#34;../generated/prisma&#34;
+  moduleFormat = &#34;cjs&#34;
+}
+
+datasource db {
+  provider = &#34;mysql&#34;
+}
+
+model User {
+  id   Int    @id @default(autoincrement())
+  nama String @db.VarChar(100)
+
+  @@map(&#34;users&#34;)
+}
+</code></pre><p>Pada file .env kita konfigurasi DATABASE_URL dengan memasukkan user, password, host, port, dan database yang mau digunakan.</p>
+<blockquote>
+<p>.env</p>
+</blockquote>
+<pre tabindex="0"><code class="language-terminaloutput" data-lang="terminaloutput">DATABASE_URL=mysql://USER:PASSWORD@HOST:PORT/DATABASE
+</code></pre><p>Untuk melakukan migration dapat menggunakan command:</p>
+<pre tabindex="0"><code class="language-terminaloutput" data-lang="terminaloutput">bunx prisma migrate dev
+bunx prisma generate
+</code></pre><p>Dilanjut untuk membuat module untuk prisma.</p>
+<blockquote>
+<p>prisma.module.ts</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Module</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/common&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">PrismaService</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./prisma.service&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Module</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">providers</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">PrismaService</span>],
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">exports</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">PrismaService</span>],
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PrismaModule</span> {}
+</span></span></code></pre></div><p>Terakhir membuat service untuk menggunakan <strong>PrismaClient</strong> dengan cara prismaService extend ke PrismaClient. Lalu didalam constructor nya buat instance Prisma ORM driver nya, disini karena saya menggunakan mysql jadi instance yang dibuat yaitu <strong>PrismaMariaDB()</strong>, lalu pada object parameter <strong>PrismaMariaDB()</strong> diisi dengan konfigurasi dari mysql seperti host, port, user, dan database yang digunakan.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/common&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">PrismaClient</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;../../../generated/prisma/client&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ConfigService</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/config&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">PrismaMariaDb</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@prisma/adapter-mariadb&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Injectable</span>()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PrismaService</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">PrismaClient</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">configService</span>: <span style="color:#66d9ef">ConfigService</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">adapter</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">PrismaMariaDb</span>({
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">host</span>: <span style="color:#66d9ef">configService.get</span>(<span style="color:#e6db74">&#34;HOST&#34;</span>),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">port</span>: <span style="color:#66d9ef">configService.get</span>(<span style="color:#e6db74">&#34;PORT&#34;</span>),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">connectionLimit</span>: <span style="color:#66d9ef">configService.get</span>(<span style="color:#e6db74">&#34;CONNECTION_LIMIT&#34;</span>),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">user</span>: <span style="color:#66d9ef">configService.get</span>(<span style="color:#e6db74">&#34;USER&#34;</span>),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">database</span>: <span style="color:#66d9ef">configService.get</span>(<span style="color:#e6db74">&#34;SELECT_DATABASE&#34;</span>),
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">super</span>({ <span style="color:#a6e22e">adapter</span> });
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Create PrismaService&#34;</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Lalu untuk pengujian saya akan modifikasi <strong>user-repository.ts</strong> dengan menghapus code untuk membuat factory provider, dan menggantinya dengan code untuk melakukan insert dan get data menggunakan prisma.</p>
+<blockquote>
+<p>user-repository.ts</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">PrismaService</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;../../prisma/prisma/prisma.service&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/common&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">User</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;../../../generated/prisma/client&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Injectable</span>()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserRepository</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">prismaService</span>: <span style="color:#66d9ef">PrismaService</span>) {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">save</span>(<span style="color:#a6e22e">nama</span>: <span style="color:#66d9ef">string</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span>&lt;<span style="color:#f92672">User</span>&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">await</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">prismaService</span>.<span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">create</span>({
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">nama</span>: <span style="color:#66d9ef">nama</span>,
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">get</span>()<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span>&lt;<span style="color:#f92672">User</span><span style="color:#960050;background-color:#1e0010">[]</span>&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">await</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">prismaService</span>.<span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">findMany</span>();
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">getById</span>(<span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">string</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span>&lt;<span style="color:#f92672">User</span> <span style="color:#960050;background-color:#1e0010">|</span> <span style="color:#a6e22e">null</span>&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">await</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">prismaService</span>.<span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">findUnique</span>({
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">where</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">parseInt</span>(<span style="color:#a6e22e">id</span>),
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Perlu diketahui juga untuk menggunakan prisma memang harus menggunakan <strong>asynchronous function</strong> oleh sebab itulah method-method diatas menggunakan async await. Untuk melakukan insert bisa menggunakan method <strong>create()</strong> dan masukkan datanya, untuk method get bisa menggunakan <strong>findMany()</strong> untuk mengambil semua data, atau <strong>findUnique()</strong> untuk mengambil data menggunakan where.</p>
+<blockquote>
+<p>user.controller.ts</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Controller</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Get</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Header</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">HttpCode</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">HttpRedirectResponse</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Inject</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Param</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Post</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Query</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Redirect</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Req</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Res</span>,
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/common&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Request</span>, <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Response</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;express&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">UserRepository</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./user-repository/user-repository&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">User</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;../../generated/prisma/client&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Controller</span>(<span style="color:#e6db74">&#34;/api/users&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserController</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">userRepository</span>: <span style="color:#66d9ef">UserRepository</span>) {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Post</span>(<span style="color:#e6db74">&#34;/create&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">create</span>(<span style="color:#66d9ef">@Req</span>() <span style="color:#a6e22e">request</span>: <span style="color:#66d9ef">Requst</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span>&lt;<span style="color:#f92672">User</span>&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">await</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">userRepository</span>.<span style="color:#a6e22e">save</span>(<span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">name</span> <span style="color:#66d9ef">as</span> <span style="color:#66d9ef">string</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Get</span>(<span style="color:#e6db74">&#34;/:id&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">getById</span>(<span style="color:#66d9ef">@Param</span>(<span style="color:#e6db74">&#34;id&#34;</span>) <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">string</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span>&lt;<span style="color:#f92672">User</span> <span style="color:#960050;background-color:#1e0010">|</span> <span style="color:#a6e22e">null</span>&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">await</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">userRepository</span>.<span style="color:#a6e22e">getById</span>(<span style="color:#a6e22e">id</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Note untuk sekarang tipe request menggunakan <strong>type Request</strong> dari <strong>express</strong>. Kedepannya tidak akan menggunakan type dari express lagi.</p>
+<blockquote>
+<p>POST /api/users/create</p>
+</blockquote>
+<p>Request Body:</p>
+<pre tabindex="0"><code class="language-terminaloutput" data-lang="terminaloutput">{
+    &#34;name&#34;: &#34;Hina Youmiya&#34;
+}
+</code></pre><p>Response Body:</p>
+<pre tabindex="0"><code class="language-terminaloutput" data-lang="terminaloutput">{
+    &#34;id&#34;: 5,
+    &#34;nama&#34;: &#34;Hina Youmiya&#34;
+}
+</code></pre><blockquote>
+<p>GET /api/users/</p>
+</blockquote>
+<p>Response Body</p>
+<pre tabindex="0"><code class="language-terminaloutput" data-lang="terminaloutput">[
+    {
+        &#34;id&#34;: 3,
+        &#34;nama&#34;: &#34;Youmiya&#34;
+    },
+    {
+        &#34;id&#34;: 5,
+        &#34;nama&#34;: &#34;Hina Youmiya&#34;
+    }
+]
+</code></pre><blockquote>
+<p>GET /api/users/5</p>
+</blockquote>
+<p>Response Body</p>
+<pre tabindex="0"><code class="language-terminaloutput" data-lang="terminaloutput">{
+    &#34;id&#34;: 5,
+    &#34;nama&#34;: &#34;Hina Youmiya&#34;
+}
+</code></pre>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/indonesia/">Indonesia</a></li>
+      <li><a href="http://localhost:1313/tags/nestjs/">NestJS</a></li>
+      <li><a href="http://localhost:1313/tags/programming/">Programming</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Today I Learn - Farish</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
