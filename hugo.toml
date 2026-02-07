@@ -12,10 +12,6 @@ theme = ["PaperMod"]
     url = "https://github.com/akufarish"
 
 [[params.socialIcons]]
-    name = "instagram"
-    url = "https://www.instagram.com/akuparish"
-
-[[params.socialIcons]]
     name = "linkedin"
     url = "https://www.linkedin.com/in/farish-asqalani"
 
