@@ -1,6 +1,6 @@
 +++
 date = '2026-02-09T15:47:15+08:00'
-draft = false
+draft = true
 title = 'Normalisasi'
 tags = ['Indonesia', 'Kuliah', 'Basis Data']
 +++
