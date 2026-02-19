@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Kuliah on Today I Learn - Farish</title>
+    <link>http://localhost:1313/tags/kuliah/</link>
+    <description>Recent content in Kuliah on Today I Learn - Farish</description>
+    <generator>Hugo -- 0.154.5</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 09 Feb 2026 15:47:15 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/kuliah/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Normalisasi</title>
+      <link>http://localhost:1313/posts/kuliah/normalisasi/</link>
+      <pubDate>Mon, 09 Feb 2026 15:47:15 +0800</pubDate>
+      <guid>http://localhost:1313/posts/kuliah/normalisasi/</guid>
+      <description>&lt;p&gt;Normalisasi 1NF, 2NF, 3NF&lt;/p&gt;
+&lt;h3 id=&#34;bentuk-normal-ke-satu-1nf&#34;&gt;Bentuk Normal ke Satu (1NF)&lt;/h3&gt;
+&lt;p&gt;syarat:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Tidak ada set atribut yang berulang atau bernilai ganda&lt;/li&gt;
+&lt;li&gt;Telah ditentukanya primary key untuk tabel atau relasi.&lt;/li&gt;
+&lt;li&gt;Tiap atribut hanya memiliki satu pengertian.&lt;/li&gt;
+&lt;li&gt;Tiap atribut dapat memillki banyak nilai sebenarnya menggambarkan entitas atau relasi yang terpisah.&lt;/li&gt;
+&lt;/ol&gt;</description>
+    </item>
+  </channel>
+</rss>
