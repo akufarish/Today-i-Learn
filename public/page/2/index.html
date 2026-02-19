@@ -115,6 +115,23 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Nest JS Pipe
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Pipe adalah fitur yang ada pada NestJS yang memiliki dua fungsi, pertama bisa untuk melakukan transformasi/konversi request sebelum dikirim ke controller method, kedua berfungsi untuk melakukan validasi request.
+Salah satu cara menggunakan pipe, bisa dengan cara menambahkan pipe ke decorator @Query(), @Body() dan @Param().
+NestJS sendiri sudah menyediakan banyak pipe bawaan seperti ValidationPipe, ParseIntPipe, ParseFilePipe, ParseArrayPipe, dan lain-lain.
+user.controller.ts
+@Get(&#39;/:id&#39;) async getById(@Param(&#39;id&#39;, ParseIntPipe) id: number): Promise&lt;User | null&gt; { return await this.userRepository.getById(id); } Diatas adalah contoh penggunaan pipe untuk memastikan parameter id yang dikirim berupa number, karena walaupun variabel id diberi tipe number kita tetap dapat mengirim string, karena kode typescript ini nanti akan dikonversi ke javascript, yang dimana pada javascript tidak ada type safe, jika id tersebut kita kirimkan data string maka aplikasi tetap berjalan, kecuali kita melakukan komputasi yang menggunakan tipe data number.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-01-09 20:43:24 +0800 WITA'>January 9, 2026</span></footer>
+  <a class="entry-link" aria-label="post link to Nest JS Pipe" href="http://localhost:1313/posts/nestjs/nestjs-pipe/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Nest JS Exception Filter
     </h2>
   </header>

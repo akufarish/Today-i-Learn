@@ -47,6 +47,13 @@
 &lt;/ol&gt;</description>
     </item>
     <item>
+      <title>Belajar React (1)</title>
+      <link>http://localhost:1313/posts/react/belajar-react-1/</link>
+      <pubDate>Sun, 08 Feb 2026 21:49:07 +0800</pubDate>
+      <guid>http://localhost:1313/posts/react/belajar-react-1/</guid>
+      <description>&lt;p&gt;Apa itu ReactJS? ReactJS atau yang dulu dikenal dengan nama FaxJS adalah teknologi yang dikembangkan oleh tim meta di Facebook sekitar tahun 2010 dan bersifat close source. Lalu pada tahun 2013, barulah Facebook membuat ReactJS menjadi project open source. Saat ini ReactJS menjadi salah satu framework front end yang paling populer.&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>Nest Js File Upload</title>
       <link>http://localhost:1313/posts/nestjs/nest-js-file-upload/</link>
       <pubDate>Sun, 18 Jan 2026 20:53:02 +0800</pubDate>

@@ -160,6 +160,19 @@ Tidak ada set atribut yang berulang atau bernilai ganda Telah ditentukanya prima
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Belajar React (1)
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Apa itu ReactJS? ReactJS atau yang dulu dikenal dengan nama FaxJS adalah teknologi yang dikembangkan oleh tim meta di Facebook sekitar tahun 2010 dan bersifat close source. Lalu pada tahun 2013, barulah Facebook membuat ReactJS menjadi project open source. Saat ini ReactJS menjadi salah satu framework front end yang paling populer.
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-02-08 21:49:07 +0800 WITA'>February 8, 2026</span></footer>
+  <a class="entry-link" aria-label="post link to Belajar React (1)" href="http://localhost:1313/posts/react/belajar-react-1/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Nest Js File Upload
     </h2>
   </header>
@@ -279,23 +292,6 @@ Bisa diliat dari diagram diatas, memang mirip seperti diagram middleware, cuma y
   </div>
   <footer class="entry-footer"><span title='2026-01-10 20:49:01 +0800 WITA'>January 10, 2026</span></footer>
   <a class="entry-link" aria-label="post link to Nest JS Interceptor" href="http://localhost:1313/posts/nestjs/nestjs-interceptor/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Nest JS Pipe
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Pipe adalah fitur yang ada pada NestJS yang memiliki dua fungsi, pertama bisa untuk melakukan transformasi/konversi request sebelum dikirim ke controller method, kedua berfungsi untuk melakukan validasi request.
-Salah satu cara menggunakan pipe, bisa dengan cara menambahkan pipe ke decorator @Query(), @Body() dan @Param().
-NestJS sendiri sudah menyediakan banyak pipe bawaan seperti ValidationPipe, ParseIntPipe, ParseFilePipe, ParseArrayPipe, dan lain-lain.
-user.controller.ts
-@Get(&#39;/:id&#39;) async getById(@Param(&#39;id&#39;, ParseIntPipe) id: number): Promise&lt;User | null&gt; { return await this.userRepository.getById(id); } Diatas adalah contoh penggunaan pipe untuk memastikan parameter id yang dikirim berupa number, karena walaupun variabel id diberi tipe number kita tetap dapat mengirim string, karena kode typescript ini nanti akan dikonversi ke javascript, yang dimana pada javascript tidak ada type safe, jika id tersebut kita kirimkan data string maka aplikasi tetap berjalan, kecuali kita melakukan komputasi yang menggunakan tipe data number.
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2026-01-09 20:43:24 +0800 WITA'>January 9, 2026</span></footer>
-  <a class="entry-link" aria-label="post link to Nest JS Pipe" href="http://localhost:1313/posts/nestjs/nestjs-pipe/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

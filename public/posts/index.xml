@@ -13,7 +13,38 @@
       <link>http://localhost:1313/posts/kuliah/normalisasi/</link>
       <pubDate>Mon, 09 Feb 2026 15:47:15 +0800</pubDate>
       <guid>http://localhost:1313/posts/kuliah/normalisasi/</guid>
-      <description></description>
+      <description>&lt;p&gt;Normalisasi 1NF, 2NF, 3NF&lt;/p&gt;
+&lt;h2 id=&#34;bentuk-normal-ke-satu-1nf&#34;&gt;Bentuk Normal ke Satu (1NF)&lt;/h2&gt;
+&lt;p&gt;syarat:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Tidak ada set atribut yang berulang atau bernilai ganda&lt;/li&gt;
+&lt;li&gt;Telah ditentukanya primary key untuk tabel atau relasi.&lt;/li&gt;
+&lt;li&gt;Tiap atribut hanya memiliki satu pengertian.&lt;/li&gt;
+&lt;li&gt;Tiap atribut dapat memillki banyak nilai sebenarnya menggambarkan entitas atau relasi yang terpisah.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;NIM&lt;/th&gt;
+          &lt;th&gt;Nama&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;A0213213&lt;/td&gt;
+          &lt;td&gt;Andi&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;A0213213&lt;/td&gt;
+          &lt;td&gt;Andi&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;bentuk-normal-ke-dua-2nf&#34;&gt;Bentuk Normal ke Dua (2NF)&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Bentuk data telah memenuhi kriteria bentuk normal ke satu&lt;/li&gt;
+&lt;li&gt;Atribut bukan konci (non-key attribute) haruslah memiliki ketergantungan fungsional sepenuhnya pada primary key&lt;/li&gt;
+&lt;/ol&gt;</description>
     </item>
     <item>
       <title>Nest Js File Upload</title>
