@@ -6,45 +6,14 @@
     <description>Recent content in Posts on Today I Learn - Farish</description>
     <generator>Hugo -- 0.154.5</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 09 Feb 2026 15:47:15 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 08 Feb 2026 21:49:07 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Normalisasi</title>
-      <link>http://localhost:1313/posts/kuliah/normalisasi/</link>
-      <pubDate>Mon, 09 Feb 2026 15:47:15 +0800</pubDate>
-      <guid>http://localhost:1313/posts/kuliah/normalisasi/</guid>
-      <description>&lt;p&gt;Normalisasi 1NF, 2NF, 3NF&lt;/p&gt;
-&lt;h2 id=&#34;bentuk-normal-ke-satu-1nf&#34;&gt;Bentuk Normal ke Satu (1NF)&lt;/h2&gt;
-&lt;p&gt;syarat:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Tidak ada set atribut yang berulang atau bernilai ganda&lt;/li&gt;
-&lt;li&gt;Telah ditentukanya primary key untuk tabel atau relasi.&lt;/li&gt;
-&lt;li&gt;Tiap atribut hanya memiliki satu pengertian.&lt;/li&gt;
-&lt;li&gt;Tiap atribut dapat memillki banyak nilai sebenarnya menggambarkan entitas atau relasi yang terpisah.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;table&gt;
-  &lt;thead&gt;
-      &lt;tr&gt;
-          &lt;th&gt;NIM&lt;/th&gt;
-          &lt;th&gt;Nama&lt;/th&gt;
-      &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-      &lt;tr&gt;
-          &lt;td&gt;A0213213&lt;/td&gt;
-          &lt;td&gt;Andi&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;A0213213&lt;/td&gt;
-          &lt;td&gt;Andi&lt;/td&gt;
-      &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h2 id=&#34;bentuk-normal-ke-dua-2nf&#34;&gt;Bentuk Normal ke Dua (2NF)&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;Bentuk data telah memenuhi kriteria bentuk normal ke satu&lt;/li&gt;
-&lt;li&gt;Atribut bukan konci (non-key attribute) haruslah memiliki ketergantungan fungsional sepenuhnya pada primary key&lt;/li&gt;
-&lt;/ol&gt;</description>
+      <title>Belajar React (1)</title>
+      <link>http://localhost:1313/posts/react/belajar-react-1/</link>
+      <pubDate>Sun, 08 Feb 2026 21:49:07 +0800</pubDate>
+      <guid>http://localhost:1313/posts/react/belajar-react-1/</guid>
+      <description>&lt;p&gt;Yak setelah tidak ada update setelah 18 januari, akhirnya sekarang mencoba untuk aktif lagi. Sebelumnya sudah belajar NestJS yang merupakan salah satu framework back end untuk javascript, sekarang pindah ke front end. Sebenarnya banyak framework front end itu ada banyak seperti vue, svelte, dan lain-lain. Cuma aku milih react biar nanti setelah belajar react dasar bisa lanjut belajar tanstack start karena lagi populer-populer nya itu framework. Isi dari blog ini nantinya ada; apa itu ReactJS, cara membuat project react, component, dan jsx. &lt;strong&gt;Enjoy&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Nest Js File Upload</title>

@@ -7,7 +7,7 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Belajar React (1) | Today I Learn - Farish</title>
 <meta name="keywords" content="">
-<meta name="description" content="Apa itu ReactJS? ReactJS atau yang dulu dikenal dengan nama FaxJS adalah teknologi yang dikembangkan oleh tim meta di Facebook sekitar tahun 2010 dan bersifat close source. Lalu pada tahun 2013, barulah Facebook membuat ReactJS menjadi project open source. Saat ini ReactJS menjadi salah satu framework front end yang paling populer.">
+<meta name="description" content="Yak setelah tidak ada update setelah 18 januari, akhirnya sekarang mencoba untuk aktif lagi. Sebelumnya sudah belajar NestJS yang merupakan salah satu framework back end untuk javascript, sekarang pindah ke front end. Sebenarnya banyak framework front end itu ada banyak seperti vue, svelte, dan lain-lain. Cuma aku milih react biar nanti setelah belajar react dasar bisa lanjut belajar tanstack start karena lagi populer-populer nya itu framework. Isi dari blog ini nantinya ada; apa itu React JS, cara membuat project react, component, dan jsx. Enjoy">
 <meta name="author" content="">
 <link rel="canonical" href="http://localhost:1313/posts/react/belajar-react-1/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.ea5e07c191dc6fb48f5d3613026b37a0a7f49a80c19335b9044eebbcdb0bbcb6.css" integrity="sha256-6l4HwZHcb7SPXTYTAms3oKf0moDBkzW5BE7rvNsLvLY=" rel="preload stylesheet" as="style">
@@ -121,7 +121,98 @@
 
 </div>
   </header> 
-  <div class="post-content"><p>Apa itu ReactJS? ReactJS atau yang dulu dikenal dengan nama FaxJS adalah teknologi yang dikembangkan oleh tim meta di Facebook sekitar tahun 2010 dan bersifat close source. Lalu pada tahun 2013, barulah Facebook membuat ReactJS menjadi project open source. Saat ini ReactJS menjadi salah satu framework front end yang paling populer.</p>
+  <div class="post-content"><p>Yak setelah tidak ada update setelah 18 januari, akhirnya sekarang mencoba untuk aktif lagi. Sebelumnya sudah belajar NestJS yang merupakan salah satu framework back end untuk javascript, sekarang pindah ke front end. Sebenarnya banyak framework front end itu ada banyak seperti vue, svelte, dan lain-lain. Cuma aku milih react biar nanti setelah belajar react dasar bisa lanjut belajar tanstack start karena lagi populer-populer nya itu framework. Isi dari blog ini nantinya ada; apa itu React JS, cara membuat project react, component, dan jsx. <strong>Enjoy</strong></p>
+<h2 id="apa-itu-react-js">Apa Itu React JS?<a hidden class="anchor" aria-hidden="true" href="#apa-itu-react-js">#</a></h2>
+<p>Apa itu React JS? React JS atau yang dulu dikenal dengan nama FaxJS adalah teknologi yang dikembangkan oleh tim meta di Facebook sekitar tahun 2010 dan bersifat close source. Lalu pada tahun 2013, barulah Facebook membuat React JS menjadi project open source. Saat ini React JS menjadi salah satu framework front end yang paling populer. Karena popularitas React juga jadi banyak framework yang dibuat di atas react seperti NextJS, Tanstack Start, dan Remix.</p>
+<h2 id="component">Component<a hidden class="anchor" aria-hidden="true" href="#component">#</a></h2>
+<p>Saat belajar react atau framework front end lainnya, pastinya tidak asing dengan istilah component. Apa itu component? Component adalah kumpulan kode untuk membuat <em>user interface</em> secara independen, yang memungkinkan component ini bisa digunakan secara berulang-ulang. Di dalam component bisa terdapat satu atau lebih element HTML, kode JavaScript, dan CSS.</p>
+<p>Berikut adalah gambaran dari component itu sendiri</p>
+<h2></h2>
+<div class="img-container">
+<img alt="component-light-diagram" src="/images/react/component-diagram-light.png" class="img-light img">
+<img alt="component-dark-diagram" src="/images/react/component-diagram-dark.png" class="img-dark img">
+</div>
+<h2 id="membuat-project">Membuat Project<a hidden class="anchor" aria-hidden="true" href="#membuat-project">#</a></h2>
+<p>Ada banyak cara untuk membuat project react, bisa menggunakan vite, cli create-react-app, next js, dan react router.</p>
+<p>Membuat project menggunakan vite</p>
+<pre tabindex="0"><code class="language-terminaloutput" data-lang="terminaloutput"># membuat project react menggunakan javascript
+bun create vite@latest nama-project --template react
+# membuat project react menggunakan typescript
+bun create vite@latest nama-project --template react-ts
+</code></pre><p>Berikut adalah struktur folder project yang dibuat oleh vite.</p>
+<pre tabindex="0"><code>├── public/
+│   └── vite.svg
+├── src/
+│   ├── App.jsx
+│   ├── assets
+│   │   └── react.svg
+│   ├── components
+│   │   └── HelloWorld.jsx
+│   ├── index.css
+│   └── main.jsx
+├── bun.lock
+├── eslint.config.js
+├── .gitignore
+├── index.html
+├── package.json
+├── README.md
+└── vite.config.js
+</code></pre><h2 id="jsx">JSX<a hidden class="anchor" aria-hidden="true" href="#jsx">#</a></h2>
+<p>Setelah melihat struktur folder dari project react, ada file berformat .jsx yang merupakan react component. Tapi apa itu jsx? Jsx yang merupakan Javascript XML atau Javascript Extension adalah <em>syntax extension</em> yang memungkinkan kita dapat menulis element HTML didalam kode Javascript.</p>
+<p>Walaupun jsx memungkinkan kita dalam menulis element HTML didalam Javascript, tapi kita tidak dapat dengan mudah melakukan copy paste kode HTML ke jsx, karena jsx memiliki aturan yang tidak dimiliki oleh HTML. Contohnya adalah saat menggunakan tag element, wajib menggunakan tag penutup.</p>
+<p>Contoh tag img</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-jsx" data-lang="jsx"><span style="display:flex;"><span><span style="color:#75715e">// HTML
+</span></span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span> <span style="color:#a6e22e">alt</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// JSX
+</span></span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span> <span style="color:#a6e22e">alt</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span> /&gt;
+</span></span></code></pre></div><p>Dua aturan lain dari JSX ada component yang hanya boleh mengembalikan satu element, jika ingin mengembalikan beberapa element, bisa dibungkus dalam parent element.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-jsx" data-lang="jsx"><span style="display:flex;"><span><span style="color:#75715e">// Kode yang benar
+</span></span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">p</span>&gt;<span style="color:#a6e22e">Hello</span> <span style="color:#a6e22e">World</span>&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Kode yang salah
+</span></span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">p</span>&gt;<span style="color:#a6e22e">Hello</span> <span style="color:#a6e22e">World</span>&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">p</span>&gt;<span style="color:#a6e22e">Hello</span> <span style="color:#a6e22e">World</span>&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span></code></pre></div><p>Aturan terakhir adalah semua attribute menggunakan camelCase. Alasan kenapa jadi camelCase karena attribute element jsx akan dikonversi ke variabel javascript, oleh karena itu nama atribute harus mengikuti aturan pembuatan variabel javascript yang tidak bisa menggunakan - (strip).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-jsx" data-lang="jsx"><span style="display:flex;"><span><span style="color:#75715e">// Kode yang benar
+</span></span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">p</span> <span style="color:#a6e22e">onClick</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>&gt;<span style="color:#a6e22e">Hello</span> <span style="color:#a6e22e">World</span>&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Kode yang salah
+</span></span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">p</span> <span style="color:#a6e22e">onclick</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>&gt;<span style="color:#a6e22e">Hello</span> <span style="color:#a6e22e">World</span>&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span></code></pre></div><h2 id="hello-world">Hello World<a hidden class="anchor" aria-hidden="true" href="#hello-world">#</a></h2>
+<p>Seperti biasa, ketika belajar bahasa pemrograman, atau framework baru dimulai dari menampilkan teks hello world, dengan membuat component baru dengan nama HelloWorld. Catatan, biasa nya component akan dibuat menggunakan format file .jsx dengan nama sesuai dengan nama komponen nya, lalu didalam file .jsx kita harus membuat default function dengan nama component nya.</p>
+<p>Teks hello world disini juga diambil dari variabel javascript, untuk mengakses kode javascript di jsx, bisa menggunakan kurung kurawal.</p>
+<blockquote>
+<p>HelloWorld.tsx</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-jsx" data-lang="jsx"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">HelloWorld</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">helloWorld</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Hello World&#34;</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> (
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">h1</span>&gt;{<span style="color:#a6e22e">helloWorld</span>}&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">HelloWorld</span>;
+</span></span></code></pre></div><p>Sebenarnya cara untuk menampilkan component memerlukan instance dari <strong>React Root</strong>, cuma itu nanti dibahas di blog tersendiri. Untuk sekarang modifikasi file App.jsx</p>
+<blockquote>
+<p>App.tsx</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-jsx" data-lang="jsx"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">HelloWorld</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;./components/HelloWorld&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">App</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> (
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">HelloWorld</span> /&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">App</span>;
+</span></span></code></pre></div><p><img alt="Hello World" loading="lazy" src="/images/react/helloWorld.png"></p>
 
 
   </div>
