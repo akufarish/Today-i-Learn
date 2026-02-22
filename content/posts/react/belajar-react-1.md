@@ -2,6 +2,7 @@
 date = '2026-02-08T21:49:07+08:00'
 draft = false
 title = 'Belajar React (1)'
+tags = ['Indonesia', 'React', 'Programming']
 +++
 
 Yak setelah tidak ada update setelah 18 januari, akhirnya sekarang mencoba untuk aktif lagi. Sebelumnya sudah belajar NestJS yang merupakan salah satu framework back end untuk javascript, sekarang pindah ke front end. Sebenarnya banyak framework front end itu ada banyak seperti vue, svelte, dan lain-lain. Cuma aku milih react biar nanti setelah belajar react dasar bisa lanjut belajar tanstack start karena lagi populer-populer nya itu framework. Isi dari blog ini nantinya ada; apa itu React JS, cara membuat project react, component, dan jsx. **Enjoy**
