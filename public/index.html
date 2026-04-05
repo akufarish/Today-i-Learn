@@ -146,6 +146,21 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Perkenalan Go
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Go atau yang kadang disebut golang adalah bahasa pemrograman yang dibuat dan dikembangkan oleh Robbert Griesmer, Rob Pike, dan Ken Thompson di google pada tahun 2007, dan di rilis ke publik sebagai open soure pada tahun 2009.
+Saat ini go menjadi salah satu bahasa pemrograman populer untuk membuat backend api, dan juga merupakan bahasa pemrograman dari teknologi yang populer seperti docker, dan cockroach db.
+Kelebihan go Simplicity &amp; Efficiency. Go sendiri bisa dibilang bahasa pemrograman yang sederhana dan mudah dipelajari yang memungkinkan untuk tidak membutuhkan waktu yang lama untuk mempelajarinya, karena go tidak memiliki konsep oop. Memiliki Garbage Collector. Go memiliki garbage collector sehingga kita tidak perlu melakukan management memory secara manual sepert bahasa pemrograman C atau C&#43;&#43;. Concurrency. Go mendukung concurrency programming dengan adanya goroutine yang memungkinkan program untuk menangani beberapa tugas dalam waktu bersamaan. Proses Development Program Go Source code go akan dibuat menggunakan extensi file .go, yang nantinya source code tersebut akan di compile oleh go compiler untuk menghasilkan binary file untuk sistem operasi yang sedang digunakan saat ini, bisa compile untuk windows, mac os, atau linux.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-04-05 21:45:37 +0800 +08'>April 5, 2026</span>&nbsp;·&nbsp;<span>Farish</span></footer>
+  <a class="entry-link" aria-label="post link to Perkenalan Go" href="http://localhost:1313/posts/go/perkenalan-go/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Belajar React (1)
     </h2>
   </header>
@@ -278,23 +293,6 @@ Bisa diliat dari diagram diatas, memang mirip seperti diagram middleware, cuma y
   </div>
   <footer class="entry-footer"><span title='2026-01-10 20:49:01 +0800 +08'>January 10, 2026</span>&nbsp;·&nbsp;<span>Farish</span></footer>
   <a class="entry-link" aria-label="post link to Nest JS Interceptor" href="http://localhost:1313/posts/nestjs/nestjs-interceptor/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Nest JS Pipe
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Pipe adalah fitur yang ada pada NestJS yang memiliki dua fungsi, pertama bisa untuk melakukan transformasi/konversi request sebelum dikirim ke controller method, kedua berfungsi untuk melakukan validasi request.
-Salah satu cara menggunakan pipe, bisa dengan cara menambahkan pipe ke decorator @Query(), @Body() dan @Param().
-NestJS sendiri sudah menyediakan banyak pipe bawaan seperti ValidationPipe, ParseIntPipe, ParseFilePipe, ParseArrayPipe, dan lain-lain.
-user.controller.ts
-@Get(&#39;/:id&#39;) async getById(@Param(&#39;id&#39;, ParseIntPipe) id: number): Promise&lt;User | null&gt; { return await this.userRepository.getById(id); } Diatas adalah contoh penggunaan pipe untuk memastikan parameter id yang dikirim berupa number, karena walaupun variabel id diberi tipe number kita tetap dapat mengirim string, karena kode typescript ini nanti akan dikonversi ke javascript, yang dimana pada javascript tidak ada type safe, jika id tersebut kita kirimkan data string maka aplikasi tetap berjalan, kecuali kita melakukan komputasi yang menggunakan tipe data number.
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2026-01-09 20:43:24 +0800 +08'>January 9, 2026</span>&nbsp;·&nbsp;<span>Farish</span></footer>
-  <a class="entry-link" aria-label="post link to Nest JS Pipe" href="http://localhost:1313/posts/nestjs/nestjs-pipe/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

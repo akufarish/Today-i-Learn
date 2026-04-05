@@ -6,7 +6,23 @@
     <description>Recent content in Posts on Today I Learn - Farish</description>
     <generator>Hugo -- 0.159.2</generator>
     <language>en-us</language>
-    <lastBuildDate></lastBuildDate>
+    <lastBuildDate>Sun, 05 Apr 2026 21:45:37 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Perkenalan Go</title>
+      <link>http://localhost:1313/posts/go/perkenalan-go/</link>
+      <pubDate>Sun, 05 Apr 2026 21:45:37 +0800</pubDate>
+      <guid>http://localhost:1313/posts/go/perkenalan-go/</guid>
+      <description>&lt;p&gt;Go atau yang kadang disebut golang adalah bahasa pemrograman yang dibuat dan dikembangkan oleh Robbert Griesmer, Rob Pike, dan Ken Thompson di google pada tahun 2007, dan di rilis ke publik sebagai open soure pada tahun 2009.&lt;/p&gt;
+&lt;p&gt;Saat ini go menjadi salah satu bahasa pemrograman populer untuk membuat backend api, dan juga merupakan bahasa pemrograman dari teknologi yang populer seperti docker, dan cockroach db.&lt;/p&gt;
+&lt;h3 id=&#34;kelebihan-go&#34;&gt;&lt;strong&gt;Kelebihan go&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Simplicity &amp;amp; Efficiency&lt;/strong&gt;. Go sendiri bisa dibilang bahasa pemrograman yang sederhana dan mudah dipelajari yang memungkinkan untuk tidak membutuhkan waktu yang lama untuk mempelajarinya, karena go tidak memiliki konsep oop.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Memiliki Garbage Collector&lt;/strong&gt;. Go memiliki garbage collector sehingga kita tidak perlu melakukan management memory secara manual sepert bahasa pemrograman C atau C++.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Concurrency&lt;/strong&gt;. Go mendukung concurrency programming dengan adanya goroutine yang memungkinkan program untuk menangani beberapa tugas dalam waktu bersamaan.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;proses-development-program-go&#34;&gt;&lt;strong&gt;Proses Development Program Go&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;Source code go akan dibuat menggunakan extensi file .go, yang nantinya source code tersebut akan di compile oleh go compiler untuk menghasilkan binary file untuk sistem operasi yang sedang digunakan saat ini, bisa compile untuk windows, mac os, atau linux.&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>
