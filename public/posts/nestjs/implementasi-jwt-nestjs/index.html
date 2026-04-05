@@ -17,9 +17,9 @@ Karena pada praktek ini menggunakan database, maka perlu install library prisma.
 bun add @prisma/client @prisma/adapter-mariadb
 bun add -d prisma
 Bcrypt untuk melakukan enkripsi password, karena secara default NestJS tidak menyediakan fitur untuk enkripsi.">
-<meta name="author" content="">
+<meta name="author" content="Farish">
 <link rel="canonical" href="http://localhost:1313/posts/nestjs/implementasi-jwt-nestjs/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.ea5e07c191dc6fb48f5d3613026b37a0a7f49a80c19335b9044eebbcdb0bbcb6.css" integrity="sha256-6l4HwZHcb7SPXTYTAms3oKf0moDBkzW5BE7rvNsLvLY=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.41f95d00bf072436be226ffa583c39873a1caaca5b103bffe1915ebfb2c88289.css" integrity="sha256-QfldAL8HJDa&#43;Im/6WDw5hzocqspbEDv/4ZFev7LIgok=" rel="preload stylesheet" as="style">
 <link rel="icon" href="http://localhost:1313/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
@@ -126,7 +126,7 @@ Bcrypt untuk melakukan enkripsi password, karena secara default NestJS tidak men
     <h1 class="post-title entry-hint-parent">
       Implementasi JWT Pada NestJS
     </h1>
-    <div class="post-meta"><span title='2026-01-16 20:57:26 +0800 WITA'>January 16, 2026</span>
+    <div class="post-meta"><span title='2026-01-16 20:57:26 +0800 +08'>January 16, 2026</span>&nbsp;·&nbsp;<span>Farish</span>
 
 </div>
   </header> 
@@ -153,7 +153,7 @@ nest generate service prisma common
 </code></pre><blockquote>
 <p>prisma.service.ts</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span>, <span style="color:#a6e22e">OnModuleDestroy</span>, <span style="color:#a6e22e">OnModuleInit</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/common&#34;</span>;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span>, <span style="color:#a6e22e">OnModuleDestroy</span>, <span style="color:#a6e22e">OnModuleInit</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/common&#34;</span>;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">PrismaClient</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;../../../../generated/prisma/client&#34;</span>;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ConfigService</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/config&#34;</span>;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">PrismaMariaDb</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@prisma/adapter-mariadb&#34;</span>;
@@ -186,11 +186,11 @@ nest generate service prisma common
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>PrismaService extends <strong>PrismaClient</strong> untuk membuat singleton object dari prisma client yang nantinya bisa di-inject ke file lain.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PrismaService</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PrismaService</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">PrismaClient</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">OnModuleInit</span>, <span style="color:#a6e22e">OnModuleDestroy</span>
 </span></span></code></pre></div><p>Konfigurasi adapter mysql, dan disini untuk config mysql seperti host, port dan lain-lain berasal dari .env, maka dari itu perlu melakukan dependency injection ke <strong>ConfigService</strong> supaya bisa mengakses .env.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">configService</span>: <span style="color:#66d9ef">ConfigService</span>) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">configService</span>: <span style="color:#66d9ef">ConfigService</span>) {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">adapter</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">PrismaMariaDb</span>({
 </span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">host</span>: <span style="color:#66d9ef">configService.get</span>(<span style="color:#e6db74">&#34;HOST&#34;</span>),
 </span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">port</span>: <span style="color:#66d9ef">configService.get</span>(<span style="color:#e6db74">&#34;PORT&#34;</span>),
@@ -203,7 +203,7 @@ nest generate service prisma common
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">super</span>({ <span style="color:#a6e22e">adapter</span> });
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Immplementasi lifecycle NestJS dimana ketika semua module di load, maka koneksikan database, dan jika aplikasi di-shutdown maka putuskan koneksi database.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#a6e22e">onModuleInit() {</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#a6e22e">onModuleInit() {</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">info</span>(<span style="color:#e6db74">&#34;Connected prisma&#34;</span>);
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$connect</span>();
 </span></span><span style="display:flex;"><span>}
@@ -217,7 +217,7 @@ nest generate service prisma common
 </code></pre><blockquote>
 <p>jwt.service.ts</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/common&#34;</span>;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/common&#34;</span>;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ConfigService</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/config&#34;</span>;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">jose</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;jose&#34;</span>;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AuthUser</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;src/model/user-model&#34;</span>;
@@ -256,7 +256,7 @@ nest generate service prisma common
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Pada fungsi <strong>createToken</strong> menerima satu parameter yaitu payload yang bertipe object, dengan key value <strong>AuthUser</strong> yang berisi id, role, dan tipe value berupa string atau number. Untuk membuat JWT bisa membuat object dari class <strong>SignJWT</strong> yang memiliki constructor berupa object yang ingin dijadikan <strong>claims</strong>. Pada kode dibawah id, dan role yang dijadikan <strong>claims</strong>.</p>
 <p>Lalu dilanjut dengan chain method <strong>setProtectedHeader</strong> untuk konfigurasi header disini menggunakan algoritma HS256, set issuer (pembuat jwt) dan audience (penerima jwt), dan diakhiri dengan sign.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#a6e22e">createToken</span>(<span style="color:#a6e22e">payload</span>: <span style="color:#66d9ef">Record</span>&lt;<span style="color:#f92672">keyof</span> <span style="color:#a6e22e">AuthUser</span>, <span style="color:#a6e22e">string</span> <span style="color:#960050;background-color:#1e0010">|</span> <span style="color:#a6e22e">number</span>&gt;) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#a6e22e">createToken</span>(<span style="color:#a6e22e">payload</span>: <span style="color:#66d9ef">Record</span>&lt;<span style="color:#f92672">keyof</span> <span style="color:#a6e22e">AuthUser</span>, <span style="color:#a6e22e">string</span> <span style="color:#960050;background-color:#1e0010">|</span> <span style="color:#a6e22e">number</span>&gt;) {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">await</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">jose</span>.<span style="color:#a6e22e">SignJWT</span>(<span style="color:#a6e22e">payload</span>)
 </span></span><span style="display:flex;"><span>      .<span style="color:#a6e22e">setProtectedHeader</span>({ <span style="color:#a6e22e">alg</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;HS256&#39;</span> })
 </span></span><span style="display:flex;"><span>      .<span style="color:#a6e22e">setIssuedAt</span>()
@@ -265,7 +265,7 @@ nest generate service prisma common
 </span></span><span style="display:flex;"><span>      .<span style="color:#a6e22e">sign</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">secret</span>);
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Untuk fungsi validasi cukup menerima satu parameter yaitu token, dengan return any, yang berfungsi untuk validasi jwt. Di dalam fungsi ini memanggil fungsi jwtVerify yang menerima tiga parameter yaitu token jwt, secret, dan options.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#a6e22e">validate</span>(<span style="color:#a6e22e">token</span>: <span style="color:#66d9ef">string</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span>&lt;<span style="color:#f92672">any</span>&gt; {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#a6e22e">validate</span>(<span style="color:#a6e22e">token</span>: <span style="color:#66d9ef">string</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span>&lt;<span style="color:#f92672">any</span>&gt; {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">payload</span> } <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">jose</span>.<span style="color:#a6e22e">jwtVerify</span>(<span style="color:#a6e22e">token</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">secret</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">payload</span>;
@@ -277,7 +277,7 @@ nest generate service zod common
 </code></pre><blockquote>
 <p>validation.service.ts</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/common&#34;</span>;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/common&#34;</span>;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ZodType</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;zod&#34;</span>;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Injectable</span>()
@@ -293,7 +293,7 @@ nest generate service zod common
 </code></pre><blockquote>
 <p>validation.filter.ts</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ArgumentsHost</span>, <span style="color:#a6e22e">Catch</span>, <span style="color:#a6e22e">ExceptionFilter</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/common&#34;</span>;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ArgumentsHost</span>, <span style="color:#a6e22e">Catch</span>, <span style="color:#a6e22e">ExceptionFilter</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/common&#34;</span>;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ZodError</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;zod&#34;</span>;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Response</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;express&#34;</span>;
 </span></span><span style="display:flex;"><span>
@@ -320,7 +320,7 @@ nest generate service user
 <blockquote>
 <p>web-response.ts</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">WebResponse</span>&lt;<span style="color:#f92672">T</span>&gt; {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">WebResponse</span>&lt;<span style="color:#f92672">T</span>&gt; {
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">status</span>: <span style="color:#66d9ef">number</span>;
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">data</span>: <span style="color:#66d9ef">T</span>;
 </span></span><span style="display:flex;"><span>}
@@ -328,7 +328,7 @@ nest generate service user
 <blockquote>
 <p>user-model.ts</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">RegisterRequest</span> {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">RegisterRequest</span> {
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>;
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">email</span>: <span style="color:#66d9ef">string</span>;
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">password</span>: <span style="color:#66d9ef">string</span>;
@@ -342,7 +342,7 @@ nest generate service user
 <blockquote>
 <p>user.controller.ts</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> {
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Body</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Controller</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Get</span>,
@@ -371,7 +371,7 @@ nest generate service user
 </span></span><span style="display:flex;"><span>  )<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span>&lt;<span style="color:#f92672">WebResponse</span>&lt;<span style="color:#f92672">RegisterResponse</span>&gt;&gt; {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">usersService</span>.<span style="color:#a6e22e">register</span>(<span style="color:#a6e22e">payload</span>);
 </span></span><span style="display:flex;"><span>  }
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">@Post</span>(<span style="color:#e6db74">&#39;/register&#39;</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">@Post</span>(<span style="color:#e6db74">&#39;/register&#39;</span>)
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">@HttpCode</span>(<span style="color:#a6e22e">HttpStatus</span>.<span style="color:#a6e22e">CREATED</span>)
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#a6e22e">register</span>(
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">@Body</span>() <span style="color:#a6e22e">payload</span>: <span style="color:#66d9ef">RegisterRequest</span>,
@@ -382,7 +382,7 @@ nest generate service user
 <blockquote>
 <p>user.service.ts</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">HttpException</span>, <span style="color:#a6e22e">HttpStatus</span>, <span style="color:#a6e22e">Injectable</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/common&#34;</span>;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">HttpException</span>, <span style="color:#a6e22e">HttpStatus</span>, <span style="color:#a6e22e">Injectable</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/common&#34;</span>;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">RegisterRequest</span>, <span style="color:#a6e22e">RegisterResponse</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;../model/user-model&#34;</span>;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">WebResponse</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;../model/web-response&#34;</span>;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">PrismaService</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;../common/prisma/prisma/prisma.service&#34;</span>;
@@ -431,12 +431,12 @@ nest generate service user
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>User service melakukan dependency injection pada prisma service untuk mengakses prisma client yang memungkinkan aplikasi dapat berkomunikasi dengan database, dan validation service untuk validasi request.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">constructor</span>(
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">constructor</span>(
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">prismaService</span>: <span style="color:#66d9ef">PrismaService</span>,
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">validationService</span>: <span style="color:#66d9ef">ValidationService</span>
 </span></span><span style="display:flex;"><span>) {}
 </span></span></code></pre></div><p>Fungsi register menerima satu parameter bertipe RegisterRequest, dengan balikan WebResponse dengan tipe RegisterResponse.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#a6e22e">register</span>(
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#a6e22e">register</span>(
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">payload</span>: <span style="color:#66d9ef">RegisterRequest</span>,
 </span></span><span style="display:flex;"><span>  )<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span>&lt;<span style="color:#f92672">WebResponse</span>&lt;<span style="color:#f92672">RegisterResponse</span>&gt;&gt; {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">schema</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">z</span>.<span style="color:#66d9ef">object</span>({
@@ -469,7 +469,7 @@ nest generate service user
 </span></span><span style="display:flex;"><span>    };
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Pada fungsi register, hal pertama yang dilakukan adalah membuat schema untuk validasi menggunakan zod object.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">schema</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">z</span>.<span style="color:#66d9ef">object</span>({
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">schema</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">z</span>.<span style="color:#66d9ef">object</span>({
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">email</span>: <span style="color:#66d9ef">z.email</span>().<span style="color:#a6e22e">nonempty</span>().<span style="color:#a6e22e">min</span>(<span style="color:#ae81ff">5</span>),
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">z.string</span>().<span style="color:#a6e22e">nonempty</span>().<span style="color:#a6e22e">min</span>(<span style="color:#ae81ff">5</span>),
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">password</span>: <span style="color:#66d9ef">z.string</span>().<span style="color:#a6e22e">nonempty</span>().<span style="color:#a6e22e">min</span>(<span style="color:#ae81ff">5</span>),
@@ -544,7 +544,7 @@ nest generate service user
   </tbody>
 </table>
 <p>Lakukan pengecekan email ke database, jika email dari request sudah terdaftar di-database, maka return http exception dengan pesan user already registered.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">isUserAlreadyExist</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">prismaService</span>.<span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">findFirst</span>({
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">isUserAlreadyExist</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">prismaService</span>.<span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">findFirst</span>({
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">where</span><span style="color:#f92672">:</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">email</span>: <span style="color:#66d9ef">payload.email</span>,
 </span></span><span style="display:flex;"><span>  },
@@ -554,7 +554,7 @@ nest generate service user
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">HttpException</span>(<span style="color:#e6db74">&#34;User already registered&#34;</span>, <span style="color:#a6e22e">HttpStatus</span>.<span style="color:#a6e22e">CONFLICT</span>);
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Buat data user dan return status code createed (201), dengan data user.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">prismaService</span>.<span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">create</span>({
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">prismaService</span>.<span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">create</span>({
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">data</span>: <span style="color:#66d9ef">payload</span>,
 </span></span><span style="display:flex;"><span>});
 </span></span><span style="display:flex;"><span>
@@ -565,13 +565,13 @@ nest generate service user
 </span></span></code></pre></div><p>Pengujian jika input kosong</p>
 <div class="alert-container error"><strong>POST</strong> /api/v1/register</div>
 <p>Request Body:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;email&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;password&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Response Body:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;status&#34;</span>: <span style="color:#ae81ff">400</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;message&#34;</span>: [
 </span></span><span style="display:flex;"><span>    {
@@ -635,13 +635,13 @@ nest generate service user
 </span></span></code></pre></div><p>Pengujian berhasil registrasi</p>
 <div class="alert-container success"><strong>POST</strong> /api/v1/register</div>
 <p>Request Body:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;email&#34;</span>: <span style="color:#e6db74">&#34;test@gmail.com&#34;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;password&#34;</span>: <span style="color:#e6db74">&#34;testing&#34;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;testing&#34;</span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Response Body:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;status&#34;</span>: <span style="color:#ae81ff">201</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;data&#34;</span>: {
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">3</span>,
@@ -654,7 +654,7 @@ nest generate service user
 <blockquote>
 <p>user-model.ts</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">LoginRequest</span> {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">LoginRequest</span> {
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">email</span>: <span style="color:#66d9ef">string</span>;
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">password</span>: <span style="color:#66d9ef">string</span>;
 </span></span><span style="display:flex;"><span>}
@@ -668,7 +668,7 @@ nest generate service user
 <blockquote>
 <p>user.service.ts</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#a6e22e">login</span>(<span style="color:#a6e22e">payload</span>: <span style="color:#66d9ef">LoginRequest</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span>&lt;<span style="color:#f92672">WebResponse</span>&lt;<span style="color:#f92672">LoginResponse</span>&gt;&gt; {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#a6e22e">login</span>(<span style="color:#a6e22e">payload</span>: <span style="color:#66d9ef">LoginRequest</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span>&lt;<span style="color:#f92672">WebResponse</span>&lt;<span style="color:#f92672">LoginResponse</span>&gt;&gt; {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">schema</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">z</span>.<span style="color:#66d9ef">object</span>({
 </span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">email</span>: <span style="color:#66d9ef">z.email</span>().<span style="color:#a6e22e">nonempty</span>(),
 </span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">password</span>: <span style="color:#66d9ef">z.string</span>().<span style="color:#a6e22e">nonempty</span>(),
@@ -712,7 +712,7 @@ nest generate service user
 </span></span><span style="display:flex;"><span>    };
 </span></span><span style="display:flex;"><span>  }
 </span></span></code></pre></div><p>Sama seperti pada fungsi register, hal pertama yang dilakukan adalah membuat schema zod untuk validasi request yang dikirim ke handler login.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">schema</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">z</span>.<span style="color:#66d9ef">object</span>({
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">schema</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">z</span>.<span style="color:#66d9ef">object</span>({
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">email</span>: <span style="color:#66d9ef">z.email</span>().<span style="color:#a6e22e">nonempty</span>(),
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">password</span>: <span style="color:#66d9ef">z.string</span>().<span style="color:#a6e22e">nonempty</span>(),
 </span></span><span style="display:flex;"><span>});
@@ -756,29 +756,29 @@ nest generate service user
   </tbody>
 </table>
 <p>Lakukan query ke database untuk mencari data user, berdasarkan email dari request.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">prismaService</span>.<span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">findFirst</span>({
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">prismaService</span>.<span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">findFirst</span>({
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">where</span><span style="color:#f92672">:</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">email</span>: <span style="color:#66d9ef">payload.email</span>,
 </span></span><span style="display:flex;"><span>  },
 </span></span><span style="display:flex;"><span>});
 </span></span></code></pre></div><p>Jika data user tidak ditemukan, maka return error dengan pesan &ldquo;User not found&rdquo;, dengan http status code 404 not found.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">user</span>) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">user</span>) {
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">HttpException</span>(<span style="color:#e6db74">&#34;User not found&#34;</span>, <span style="color:#a6e22e">HttpStatus</span>.<span style="color:#a6e22e">NOT_FOUND</span>);
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Validasi password yang dihash menggunakan fungsi compare dari bcrypt yang menerima dua parameter yaitu password dari request, dan password yang di-hash, yang nantinya akan return boolean.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">isPasswordValid</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">bcrpt</span>.<span style="color:#a6e22e">compare</span>(<span style="color:#a6e22e">payload</span>.<span style="color:#a6e22e">password</span>, <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">password</span>);
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">isPasswordValid</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">bcrpt</span>.<span style="color:#a6e22e">compare</span>(<span style="color:#a6e22e">payload</span>.<span style="color:#a6e22e">password</span>, <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">password</span>);
 </span></span></code></pre></div><p>Jika password tidak valid, maka tampilkan pesan &ldquo;Incorrect Password&rdquo; dengan http code 401 bad request.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">isPasswordValid</span>) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">isPasswordValid</span>) {
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">HttpException</span>(<span style="color:#e6db74">&#34;Incorrect Password&#34;</span>, <span style="color:#a6e22e">HttpStatus</span>.<span style="color:#a6e22e">BAD_REQUEST</span>);
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Panggil fungsi createToken dari jwt service untuk membuat jwt, dengan id user, dan role user sebagai claims.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">loginResponse</span>: <span style="color:#66d9ef">LoginResponse</span> <span style="color:#f92672">=</span> {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">loginResponse</span>: <span style="color:#66d9ef">LoginResponse</span> <span style="color:#f92672">=</span> {
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">email</span>: <span style="color:#66d9ef">user.email</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">user.name</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">token</span>: <span style="color:#66d9ef">jwt</span>,
 </span></span><span style="display:flex;"><span>};
 </span></span></code></pre></div><p>Kembalikan LoginResponse dengan http status code 200, jika request sukses.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">return</span> {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">return</span> {
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">data</span>: <span style="color:#66d9ef">loginResponse</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">status</span>: <span style="color:#66d9ef">HttpStatus.OK</span>,
 </span></span><span style="display:flex;"><span>};
@@ -787,7 +787,7 @@ nest generate service user
 <blockquote>
 <p>user.controller.ts</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">@Post</span>(<span style="color:#e6db74">&#39;/login&#39;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">@Post</span>(<span style="color:#e6db74">&#39;/login&#39;</span>)
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">@HttpCode</span>(<span style="color:#a6e22e">HttpStatus</span>.<span style="color:#a6e22e">OK</span>)
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#a6e22e">login</span>(
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">@Body</span>() <span style="color:#a6e22e">payload</span>: <span style="color:#66d9ef">LoginRequest</span>,
@@ -797,12 +797,12 @@ nest generate service user
 </span></span></code></pre></div><p>Pengujian login berhasil</p>
 <div class="alert-container success"><strong>POST</strong> /api/v1/login</div>
 <p>Request Body:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;email&#34;</span>: <span style="color:#e6db74">&#34;test@gmail.com&#34;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;password&#34;</span>: <span style="color:#e6db74">&#34;testing&#34;</span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Response Body:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;data&#34;</span>: {
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;email&#34;</span>: <span style="color:#e6db74">&#34;testa@gmail.com&#34;</span>,
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;testing&#34;</span>,
@@ -813,24 +813,24 @@ nest generate service user
 </span></span></code></pre></div><p>Pengujian login akun tidak terdaftar</p>
 <div class="alert-container error"><strong>POST</strong> /api/v1/login</div>
 <p>Request Body:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;email&#34;</span>: <span style="color:#e6db74">&#34;tidakadaa@gmail.com&#34;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;password&#34;</span>: <span style="color:#e6db74">&#34;testing&#34;</span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Response Body:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;statusCode&#34;</span>: <span style="color:#ae81ff">404</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;message&#34;</span>: <span style="color:#e6db74">&#34;User not found&#34;</span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Pengujian login akun password tidak cocok</p>
 <div class="alert-container error"><strong>POST</strong> /api/v1/login</div>
 <p>Request Body:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;email&#34;</span>: <span style="color:#e6db74">&#34;testa@gmail.com&#34;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;password&#34;</span>: <span style="color:#e6db74">&#34;salah&#34;</span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Response Body:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;statusCode&#34;</span>: <span style="color:#ae81ff">400</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;message&#34;</span>: <span style="color:#e6db74">&#34;Incorrect Password&#34;</span>
 </span></span><span style="display:flex;"><span>}
@@ -842,7 +842,7 @@ nest generate service user
 <blockquote>
 <p>auth.middleware.ts</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> {
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">HttpException</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">HttpStatus</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Injectable</span>,
@@ -884,16 +884,16 @@ nest generate service user
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Karena token yang dikirim itu memiliki teks <strong><code>Bearer</code></strong> didepan, maka saat membaca nilai yang dikirim pada header authorization, harus dipisah terlebih dahulu. Untuk memisah string pada javascript, bisa menggunakan method <strong>split()</strong>, disini menggunakan <strong>split(&rsquo; &lsquo;)</strong> yang berarti memisah string berdasarkan spasi, yang nantinya untuk bisa diakses dengan memanggil urutannya menggunakan indeks array. Maka dari itu, disini token mengambil indeks ke 1 karena indeks 1 mengambil data token saja, dan bukan <code>bearer</code>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">header</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">req</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">headers</span>.<span style="color:#a6e22e">authorization</span>;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">header</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">req</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">headers</span>.<span style="color:#a6e22e">authorization</span>;
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
 </span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">token</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">header</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#34; &#34;</span>)[<span style="color:#ae81ff">1</span>];
 </span></span></code></pre></div><p>Lakukan pengecekan apakah token itu diinclude didalam request atau tidak, jika tidak ada maka tampilkan pesan Token missing.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">token</span>) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">token</span>) {
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">HttpException</span>(<span style="color:#e6db74">&#34;Token missing&#34;</span>, <span style="color:#a6e22e">HttpStatus</span>.<span style="color:#a6e22e">UNAUTHORIZED</span>);
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Lanjut ke verifikasi token JWT dengan memanggil method validate dari jwt service, lalu buat data object dengan tipe <code>AuthUser</code> yang berisi id, dan role dari user yang sedang login. Lalu masukkan data user tadi ke dalam objek request, supaya data-nya dapat diakses oleh custom decorator nanti.</p>
 <p>Jika token jwt yang dikirimkan tidak valid, maka tampilkan pesan <strong><code>Unauthorized</code></strong>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">try</span> {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">try</span> {
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">validate</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">jwtService</span>.<span style="color:#a6e22e">validate</span>(<span style="color:#a6e22e">token</span> <span style="color:#66d9ef">as</span> <span style="color:#66d9ef">string</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user</span>: <span style="color:#66d9ef">AuthUser</span> <span style="color:#f92672">=</span> {
@@ -914,7 +914,7 @@ nest generate service user
 </code></pre><blockquote>
 <p>auth.decorator.ts</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">createParamDecorator</span>, <span style="color:#a6e22e">ExecutionContext</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/common&#34;</span>;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">createParamDecorator</span>, <span style="color:#a6e22e">ExecutionContext</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/common&#34;</span>;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">User</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;../../../generated/prisma/client&#34;</span>;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Auth</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createParamDecorator</span>(
@@ -926,14 +926,14 @@ nest generate service user
 </span></span><span style="display:flex;"><span>  },
 </span></span><span style="display:flex;"><span>);
 </span></span></code></pre></div><p>DIdalam decorator auth, ambil request dari handler yang dituju, dan balikkan objek user dari request.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">request</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">switchToHttp</span>().<span style="color:#a6e22e">getRequest</span>();
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">request</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">switchToHttp</span>().<span style="color:#a6e22e">getRequest</span>();
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> <span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">user</span>;
 </span></span></code></pre></div><p>Setelah selesai membuat middleware dan custom decorator untuk mengambil data user yang sedang login, sekarang tinggal menggunakan middleware dan decorator auth yang baru saja dibuat.</p>
 <p>Untuk menggunakan middleware, pada application module implement <strong>NestModule</strong> untuk mengakses method <strong>configure</strong> untuk menambahkan middleware. Pada praktek ini gunakan middleware auth untuk routes /api/v1/auth/*, dan request method nya semua method.</p>
 <blockquote>
 <p>app.module.ts</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppModule</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">NestModule</span> {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppModule</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">NestModule</span> {
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">configure</span>(<span style="color:#a6e22e">consumer</span>: <span style="color:#66d9ef">MiddlewareConsumer</span>) {
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">consumer</span>.<span style="color:#a6e22e">apply</span>(<span style="color:#a6e22e">AuthMiddleware</span>).<span style="color:#a6e22e">forRoutes</span>({
 </span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;/api/v1/auth/*&#34;</span>,
@@ -947,13 +947,13 @@ nest generate service user
 <blockquote>
 <p>role.decorator.ts</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Reflector</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/core&#34;</span>;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Reflector</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/core&#34;</span>;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Role</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Reflector</span>.<span style="color:#a6e22e">createDecorator</span>&lt;<span style="color:#f92672">string</span><span style="color:#960050;background-color:#1e0010">[]</span>&gt;();
 </span></span></code></pre></div><blockquote>
 <p>role.guard.ts</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">CanActivate</span>, <span style="color:#a6e22e">ExecutionContext</span>, <span style="color:#a6e22e">Injectable</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/common&#34;</span>;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">CanActivate</span>, <span style="color:#a6e22e">ExecutionContext</span>, <span style="color:#a6e22e">Injectable</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/common&#34;</span>;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Reflector</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/core&#34;</span>;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Observable</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;rxjs&#34;</span>;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Role</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./role.decorator&#34;</span>;
@@ -977,19 +977,19 @@ nest generate service user
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Pertama-tama ambil data string array dari reflector menggunakan reflector yang sudah di-dependency injection pada constructor dengan method <strong>get()</strong> yang menerima dua parameter, yaitu reflector-nya disini berupa Role, dan handler dari routes yang dituju. Jika data role tidak ada maka return true, yang berarti handler boleh diakses.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">roles</span>: <span style="color:#66d9ef">string</span>[] <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">reflector</span>.<span style="color:#66d9ef">get</span>(<span style="color:#a6e22e">Role</span>, <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">getHandler</span>());
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">roles</span>: <span style="color:#66d9ef">string</span>[] <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">reflector</span>.<span style="color:#66d9ef">get</span>(<span style="color:#a6e22e">Role</span>, <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">getHandler</span>());
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">roles</span>) {
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Ambil data user dari object request, lalu cek apakah role user dari objek user ada atau tidak didalam array string dari reflector.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">switchToHttp</span>().<span style="color:#a6e22e">getRequest</span>().<span style="color:#a6e22e">user</span>;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">switchToHttp</span>().<span style="color:#a6e22e">getRequest</span>().<span style="color:#a6e22e">user</span>;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> <span style="color:#a6e22e">roles</span>.<span style="color:#a6e22e">indexOf</span>(<span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">role</span>) <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
 </span></span></code></pre></div><p>Setelah selesai semua, sekarang tinggal membuat route yang memerlukan authorization, yang menggunakan guard, reflector dan custom decorator yang dibuat tadi, dengan routes harus <code>/auth/*</code>.</p>
 <blockquote>
 <p>user.controller.ts</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">@Get</span>(<span style="color:#e6db74">&#39;/auth/user&#39;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">@Get</span>(<span style="color:#e6db74">&#39;/auth/user&#39;</span>)
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">@UseGuards</span>(<span style="color:#a6e22e">RoleGuard</span>)
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Role</span>([<span style="color:#e6db74">&#39;admin&#39;</span>, <span style="color:#e6db74">&#39;user&#39;</span>])
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">auth</span>(<span style="color:#66d9ef">@Auth</span>() <span style="color:#a6e22e">user</span>: <span style="color:#66d9ef">AuthUser</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Record</span>&lt;<span style="color:#f92672">keyof</span> <span style="color:#a6e22e">AuthUser</span>, <span style="color:#a6e22e">string</span> <span style="color:#960050;background-color:#1e0010">|</span> <span style="color:#a6e22e">number</span>&gt; {
@@ -1013,33 +1013,33 @@ nest generate service user
 <p>Pengujian token kosong</p>
 <div class="alert-container error"><strong>GET</strong> /api/v1/auth/admin</div>
 <p>Request Header:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Authorization&#34;</span>: <span style="color:#e6db74">&#34;Bearer&#34;</span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Response Body:3</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;statusCode&#34;</span>: <span style="color:#ae81ff">401</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;message&#34;</span>: <span style="color:#e6db74">&#34;Token missing&#34;</span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Pengujian token invalid</p>
 <div class="alert-container error"><strong>GET</strong> /api/v1/auth/admin</div>
 <p>Request Header:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Authorization&#34;</span>: <span style="color:#e6db74">&#34;Bearer asdasdasdasdasdasd12312&#34;</span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Response Body:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;statusCode&#34;</span>: <span style="color:#ae81ff">401</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;message&#34;</span>: <span style="color:#e6db74">&#34;Unauthorized&#34;</span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Pengujian token valid</p>
 <div class="alert-container error"><strong>GET</strong> /api/v1/auth/admin</div>
 <p>Request Header:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Authorization&#34;</span>: <span style="color:#e6db74">&#34;Bearer {token}&#34;</span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Response Body:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">1</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;admin&#34;</span>
 </span></span><span style="display:flex;"><span>}

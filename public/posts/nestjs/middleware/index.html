@@ -14,9 +14,9 @@ Berikut adalah diagram sederhana middleware.
 
 
 Cara kerja middleware itu sendiri adalah setiap request yang dikirim oleh client akan melewati middleware terlebih dahulu, yang dimana pada middleware ini request tersebut dapat diperiksa atau dimodifikasi tergantung dari logic middleware. Jika request dianggap valid maka middleware akan meneruskannya ke controller, jika tidak, middleware dapat langsung menghentikan proses dan mengirim respons kembali ke client.">
-<meta name="author" content="">
+<meta name="author" content="Farish">
 <link rel="canonical" href="http://localhost:1313/posts/nestjs/middleware/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.ea5e07c191dc6fb48f5d3613026b37a0a7f49a80c19335b9044eebbcdb0bbcb6.css" integrity="sha256-6l4HwZHcb7SPXTYTAms3oKf0moDBkzW5BE7rvNsLvLY=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.41f95d00bf072436be226ffa583c39873a1caaca5b103bffe1915ebfb2c88289.css" integrity="sha256-QfldAL8HJDa&#43;Im/6WDw5hzocqspbEDv/4ZFev7LIgok=" rel="preload stylesheet" as="style">
 <link rel="icon" href="http://localhost:1313/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
@@ -123,7 +123,7 @@ Cara kerja middleware itu sendiri adalah setiap request yang dikirim oleh client
     <h1 class="post-title entry-hint-parent">
       Nest JS Middleware
     </h1>
-    <div class="post-meta"><span title='2026-01-07 15:23:42 +0800 WITA'>January 7, 2026</span>
+    <div class="post-meta"><span title='2026-01-07 15:23:42 +0800 +08'>January 7, 2026</span>&nbsp;·&nbsp;<span>Farish</span>
 
 </div>
   </header> 
@@ -139,7 +139,7 @@ Cara kerja middleware itu sendiri adalah setiap request yang dikirim oleh client
 </code></pre><blockquote>
 <p>auth.middleware.ts</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Inject</span>, <span style="color:#a6e22e">Injectable</span>, <span style="color:#a6e22e">NestMiddleware</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@nestjs/common&#39;</span>;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Inject</span>, <span style="color:#a6e22e">Injectable</span>, <span style="color:#a6e22e">NestMiddleware</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@nestjs/common&#39;</span>;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Request</span>, <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Response</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;express&#39;</span>;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">WINSTON_MODULE_PROVIDER</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;nest-winston&#39;</span>;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Logger</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;winston&#39;</span>;
@@ -171,7 +171,7 @@ Cara kerja middleware itu sendiri adalah setiap request yang dikirim oleh client
 <blockquote>
 <p>app.module.ts</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> {
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">MiddlewareConsumer</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Module</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">NestModule</span>,
@@ -200,22 +200,22 @@ Cara kerja middleware itu sendiri adalah setiap request yang dikirim oleh client
 <p>GET /api/users/auth</p>
 </blockquote>
 <p>Request Header:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>	<span style="color:#f92672">&#34;Authorization&#34;</span>: <span style="color:#e6db74">&#34;Bearer {token}&#34;</span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Response Body:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;message&#34;</span>: <span style="color:#e6db74">&#34;Unauthorized&#34;</span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><blockquote>
 <p>GET /api/users/auth</p>
 </blockquote>
 <p>Request Header:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>	<span style="color:#f92672">&#34;Authorization&#34;</span>: <span style="color:#e6db74">&#34;Bearer 123&#34;</span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Response Body:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;message&#34;</span>: <span style="color:#e6db74">&#34;login&#34;</span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div>

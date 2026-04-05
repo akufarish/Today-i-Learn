@@ -8,9 +8,9 @@
 <title>NestJS | Today I Learn - Farish</title>
 <meta name="keywords" content="">
 <meta name="description" content="">
-<meta name="author" content="">
+<meta name="author" content="Farish">
 <link rel="canonical" href="http://localhost:1313/tags/nestjs/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.ea5e07c191dc6fb48f5d3613026b37a0a7f49a80c19335b9044eebbcdb0bbcb6.css" integrity="sha256-6l4HwZHcb7SPXTYTAms3oKf0moDBkzW5BE7rvNsLvLY=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.41f95d00bf072436be226ffa583c39873a1caaca5b103bffe1915ebfb2c88289.css" integrity="sha256-QfldAL8HJDa&#43;Im/6WDw5hzocqspbEDv/4ZFev7LIgok=" rel="preload stylesheet" as="style">
 <link rel="icon" href="http://localhost:1313/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
@@ -128,7 +128,7 @@ Karena nest secara default menggunakan typescript, alangkah baiknya untuk menamb
 bun add -d @types/multer Setelah menginstall dependency diatas, maka kita bisa memberikan tipe Express.Multer.File ke variabel yang menyimpan file yang akan diupload nantinya.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2026-01-18 20:53:02 +0800 WITA'>January 18, 2026</span></footer>
+  <footer class="entry-footer"><span title='2026-01-18 20:53:02 +0800 +08'>January 18, 2026</span>&nbsp;·&nbsp;<span>Farish</span></footer>
   <a class="entry-link" aria-label="post link to Nest Js File Upload" href="http://localhost:1313/posts/nestjs/nest-js-file-upload/"></a>
 </article>
 
@@ -142,10 +142,10 @@ bun add -d @types/multer Setelah menginstall dependency diatas, maka kita bisa m
 Setup Project Membuat project baru dengan command:
 nest new nestjs-jwt Masuk ke folder project.
 cd nestjs-jwt Karena pada praktek ini menggunakan database, maka perlu install library prisma.
-bun add @prisma/client @prisma/adapter-mariadb bun add -d prisma Bcrypt untuk melakukan enkripsi password, karena secara default NestJS tidak menyediakan fitur untuk enkripsi.
+bun add @prisma/client @prisma/adapter-mariadbbun add -d prisma Bcrypt untuk melakukan enkripsi password, karena secara default NestJS tidak menyediakan fitur untuk enkripsi.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2026-01-16 20:57:26 +0800 WITA'>January 16, 2026</span></footer>
+  <footer class="entry-footer"><span title='2026-01-16 20:57:26 +0800 +08'>January 16, 2026</span>&nbsp;·&nbsp;<span>Farish</span></footer>
   <a class="entry-link" aria-label="post link to Implementasi JWT Pada NestJS" href="http://localhost:1313/posts/nestjs/implementasi-jwt-nestjs/"></a>
 </article>
 
@@ -160,7 +160,7 @@ Sederhananya JWT merupakan web token yang berisi object json yang digunakan untu
 Kenapa kita perlu menggunakan jwt? Karena jwt itu stateless yang berarti server tidak menyimpan token di database. Kenapa demikian? Karena salah satu permasalahan jika menyimpan token di database, adalah server akan terbebani, karena setiap kali kita melakukan proses request yang memerlukan authentication maupun authorization, dia akan terus melakukan query terus-menerus ke database.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2026-01-15 20:59:14 +0800 WITA'>January 15, 2026</span></footer>
+  <footer class="entry-footer"><span title='2026-01-15 20:59:14 +0800 +08'>January 15, 2026</span>&nbsp;·&nbsp;<span>Farish</span></footer>
   <a class="entry-link" aria-label="post link to JWT" href="http://localhost:1313/posts/nestjs/nestjs-jwt/"></a>
 </article>
 
@@ -175,7 +175,7 @@ role.guard.ts
 @Get(&#39;/auth/user&#39;) @UseGuards(new RoleGuard([&#39;user&#39;, &#39;admin&#39;])) auth(@Auth() user: User): Record&lt;string, string&gt; { return { email: user.email, username: user.name, }; } Kode diatas akan menimbulkan masalah, karena RoleGuard bukan merupakan singleton, yang berarti setap kali kita menambahkan RoleGuard pada handler itu membuat object baru yang berarti akan memakan banyak memory. Nah kita bisa membuat RoleGuard menjadi singleton dengan bantuan Reflector.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2026-01-14 20:19:38 +0800 WITA'>January 14, 2026</span></footer>
+  <footer class="entry-footer"><span title='2026-01-14 20:19:38 +0800 +08'>January 14, 2026</span>&nbsp;·&nbsp;<span>Farish</span></footer>
   <a class="entry-link" aria-label="post link to Mencoba Nest Js (6)" href="http://localhost:1313/posts/nestjs/mencoba-nest-js-6/"></a>
 </article>
 
@@ -191,7 +191,7 @@ OnModuleInit Dipanggil ketika semua module diload, maka akan memanggil function 
 OnApplicationBootstrap Dipanggil setelah semua module sudah diinisialisasi, tetapi sebelum aplikasi terkoneksi dengan server.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2026-01-13 20:58:23 +0800 WITA'>January 13, 2026</span></footer>
+  <footer class="entry-footer"><span title='2026-01-13 20:58:23 +0800 +08'>January 13, 2026</span>&nbsp;·&nbsp;<span>Farish</span></footer>
   <a class="entry-link" aria-label="post link to Nestjs Lifecycle" href="http://localhost:1313/posts/nestjs/nestjs-lifecycle/"></a>
 </article>
 
@@ -204,7 +204,7 @@ OnApplicationBootstrap Dipanggil setelah semua module sudah diinisialisasi, teta
     <p>Guard adalah class yang berfungsi untuk melakukan proses authorization, yaitu sebuah proses untuk mengecek apakah user berhak untuk mengakses route tersebut atau tidak. Lantas kenapa tidak melakukan proses authorization didalam middleware? Kan didalam middleware kita melakukan proses authentication. Satu alasan kenapa melakukan proses authorization didalam middleware itu susah karena middleware tidak tahu route mana yang boleh diakses dan tidak boleh, yang dia tahu hanya memanggil fungsi next() entah itu next middleware atau next route. Oleh karena itulah untuk melakukan proses authorization menggunakan guard.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2026-01-12 21:10:27 +0800 WITA'>January 12, 2026</span></footer>
+  <footer class="entry-footer"><span title='2026-01-12 21:10:27 +0800 +08'>January 12, 2026</span>&nbsp;·&nbsp;<span>Farish</span></footer>
   <a class="entry-link" aria-label="post link to Nest JS Guard" href="http://localhost:1313/posts/nestjs/nestjs-guard/"></a>
 </article>
 
@@ -220,7 +220,7 @@ user.controller.ts
 @Get(&#39;/auth&#39;) auth(@Req() request: Request): Record&lt;string, string&gt; { const user = request.user; return { email: user.email, username: user.name, }; } kode diatas dapat dijadikan custom decorator untuk membuat kode lebih mudah untuk dibaca. Untuk membuat custom decorator sendiri bisa menggunakan function createParamDecorator(), atau bisa gunakan CLI NestJS dengan command.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2026-01-11 19:10:05 +0800 WITA'>January 11, 2026</span></footer>
+  <footer class="entry-footer"><span title='2026-01-11 19:10:05 +0800 +08'>January 11, 2026</span>&nbsp;·&nbsp;<span>Farish</span></footer>
   <a class="entry-link" aria-label="post link to Nest JS Custom Decorator" href="http://localhost:1313/posts/nestjs/nestjs-custom-decorator/"></a>
 </article>
 
@@ -236,7 +236,7 @@ Berikut adalah diagram sederhana dari interceptor
 Bisa diliat dari diagram diatas, memang mirip seperti diagram middleware, cuma yang jadi pembeda adalah request yang dikirim client akan masuk ke interceptor terlebih dahulu dan disini interceptor dapat mengubah atau melakukan pengecekkan terhadap request, lalu dikirim ke controller, dan dari controller, data yang dikembalikan juga akan masuk ke interceptor dan response tadi dapat dimodifikasi.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2026-01-10 20:49:01 +0800 WITA'>January 10, 2026</span></footer>
+  <footer class="entry-footer"><span title='2026-01-10 20:49:01 +0800 +08'>January 10, 2026</span>&nbsp;·&nbsp;<span>Farish</span></footer>
   <a class="entry-link" aria-label="post link to Nest JS Interceptor" href="http://localhost:1313/posts/nestjs/nestjs-interceptor/"></a>
 </article>
 
@@ -253,7 +253,7 @@ user.controller.ts
 @Get(&#39;/:id&#39;) async getById(@Param(&#39;id&#39;, ParseIntPipe) id: number): Promise&lt;User | null&gt; { return await this.userRepository.getById(id); } Diatas adalah contoh penggunaan pipe untuk memastikan parameter id yang dikirim berupa number, karena walaupun variabel id diberi tipe number kita tetap dapat mengirim string, karena kode typescript ini nanti akan dikonversi ke javascript, yang dimana pada javascript tidak ada type safe, jika id tersebut kita kirimkan data string maka aplikasi tetap berjalan, kecuali kita melakukan komputasi yang menggunakan tipe data number.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2026-01-09 20:43:24 +0800 WITA'>January 9, 2026</span></footer>
+  <footer class="entry-footer"><span title='2026-01-09 20:43:24 +0800 +08'>January 9, 2026</span>&nbsp;·&nbsp;<span>Farish</span></footer>
   <a class="entry-link" aria-label="post link to Nest JS Pipe" href="http://localhost:1313/posts/nestjs/nestjs-pipe/"></a>
 </article>
 
@@ -267,7 +267,7 @@ user.controller.ts
 { &#34;statusCode&#34;: 500, &#34;message&#34;: &#34;Internal server error&#34; } Tapi terkadang kita sebagai developer juga ingin mengubah error yang dikembalikan, karena tidak semua error pada aplikasi itu bisa diberikan 500 internal server error, bisa saja error 400 bad request untuk validation request, atau 401 unauthorized untuk memberitahu kalau user ini tidak memiliki hak akses. Dan lain-lain.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2026-01-08 18:03:32 +0800 WITA'>January 8, 2026</span></footer>
+  <footer class="entry-footer"><span title='2026-01-08 18:03:32 +0800 +08'>January 8, 2026</span>&nbsp;·&nbsp;<span>Farish</span></footer>
   <a class="entry-link" aria-label="post link to Nest JS Exception Filter" href="http://localhost:1313/posts/nestjs/exception/"></a>
 </article>
 <footer class="page-footer">

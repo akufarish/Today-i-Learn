@@ -13,9 +13,9 @@
   &#34;message&#34;: &#34;Internal server error&#34;
 }
 Tapi terkadang kita sebagai developer juga ingin mengubah error yang dikembalikan, karena tidak semua error pada aplikasi itu bisa diberikan 500 internal server error, bisa saja error 400 bad request untuk validation request, atau 401 unauthorized untuk memberitahu kalau user ini tidak memiliki hak akses. Dan lain-lain.">
-<meta name="author" content="">
+<meta name="author" content="Farish">
 <link rel="canonical" href="http://localhost:1313/posts/nestjs/exception/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.ea5e07c191dc6fb48f5d3613026b37a0a7f49a80c19335b9044eebbcdb0bbcb6.css" integrity="sha256-6l4HwZHcb7SPXTYTAms3oKf0moDBkzW5BE7rvNsLvLY=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.41f95d00bf072436be226ffa583c39873a1caaca5b103bffe1915ebfb2c88289.css" integrity="sha256-QfldAL8HJDa&#43;Im/6WDw5hzocqspbEDv/4ZFev7LIgok=" rel="preload stylesheet" as="style">
 <link rel="icon" href="http://localhost:1313/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
@@ -122,12 +122,12 @@ Tapi terkadang kita sebagai developer juga ingin mengubah error yang dikembalika
     <h1 class="post-title entry-hint-parent">
       Nest JS Exception Filter
     </h1>
-    <div class="post-meta"><span title='2026-01-08 18:03:32 +0800 WITA'>January 8, 2026</span>
+    <div class="post-meta"><span title='2026-01-08 18:03:32 +0800 +08'>January 8, 2026</span>&nbsp;·&nbsp;<span>Farish</span>
 
 </div>
   </header> 
   <div class="post-content"><p>Secara default jika terjadi error pada aplikasi NestJS, aplikasi akan return data berupa json dengan status code <strong>500 internal server error</strong>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;statusCode&#34;</span>: <span style="color:#ae81ff">500</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;message&#34;</span>: <span style="color:#e6db74">&#34;Internal server error&#34;</span>
 </span></span><span style="display:flex;"><span>}
@@ -140,7 +140,7 @@ Tapi terkadang kita sebagai developer juga ingin mengubah error yang dikembalika
 <blockquote>
 <p>validation-filter.ts</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ArgumentsHost</span>, <span style="color:#a6e22e">Catch</span>, <span style="color:#a6e22e">ExceptionFilter</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/common&#34;</span>;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ArgumentsHost</span>, <span style="color:#a6e22e">Catch</span>, <span style="color:#a6e22e">ExceptionFilter</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/common&#34;</span>;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ZodError</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;zod&#34;</span>;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Response</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;express&#34;</span>;
 </span></span><span style="display:flex;"><span>
@@ -160,23 +160,23 @@ Tapi terkadang kita sebagai developer juga ingin mengubah error yang dikembalika
 <blockquote>
 <p>user-controller.ts</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">@Post</span>(<span style="color:#e6db74">&#39;/create&#39;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">@Post</span>(<span style="color:#e6db74">&#39;/create&#39;</span>)
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">@UseFilters</span>(<span style="color:#a6e22e">ValidationFilter</span>)
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#a6e22e">create</span>(<span style="color:#66d9ef">@Req</span>() <span style="color:#a6e22e">request</span>: <span style="color:#66d9ef">Request</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span>&lt;<span style="color:#f92672">User</span>&gt; {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">await</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">userRepository</span>.<span style="color:#a6e22e">save</span>(<span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">name</span> <span style="color:#66d9ef">as</span> <span style="color:#66d9ef">string</span>);
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">@Controller</span>(<span style="color:#e6db74">&#34;/api/users&#34;</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">@Controller</span>(<span style="color:#e6db74">&#34;/api/users&#34;</span>)
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">@UseFilters</span>(<span style="color:#a6e22e">ValidationFilter</span>)
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserController</span> {
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>() {}
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><div class="alert-container error"><strong>POST</strong> /api/users/create</div>
 <p>Request Body:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Response Body:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;code&#34;</span>: <span style="color:#ae81ff">400</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;errors&#34;</span>: [
 </span></span><span style="display:flex;"><span>    {
@@ -193,7 +193,7 @@ Tapi terkadang kita sebagai developer juga ingin mengubah error yang dikembalika
 <blockquote>
 <p>app.module.ts</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NestFactory</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/core&#34;</span>;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NestFactory</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/core&#34;</span>;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./app.module&#34;</span>;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ValidationFilter</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./validation/validation.filter&#34;</span>;
 </span></span><span style="display:flex;"><span>
@@ -209,7 +209,7 @@ Tapi terkadang kita sebagai developer juga ingin mengubah error yang dikembalika
 <blockquote>
 <p>user-repository.ts</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#a6e22e">getById</span>(<span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">string</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span>&lt;<span style="color:#f92672">User</span> <span style="color:#960050;background-color:#1e0010">|</span> <span style="color:#a6e22e">null</span>&gt; {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#a6e22e">getById</span>(<span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">string</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span>&lt;<span style="color:#f92672">User</span> <span style="color:#960050;background-color:#1e0010">|</span> <span style="color:#a6e22e">null</span>&gt; {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">prismaService</span>.<span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">findUnique</span>({
 </span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">where</span><span style="color:#f92672">:</span> {
 </span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">parseInt</span>(<span style="color:#a6e22e">id</span>),
@@ -224,7 +224,7 @@ Tapi terkadang kita sebagai developer juga ingin mengubah error yang dikembalika
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><div class="alert-container error"><strong>GET</strong> /api/users/4000</div>
 <p>Response Body:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;statusCode&#34;</span>: <span style="color:#ae81ff">404</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;message&#34;</span>: <span style="color:#e6db74">&#34;User not Found&#34;</span>
 </span></span><span style="display:flex;"><span>}

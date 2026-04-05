@@ -27,3 +27,10 @@ theme = ["PaperMod"]
     name = "Tags"
     url = "tags/"
     weight = 10
+
+[params]
+    author = "Farish"
+    mainSections = ["posts", "nestjs", "dart", "godot", "kuliah"]
+    
+    showFullContents = false
+    displayFullContent = false

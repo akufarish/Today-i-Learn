@@ -15,9 +15,9 @@ Berikut adalah diagram sederhana dari interceptor
 
 
 Bisa diliat dari diagram diatas, memang mirip seperti diagram middleware, cuma yang jadi pembeda adalah request yang dikirim client akan masuk ke interceptor terlebih dahulu dan disini interceptor dapat mengubah atau melakukan pengecekkan terhadap request, lalu dikirim ke controller, dan dari controller, data yang dikembalikan juga akan masuk ke interceptor dan response tadi dapat dimodifikasi.">
-<meta name="author" content="">
+<meta name="author" content="Farish">
 <link rel="canonical" href="http://localhost:1313/posts/nestjs/nestjs-interceptor/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.ea5e07c191dc6fb48f5d3613026b37a0a7f49a80c19335b9044eebbcdb0bbcb6.css" integrity="sha256-6l4HwZHcb7SPXTYTAms3oKf0moDBkzW5BE7rvNsLvLY=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.41f95d00bf072436be226ffa583c39873a1caaca5b103bffe1915ebfb2c88289.css" integrity="sha256-QfldAL8HJDa&#43;Im/6WDw5hzocqspbEDv/4ZFev7LIgok=" rel="preload stylesheet" as="style">
 <link rel="icon" href="http://localhost:1313/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
@@ -124,7 +124,7 @@ Bisa diliat dari diagram diatas, memang mirip seperti diagram middleware, cuma y
     <h1 class="post-title entry-hint-parent">
       Nest JS Interceptor
     </h1>
-    <div class="post-meta"><span title='2026-01-10 20:49:01 +0800 WITA'>January 10, 2026</span>
+    <div class="post-meta"><span title='2026-01-10 20:49:01 +0800 +08'>January 10, 2026</span>&nbsp;·&nbsp;<span>Farish</span>
 
 </div>
   </header> 
@@ -141,7 +141,7 @@ Bisa diliat dari diagram diatas, memang mirip seperti diagram middleware, cuma y
 </code></pre><blockquote>
 <p>time.interceptor.ts</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> {
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">CallHandler</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">ExecutionContext</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Injectable</span>,
@@ -169,7 +169,7 @@ Bisa diliat dari diagram diatas, memang mirip seperti diagram middleware, cuma y
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Diatas adalah contoh interceptor yang dimana untuk setiap response json, tambahkan field timestamp untuk mengetahui kapan request ini dijalankan, dan tambahkan field username dari request yang dikirim.</p>
 <p>Untuk menggunakan interceptor bisa gunakan decorator <strong>@UseInterceptor()</strong> di controller method atau di controller, jika ingin menambahkan interceptor secara global, didalam NestJS application file <strong>main.ts</strong>, bisa menggunakan method <strong>useGlobalInterceptors()</strong>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">@Post</span>(<span style="color:#e6db74">&#39;/login&#39;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">@Post</span>(<span style="color:#e6db74">&#39;/login&#39;</span>)
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">@UseFilters</span>(<span style="color:#a6e22e">ValidationFilter</span>)
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">@UsePipes</span>(<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">ValidationPipe</span>(<span style="color:#a6e22e">loginUserRequestValidation</span>))
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">@UseInterceptors</span>(<span style="color:#a6e22e">TimeInterceptor</span>)
@@ -180,12 +180,12 @@ Bisa diliat dari diagram diatas, memang mirip seperti diagram middleware, cuma y
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><div class="alert-container success"><strong>POST</strong> /api/users/login</div>
 <p>Request Body:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;username&#34;</span>: <span style="color:#e6db74">&#34;admin&#34;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;password&#34;</span>: <span style="color:#e6db74">&#34;admin&#34;</span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Response Body:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;data&#34;</span>: <span style="color:#e6db74">&#34;Hello admin&#34;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;username&#34;</span>: <span style="color:#e6db74">&#34;admin&#34;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;timestamp&#34;</span>: <span style="color:#e6db74">&#34;2026-01-10T13:12:29.271Z&#34;</span>
